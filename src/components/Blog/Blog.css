@@ -1,0 +1,85 @@
+@media only screen and (max-width:2150px){
+#textt{
+    font-size:1rem;
+    line-height: 1.5rem;
+}
+#height{
+    height: 100px;
+}
+#numm{
+    font-size: 1rem;
+}
+#likee{
+    height: 19px;
+    width: 19px;
+}
+#title{
+    font-size: 2.5rem;
+}
+#content{
+    font-size:  1.5rem;
+}
+#num{
+    font-size: 1.2rem;
+}
+#like{
+    height: 1.5rem;
+    width: 1.5rem;
+}
+}
+@media only screen and (max-width:1700px){
+#textt{
+    font-size:0.8rem;
+    line-height: 1rem;
+}
+#height{
+    height: 80px;
+}
+#numm{
+    font-size: 0.7rem;
+}
+#likee{
+    height: 16px;
+    width: 16px;
+}
+#title{
+    font-size: 1.5rem;
+}
+#content{
+    font-size:  1rem;
+}
+#num{
+    font-size: 0.9rem;
+}
+#like{
+    height: 1.2rem;
+    width: 1.2rem;
+}
+#car-height{
+    height: 17rem;
+}
+#car-height div{
+    height: 17rem;
+}
+#spec-head{
+    font-size: 2rem;
+}
+#spec-cont{
+font-size: 1.5rem;
+}
+}
+@media only screen and (max-width:1289px){
+#nothing{
+    display: none;
+    width: 0%;
+}
+#fulll{
+    width: 100%;
+}
+}
+
+@media only screen and (max-width:830px){
+    
+
+}
+

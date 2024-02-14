@@ -1,0 +1,370 @@
+.nav-link {
+    color: white;
+    text-decoration: none;
+    position: relative; 
+  }
+
+  .nav-link::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 1.5px; 
+    background-color: #ff8c00;
+    position: absolute;
+    bottom: -3px;
+    left: 0%; 
+    transition: width 0.3s ease; 
+  }
+
+  #searchbar {
+    display: flex;
+    align-items: center;
+    margin-right: 24px;
+  }
+  
+  #searchInput {
+    border: 1px solid #ccc;
+    font-size: 1.5rem;
+    height: 4rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem 0 0 0.5rem;
+    background-color: #f0f0f0;
+    color: #333;
+  }
+  
+  #searchButton {
+    background-color: #ff8c00;
+    border: none;
+    height: 4rem;
+    width: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 0.5rem 0.5rem 0;
+    cursor: pointer;
+  }
+  
+  #searchButton:hover {
+    background-color: #ff9900;
+  }
+  
+  #searchIcon {
+    color: #000;
+    height: 2rem;
+    width: 2rem;
+  }
+  
+  /* Responsive Styles for Small Screens */
+  @media only screen and (max-width: 768px) {
+    #searchbar {
+      margin-right: 0;
+    }
+  }
+  
+  .nav-link.active::after {
+    width: 100%; 
+  }
+  
+  .nav-link:hover::after {
+    width: 100%; 
+  }
+  
+
+  Navbar Styles
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+
+
+
+/* Responsive Styles for Tablets */
+
+
+/* Responsive Styles for Large Screens (2000px+) */
+@media only screen and (max-width: 2570px) {
+  /* Example: Adjust styles for large screens */
+  #ghost{
+height: 5rem;
+  }
+  #ghost img{
+    height: 5rem;
+  }
+  .navbar {
+    padding: 2rem;
+  }
+
+  .ml-24 {
+    margin-right: 4rem; /* Adjust as needed */
+  }
+}
+@media only screen and (max-width: 1440px) {
+  #circle{
+    margin-left: 3rem ;
+  }
+  #ghost{
+    height: 3rem;
+  }
+  #ghost img{
+    height: 3rem;
+  }
+  #circle ul{
+    --tw-space-x-reverse: 0;
+    margin-right: calc(2rem/* 48px */ * var(--tw-space-x-reverse));
+    margin-left: calc(2rem/* 48px */ * calc(1 - var(--tw-space-x-reverse)));
+    font-size: 1rem;
+    height: 2.5rem;
+  }
+  #searchbar {
+    margin-right: 10px;
+  }
+  
+  #searchInput {
+
+    font-size: 1rem;
+    height: 2.7rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 0.5rem 0 0 0.5rem;
+    background-color: #f0f0f0;
+    color: #333;
+  }
+  
+  #searchButton {
+    background-color: #ff8c00;
+    border: none;
+    height: 2.8rem;
+    width: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 0.5rem 0.5rem 0;
+    cursor: pointer;
+  }
+  
+ 
+  
+  #searchIcon {
+    color: #000;
+    height: 2rem;
+    width: 2rem;
+  }
+  
+}
+@media only screen and (max-width: 1570px) {
+  #circle{
+    margin-left: 3rem ;
+  }
+  #ghost{
+    height: 3rem;
+  }
+  #ghost img{
+    height: 3rem;
+  }
+  #circle ul{
+    --tw-space-x-reverse: 0;
+    margin-right: calc(2rem/* 48px */ * var(--tw-space-x-reverse));
+    margin-left: calc(2rem/* 48px */ * calc(1 - var(--tw-space-x-reverse)));
+    font-size: 1rem;
+    height: 2.5rem;
+  }
+  #searchbar {
+    margin-right: 10px;
+  }
+  
+  #searchInput {
+
+    font-size: 1rem;
+    height: 2.7rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 0.5rem 0 0 0.5rem;
+    background-color: #f0f0f0;
+    color: #333;
+  }
+  
+  #searchButton {
+    background-color: #ff8c00;
+    border: none;
+    height: 2.8rem;
+    width: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 0.5rem 0.5rem 0;
+    cursor: pointer;
+  }
+  
+ 
+  
+  #searchIcon {
+    color: #000;
+    height: 2rem;
+    width: 2rem;
+  }
+  
+}
+@media only screen and (max-width: 1141px) {
+  #circle{
+    margin-left: 0rem ;
+  }
+  #ghost{
+    height: 2rem;
+  }
+  #ghost img{
+    height: 3rem;
+  }
+  #circle ul{
+    --tw-space-x-reverse: 0;
+    margin-right: 0;
+    margin-left:0;
+    font-size: 0.6rem;
+    height: 2rem;
+    padding-left: 3rem;
+  }
+  #searchbar {
+    margin-right: 9px;
+  }
+  
+  #searchInput {
+
+    font-size: 1rem;
+    height: 2rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 0.5rem 0 0 0.5rem;
+    background-color: #f0f0f0;
+    color: #333;
+  }
+  
+  #searchButton {
+    background-color: #ff8c00;
+    border: none;
+    height: 2rem;
+    width: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 0.5rem 0.5rem 0;
+    cursor: pointer;
+  }
+  
+ 
+  
+  #searchIcon {
+    color: #000;
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+  
+}
+
+@media only screen and (max-width: 941px) {
+#circle{
+  display: none;
+}
+}
+@media only screen and (max-width: 450px) {
+  #ghost{
+    width: 80px;
+  }
+  #ghost img{
+    width: 60px;
+  }
+
+
+ 
+ #searchInput {
+
+  font-size: 0.6rem;
+  height: 1.7rem;
+  padding: 0.8rem 0.8rem;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+#searchButton {
+  background-color: #ff8c00;
+  border: none;
+  height: 1.7rem;
+  width: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 0.5rem 0.5rem 0;
+  cursor: pointer;
+}
+
+
+
+#searchIcon {
+  color: #000;
+  height: 2rem;
+  width: 2rem;
+}
+#userimg{
+  width: 2rem;
+}
+#tab{
+  height: 2rem;
+}
+#tab svg{
+  height: 2rem;
+  width: 1.7rem;
+}
+#tab span{
+  margin-top: 0;
+}
+  }
+  @media only screen and (max-width: 380px) {
+    #ghost{
+      width: 80px;
+    }
+    #ghost img{
+      width: 60px;
+    }
+  #one{
+   gap: 0px;
+  }
+  
+   
+   #searchInput {
+  
+    font-size: 0.6rem;
+    height: 1.7rem;
+    padding: 0.8rem 0.8rem;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  #searchButton {
+    background-color: #ff8c00;
+    border: none;
+    height: 1.7rem;
+    width: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 0.5rem 0.5rem 0;
+    cursor: pointer;
+  }
+  
+  
+  
+  #searchIcon {
+    color: #000;
+    height: 2rem;
+    width: 2rem;
+  }
+  #userimg{
+    width: 2rem;
+  }
+  #tab{
+    height: 2rem;
+  }
+  #tab svg{
+    height: 2rem;
+    width: 1.7rem;
+  }
+  #tab span{
+    margin-top: 0;
+  }
+    }

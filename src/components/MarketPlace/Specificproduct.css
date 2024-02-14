@@ -1,0 +1,17 @@
+/* Add this CSS to your stylesheet or within your component */
+@media screen and (max-width: 767px) {
+    .no-scrollbar {
+      scrollbar-width: thin;
+      overflow: scroll;
+      scrollbar-color: transparent transparent; /* For Firefox */
+    }
+    
+    .no-scrollbar::-webkit-scrollbar {
+      width: 6px; /* Adjust the width as needed */
+    }
+    
+    .no-scrollbar::-webkit-scrollbar-thumb {
+      background-color: transparent;
+    }
+  }
+  

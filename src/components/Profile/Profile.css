@@ -1,0 +1,224 @@
+.button-1{
+    cursor: pointer;
+    width: 180px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 64px;
+    font-size: 25px;
+    background: black;
+    margin-left: 22px;
+    color: white;
+    padding-left: 20px;
+    text-align: center;
+    display: flex;
+    border-radius: 5px;
+    align-items: center;
+}
+#adresses-but{
+color: black;
+}
+
+#adresses{
+    color: black;
+}
+#head{
+    color: black;
+}
+#head-text{
+    color: black;
+}
+
+
+#prof{
+    color: black;
+}
+#prof-name{
+    color: black;
+}
+
+#some{
+    color: black;
+}
+
+
+@media only screen and (max-width:2100px)
+{
+    #head{
+        font-size: 2.2rem;
+    }
+    #head-text{
+        font-size: 1.3rem;
+    }
+    #icon{
+        width: 70px;
+        height: 70px;
+    }
+
+    #prof{
+        font-size: 2.8rem;
+    }
+    #prof-name{
+        font-size: 1.8rem;
+    }
+    #prof-img{
+        height: 150px;
+        width: 150px;
+    }
+}
+
+
+@media only screen and (max-width:1700px)
+{
+    #prof{
+        margin-bottom:20px ;
+        font-size: 2rem;
+        line-height: 2.5rem;
+    }
+
+    #prof-name{
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+    #prof-img{
+        height: 100px;
+        width: 100px;
+    }
+    #gap{
+        gap: 10px;
+    }
+    
+    #head{
+        font-size: 1.5rem;
+        line-height: 2rem;
+     
+    }
+    #head-text{
+        font-size: 0.8rem;
+        line-height: 1rem;
+        width: 90%;
+      
+       
+    }
+    #or-b{
+        font-size: 1.5rem;
+        line-height: 2rem;
+        height: 40px;
+        width: 140px;
+    }
+    #icon{
+        width: 30px;
+        height: 50px;
+    }
+
+    #g-p{
+        gap:5px;
+        padding-bottom: 5px;
+    }
+    #some{
+        margin-top: 20px;
+    }
+    .button-1{
+        font-size: 20px;
+        width: 150px;
+    }
+    #row{
+        flex-direction: row;
+
+    }
+    #adresses{
+        font-size: 0.9rem;
+        line-height: 1.5rem;
+        height: 150px;
+        width: 30%;
+    }
+    #adresses-but{
+        font-size: 1rem;
+        line-height: 1.5rem;
+        height: 150px;
+    }
+
+    #mt{
+        margin-top: 30px;
+    }
+
+}
+
+@media only screen and (max-width:1050px)
+{
+    #gap{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    #col{
+        gap: 5px;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+    #adresses{
+        height: auto;
+    }
+}
+@media only screen and (max-width:684px)
+{
+#some{
+    flex-direction: column-reverse;
+    height: auto;
+}
+#gap{
+    width: 100%;
+}
+#profile{
+    width: 100%;
+}
+#a1{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+#prof{
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+#prof-name{
+    font-size: 1rem;
+    line-height: 1.5rem;
+    margin-bottom: 5px;
+}
+  #or-b{ 
+    font-size: 1rem;
+    line-height: 1.5rem;
+    height: 26px;
+    width: 101px;   
+  }
+  #row{
+    overflow-x: scroll;
+    width: auto;
+    margin-bottom: 10px;
+  }
+  #adresses{
+    width: auto;
+    padding: 7px;
+    font-size: 0.8rem;
+  }
+
+  #adresses-but{
+    width: auto;
+  }
+  #head{
+    font-size: 1.3rem;
+    line-height: 1.5rem;
+}
+#gap{
+    margin-left: 0%;
+}
+.button-1{
+    font-size: 18px;
+    width: 136px;
+    height: 51px;
+    padding-bottom: 10px;
+}
+#some{
+    margin-bottom: 0%;
+    padding-bottom: 10px;
+}
+}

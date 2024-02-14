@@ -1,0 +1,24 @@
+@media only screen and (max-width:1600px){
+    #head{
+        font-size: 3rem;
+    }
+    #topic{
+        font-size:1.2rem ;
+    }
+    #sidehead{
+        font-size: 2.5rem;
+    }
+}
+
+@media only screen and (max-width:600px){
+    #topic{
+        padding: 10px;
+    }
+    #div{
+        padding: 0%;
+    }
+    #sidehead{
+        padding-left: 10px;
+    }
+   
+}

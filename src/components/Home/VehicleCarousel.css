@@ -1,0 +1,134 @@
+@media only screen and (max-width: 1440px) {
+#car{
+    width:320px ;
+}
+#car h1{
+    padding-top:2rem ;
+}
+
+#some {
+    margin-left: 3rem;
+}
+}
+
+@media only screen and (max-width: 1140px) {
+    #car {
+      --base-width: 300px;
+      --base-height:80px;
+      width: calc(var(--base-width) - 10px);
+      height: calc(var(--base-height) - 10px);
+    }
+  
+    #image {
+      height: 70px;
+    }
+  
+    #image img {
+      height: 2.5rem;
+      width: 2.5rem;
+    }
+  
+    #car h1 {
+        --font:1.2rem;
+      padding-top: 0.8rem;
+      font-size: calc(var(--font)-5%);
+    }
+  
+    #car p {
+      font-size: 0.8rem;
+      margin-bottom: 7px;
+    }
+  }
+  @media only screen and (max-width: 1010px) {
+    #car {
+      --base-width: 260px;
+      --base-height:80px;
+      width: calc(var(--base-width) - 10px); /* Adjust the factor (10vw) based on your needs */
+      height: calc(var(--base-height) - 10px);
+     
+    }
+  #yeah{
+    border: none;
+  }
+    #image {
+      height: 70px;
+    }
+    #border{
+        border: none;
+    }
+  
+    #image img {
+      height: 2.5rem;
+      width: 2.5rem;
+    }
+  
+    #car h1 {
+        --font:1.2rem;
+      padding-top: 0.8rem;
+      font-size: calc(var(--font)-5%);
+    }
+  
+    #car p {
+      font-size: 0.8rem;
+      margin-bottom: 7px;
+    }
+
+    #some{
+       margin-left: 10px;
+       margin-right: 10px;
+    }
+  }
+  @media only screen and (max-width: 870px) {
+    #car {
+      --base-width: 230px;
+      --base-height:75px;
+      width: calc(var(--base-width) - 10px); /* Adjust the factor (10vw) based on your needs */
+      height: calc(var(--base-height) - 10px);
+    }
+    #image {
+        height: 65px;
+      }
+      #image img {
+        height: 2rem;
+        width: 2rem;
+      }
+      #car p {
+        font-size: 0.6rem;
+        margin-bottom: 10px;
+      }
+      #car h1 {
+        --font:1rem;
+      padding-top: 0.8rem;
+      font-size: calc(var(--font)-5%);
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+    #border{
+        border: none;
+    width: 100%;
+    }
+
+    #bigimg img{
+        margin-left: 0%;
+    }
+    #bigimg #one{
+        margin-left: 4rem;
+    }
+   
+
+    #car{
+        width: 300px;
+        margin-right: 30px;
+    }
+#yeah{
+    margin-left: 0;
+}
+#yeah img{
+    margin-left: 0;
+}
+#yeah h1{
+    margin-left: 0;
+    margin-right: 17px;
+}
+  }

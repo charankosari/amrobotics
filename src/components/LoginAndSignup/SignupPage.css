@@ -1,0 +1,206 @@
+@media  only screen and (max-width:2113px){
+#space{
+    margin-top: 15rem;
+}
+#pad{
+    padding-right: 100px;
+    padding-left: 100px;
+}
+#wid{
+    width: 100%;
+}
+#form-space{
+    margin-left: 100px;
+}
+}
+
+@media  only screen and (max-width:1700px){
+
+#titleee{
+    font-size: 2.5rem;
+}
+#wid{
+    font-size: 1rem;
+}
+#space{
+    margin-top: 5px;
+}
+#stars{
+    font-size: 1rem;
+    padding-left: 0px;
+}
+#pad{
+    width: 45%;
+}
+
+#imgg-title{
+    font-size: 1.5rem;
+}
+#imgg-cont{
+    font-size: 1rem;
+}
+#form-space{
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 0%;
+    padding-bottom: 0%;
+
+}
+#form-head{
+    width: 90%;
+    font-size: 1.5rem;
+
+}
+
+#gappp{
+    gap: 2px;
+}
+#labell{
+    font-size: 1rem;
+}
+#in{
+    line-height: 1.5rem;
+    font-size: 1rem;
+    background-color: #fff;
+    color: black;
+}
+#button{
+    width:120px !important;
+    font-size: 1rem;
+    line-height:2rem ;
+}
+}
+
+.container{
+    display: none;
+    width: 0%;
+}
+@media  only screen and (max-width:1200px){
+#form-space{
+    margin-left: 0%;
+
+}
+}
+@media only screen  and (max-width:830px){
+    #main{
+        display: none;
+        width: 0%;
+    }
+   .container{
+    display: block;
+   }
+    .singup {
+        color: #000;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        display: block;
+        font-weight: bold;
+        margin-top: 10px;
+        font-size: x-large;
+      }
+      
+      .card {
+        display: flex;
+        justify-content: center;
+        height: 100vh;
+        align-items: center;
+        min-height: 350px;
+        width: 100%;
+        flex-direction: column;
+        gap: 20px;
+        border-radius: 15px;
+        background: #e3e3e3;
+        box-shadow: 16px 16px 32px #c8c8c8,
+              -16px -16px 32px #fefefe;
+        border-radius: 8px;
+      }
+      
+      .inputBox,
+      .inputBox1 {
+        position: relative;
+        width: 300px;
+      }
+      
+      .inputBox input,
+      .inputBox1 input {
+        width: 100%;
+        padding: 10px;
+        outline: none;
+        border: none;
+        color: #000;
+        font-size: 1.3em;
+        background: transparent;
+        border-left: 2px solid #000;
+        border-bottom: 2px solid #000;
+        transition: 0.1s;
+        border-bottom-left-radius: 8px;
+      }
+      
+      .inputBox span,
+      .inputBox1 span {
+        margin-top: 5px;
+        position: absolute;
+        left: 0;
+        transform: translateY(-4px);
+        margin-left: 10px;
+        padding: 10px;
+        pointer-events: none;
+        font-size: 12px;
+        color: #000;
+        text-transform: uppercase;
+        transition: 0.5s;
+        letter-spacing: 3px;
+        border-radius: 8px;
+      }
+      
+      .inputBox input:valid~span,
+      .inputBox input:focus~span {
+        transform: translateX(177px) translateY(-15px);
+        font-size: 0.8em;
+        padding: 5px 10px;
+        background: #000;
+        letter-spacing: 0.2em;
+        color: #fff;
+        border: 2px;
+      }
+      
+      .inputBox1 input:valid~span,
+      .inputBox1 input:focus~span {
+        transform: translateX(210px) translateY(-15px);
+        font-size: 0.8em;
+        padding: 5px 10px;
+        background: #000;
+        letter-spacing: 0.2em;
+        color: #fff;
+        border: 2px;
+      }
+      
+      .inputBox input:valid,
+      .inputBox input:focus,
+      .inputBox1 input:valid,
+      .inputBox1 input:focus {
+        border: 2px solid #000;
+        border-radius: 8px;
+      }
+      
+      .enter {
+        height: 45px;
+        width: 100px;
+        border-radius: 5px;
+        border: 2px solid #000;
+        cursor: pointer;
+        background-color: black;
+        color: white;
+        transition: 0.5s;
+        text-transform: uppercase;
+        font-size: 10px;
+        letter-spacing: 2px;
+        margin-bottom: 3em;
+      }
+      
+      .enter:hover {
+        background-color: rgb(255, 255, 255);
+        color: black;
+      }
+}
+
