@@ -15,7 +15,7 @@ import './About.css'
       />
       </div>
       <div className="text-neutral-700 text-8xl font-semibold self-center  max-md:max-w-full max-md:text-4xl  p-4" id="head">
-        Welcome to AM Robotics
+        Welcome to AM Robotics__________________
       </div>
       <div className="text-black text-3xl  self-center w-[auto]  max-md:max-w-full  px-12" id="topic">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
