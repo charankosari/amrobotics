@@ -18,36 +18,27 @@ export default function MyComponent() {
       getDetails();
     }, []);
 
-    const [mainImage, setMainImage] = useState(
-        "https://imgs.search.brave.com/L87L2KblRPj0xEgErVwIvAfP-nYOf3yRqLa6aSEa_oQ/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/YWxsLW9mLW15LWNh/cnMtYXJlbnQtYnJv/a2VuLXdoYXQtbm93/LXYwLTlxem56MWdw/bzhxYjEuanBnP3dp/ZHRoPTY0MCZjcm9w/PXNtYXJ0JmF1dG89/d2VicCZzPWE3MjZk/NmYxNzRmMzVkZmFh/OGZhYjIwMTAyNjdh/ZmJlYmYzN2YwZjU"
-      );
-      const images = [
-        "https://imgs.search.brave.com/L87L2KblRPj0xEgErVwIvAfP-nYOf3yRqLa6aSEa_oQ/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/YWxsLW9mLW15LWNh/cnMtYXJlbnQtYnJv/a2VuLXdoYXQtbm93/LXYwLTlxem56MWdw/bzhxYjEuanBnP3dp/ZHRoPTY0MCZjcm9w/PXNtYXJ0JmF1dG89/d2VicCZzPWE3MjZk/NmYxNzRmMzVkZmFh/OGZhYjIwMTAyNjdh/ZmJlYmYzN2YwZjU",
-        "https://c4.wallpaperflare.com/wallpaper/965/883/624/manga-one-piece-wallpaper-preview.jpg",
-        "https://imgs.search.brave.com/L87L2KblRPj0xEgErVwIvAfP-nYOf3yRqLa6aSEa_oQ/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/YWxsLW9mLW15LWNh/cnMtYXJlbnQtYnJv/a2VuLXdoYXQtbm93/LXYwLTlxem56MWdw/bzhxYjEuanBnP3dp/ZHRoPTY0MCZjcm9w/PXNtYXJ0JmF1dG89/d2VicCZzPWE3MjZk/NmYxNzRmMzVkZmFh/OGZhYjIwMTAyNjdh/ZmJlYmYzN2YwZjU",
-        "https://imgs.search.brave.com/L87L2KblRPj0xEgErVwIvAfP-nYOf3yRqLa6aSEa_oQ/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/YWxsLW9mLW15LWNh/cnMtYXJlbnQtYnJv/a2VuLXdoYXQtbm93/LXYwLTlxem56MWdw/bzhxYjEuanBnP3dp/ZHRoPTY0MCZjcm9w/PXNtYXJ0JmF1dG89/d2VicCZzPWE3MjZk/NmYxNzRmMzVkZmFh/OGZhYjIwMTAyNjdh/ZmJlYmYzN2YwZjU",
-      ];
-      const handleImageClick = (image) => {
-        setMainImage(image);
-      };
-      const [activeSection, setActiveSection] = useState("description");
-      const handleSectionClick = (section) => {
-        setActiveSection(section);
-      };
-      const getDetails = async () => {
-        const response = await GetDetailProduct(id);
-        if (response.status == 200) {
-          setDetails(response.data.product)
-          console.log(details);
-
-        }
-        setLoading(false);
-
     
+    const handleImageClick = (image) => {
+      setMainImage(image.url);
+    };
+    const [mainImage, setMainImage] = useState('')
+    const [activeSection, setActiveSection] = useState("description");
+    const handleSectionClick = (section) => {
+      setActiveSection(section);
+    };
+    const getDetails = async () => {
+      const response = await GetDetailProduct(id);
+      if (response.status == 200) {
+        setDetails(response.data.product)
+        setMainImage(response.data.product.images[0].url)
+      }
+      setLoading(false);
       };
 
   return (
     <div className="overflow-hidden" >
+ 
     <Navbar/>
 
      {loading?
@@ -74,11 +65,11 @@ export default function MyComponent() {
               <div className=" max-md:max-w-full">
                 <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
                   <div className="flex flex-row gap-2  items-stretch w-[26%] max-md:w-full max-md:ml-25 no-scrollbar ">
-                  {images.map((image, index) => (
+                  {(details.images).map((image, index) => (
                   <img
                     key={index}
                     loading="lazy"
-                    srcSet={image}
+                    srcSet={image.url}
                     className="aspect-[1.14] object-contain object-center w-[148px] overflow-hidden shrink-0 max-w-full grow max-md:mt-3 cursor-pointer"
                     onClick={() => handleImageClick(image)}
                   />
@@ -91,23 +82,23 @@ export default function MyComponent() {
           <div className="flex flex-col items-stretch w-[44%] ml-5 max-md:w-full max-md:ml-0">
             <div className="flex flex-col my-auto max-md:max-w-full max-md:mt-10">
               <div className="text-black text-4xl font-semibold self-stretch max-md:max-w-full">
-                Rover 2WD Track Spy DIY Chasis Kit
+               {details.name}
               </div>
               <div className="text-zinc-800 text-opacity-60 text-sm whitespace-nowrap ml-32 mt-7 self-start max-md:ml-2.5">
-                37 reviews
+                ⭐{`${details.noOfReviews} reviews`}
               </div>
               <div className="flex items-stretch gap-4 mt-3 self-start">
                 <div className="text-neutral-700 text-sm whitespace-nowrap bg-zinc-300 bg-opacity-70 grow justify-center items-stretch px-3.5 py-1.5 rounded-xl">
-                  Home Automation
+                  {details.category}
                 </div>
-                <div className="text-neutral-700 text-sm whitespace-nowrap bg-zinc-300 bg-opacity-70 grow justify-center items-stretch px-3 py-1.5 rounded-xl">
-                  Transport
-                </div>
+                {/* <div className="text-neutral-700 text-sm whitespace-nowrap bg-zinc-300 bg-opacity-70 grow justify-center items-stretch px-3 py-1.5 rounded-xl">
+                  
+                </div> */}
               </div>
               <div className="self-stretch flex items-stretch justify-between gap-0.5 mt-4 max-md:max-w-full max-md:flex-wrap">
                 <div className="flex grow basis-[0%] flex-col items-stretch">
                   <div className="text-neutral-700 text-3xl font-semibold">
-                    Rs. 14,499 /-
+                  {details.price}
                   </div>
                   <div className="text-zinc-800 text-opacity-60 text-sm whitespace-nowrap mt-5">
                     <span className="font-semibold text-base ">
@@ -116,8 +107,8 @@ export default function MyComponent() {
                   </div>
                 </div>
                 <div className="flex grow basis-[0%] flex-col items-stretch">
-                  <div className="text-neutral-700 text-3xl font-semibold whitespace-nowrap">
-                    Rs. 20,999 /-
+                  <div className="text-neutral-700 text-3xl font-semibold whitespace-nowrap  line-through">
+                  {details.price}
                   </div>
                   
                 </div>
@@ -165,7 +156,7 @@ export default function MyComponent() {
       
       {activeSection === "description" && (
           <div className="text-zinc-800 text-opacity-60 text-2xl self-stretch mt-5 max-md:max-w-full">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates obcaecati nesciunt repudiandae ut, id quis ex sunt vel earum dolores quisquam, eligendi impedit laboriosam blanditiis dolorum dicta ad aliquam ducimus corporis. Repudiandae suscipit saepe officia minima ad, sed laboriosam magnam, est corrupti voluptate assumenda vel nostrum. Dolorem sequi libero voluptatem iusto nesciunt perspiciatis, adipisci perferendis cum! Odit eligendi, ad doloremque magnam earum aliquam dignissimos commodi quod obcaecati, voluptates eius consequuntur debitis laborum maxime neque totam possimus enim nulla doloribus aut ullam reprehenderit voluptatum. Aspernatur, a velit. Expedita eligendi sit possimus eum facilis voluptatem aliquid hic quidem voluptatibus minima natus cumque maxime ipsum vel perferendis mollitia voluptates sed vero cupiditate quibusdam, beatae qui. Incidunt ab, quaerat praesentium impedit perferendis reiciendis provident sapiente? Enim accusamus voluptatibus, modi facilis vitae consequuntur voluptates praesentium veritatis ipsam delectus illo reiciendis aperiam. Sint dolore impedit, esse dignissimos ducimus ut, officiis, itaque voluptatum voluptate dolorem deserunt obcaecati assumenda? Quis amet veniam error magni, laudantium perspiciatis, quidem distinctio facilis illum voluptatibus numquam minima praesentium. Facilis modi nihil facere! Culpa libero repellat vero quae explicabo itaque fuga magnam quia. Magni illum id iure minima dolorum deserunt voluptatem optio, beatae perspiciatis quos voluptatibus quae alias at aperiam eius! Cumque, nesciunt?
+           {details.description}
           </div>
         )}
 
