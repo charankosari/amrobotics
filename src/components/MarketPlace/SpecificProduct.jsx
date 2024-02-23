@@ -10,6 +10,23 @@ import {ThreeDots} from 'react-loader-spinner'
 
 
 export default function MyComponent() {
+  
+  const Review={
+    reviever:'david bhai',
+    revieverimg:'https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg',
+    reviews:'https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg',
+    ratings:4,
+    comments:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint cupiditate ipsam, quia neque hic ratione, dolorem, illum quo error commodi adipisci quisquam voluptatibus ex provident?'
+
+  }
+  const renderStars = () => {
+    let stars = '';
+    for (let i = 0; i < Review.ratings; i++) {
+      stars += '⭐';
+    }
+    return stars;
+  };
+ 
     const {id}=useParams()
     const [details, setDetails] = useState("");
     const [loading, setLoading] = useState(true);
@@ -91,9 +108,7 @@ export default function MyComponent() {
                 <div className="text-neutral-700 text-sm whitespace-nowrap bg-zinc-300 bg-opacity-70 grow justify-center items-stretch px-3.5 py-1.5 rounded-xl">
                   {details.category}
                 </div>
-                {/* <div className="text-neutral-700 text-sm whitespace-nowrap bg-zinc-300 bg-opacity-70 grow justify-center items-stretch px-3 py-1.5 rounded-xl">
-                  
-                </div> */}
+            
               </div>
               <div className="self-stretch flex items-stretch justify-between gap-0.5 mt-4 max-md:max-w-full max-md:flex-wrap">
                 <div className="flex grow basis-[0%] flex-col items-stretch">
@@ -173,46 +188,54 @@ export default function MyComponent() {
 
           </div>
         )}
-      <div className="border bg-white w-[811px] max-w-full ml-3.5 mt-20 mb-2 px-8 py-9 rounded-2xl border-solid border-black border-opacity-30 self-start max-md:mt-10 max-md:px-5">
-        <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
-          <div className="flex flex-col items-stretch w-[53%] max-md:w-full max-md:ml-0">
-            <div className="flex grow flex-col max-md:mt-10">
-              <div className="text-black text-3xl font-semibold self-stretch">
-                Reviews & Ratings
-              </div>{" "}
-              <div className="text-black text-4xl font-semibold self-stretch mt-6">
-                4.4
-              </div>{" "}
-              <div className="text-zinc-500 text-center text-2xl self-center w-[406px] mt-5">
-                72 ratings & 42 reviews
-              </div>
-              <div className="self-stretch flex items-stretch  mt-5">
-                <img
-                  loading="lazy"
-                  srcSet="https://imgs.search.brave.com/L87L2KblRPj0xEgErVwIvAfP-nYOf3yRqLa6aSEa_oQ/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/YWxsLW9mLW15LWNh/cnMtYXJlbnQtYnJv/a2VuLXdoYXQtbm93/LXYwLTlxem56MWdw/bzhxYjEuanBnP3dp/ZHRoPTY0MCZjcm9w/PXNtYXJ0JmF1dG89/d2VicCZzPWE3MjZk/NmYxNzRmMzVkZmFh/OGZhYjIwMTAyNjdh/ZmJlYmYzN2YwZjU"
-                  className="aspect-[1.59] object-contain object-center w-[139px] overflow-hidden shrink-0 max-w-full"
-                />
-                <img
-                  loading="lazy"
-                  srcSet="https://imgs.search.brave.com/L87L2KblRPj0xEgErVwIvAfP-nYOf3yRqLa6aSEa_oQ/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/YWxsLW9mLW15LWNh/cnMtYXJlbnQtYnJv/a2VuLXdoYXQtbm93/LXYwLTlxem56MWdw/bzhxYjEuanBnP3dp/ZHRoPTY0MCZjcm9w/PXNtYXJ0JmF1dG89/d2VicCZzPWE3MjZk/NmYxNzRmMzVkZmFh/OGZhYjIwMTAyNjdh/ZmJlYmYzN2YwZjU"
-                  className="aspect-[1.58] object-contain object-center w-[138px] overflow-hidden shrink-0 max-w-full"
-                />
-                <img
-                  loading="lazy"
-                  srcSet="https://imgs.search.brave.com/L87L2KblRPj0xEgErVwIvAfP-nYOf3yRqLa6aSEa_oQ/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/YWxsLW9mLW15LWNh/cnMtYXJlbnQtYnJv/a2VuLXdoYXQtbm93/LXYwLTlxem56MWdw/bzhxYjEuanBnP3dp/ZHRoPTY0MCZjcm9w/PXNtYXJ0JmF1dG89/d2VicCZzPWE3MjZk/NmYxNzRmMzVkZmFh/OGZhYjIwMTAyNjdh/ZmJlYmYzN2YwZjU"
-                  className="aspect-[1.58] object-contain object-center w-[138px] overflow-hidden shrink-0 max-w-full"
-                />
-                <img
-                  loading="lazy"
-                  srcSet="https://imgs.search.brave.com/L87L2KblRPj0xEgErVwIvAfP-nYOf3yRqLa6aSEa_oQ/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/YWxsLW9mLW15LWNh/cnMtYXJlbnQtYnJv/a2VuLXdoYXQtbm93/LXYwLTlxem56MWdw/bzhxYjEuanBnP3dp/ZHRoPTY0MCZjcm9w/PXNtYXJ0JmF1dG89/d2VicCZzPWE3MjZk/NmYxNzRmMzVkZmFh/OGZhYjIwMTAyNjdh/ZmJlYmYzN2YwZjU"
-                  className="aspect-[1.58] object-contain object-center w-[138px] overflow-hidden shrink-0 max-w-full"
-                />
-              </div>
-            </div>
+
+      <div className="w-[60%] h-auto p-4">
+        <h1 className="text-3xl mb-3 font-bold text-black" id="cus">Customer reviews</h1>
+        <h3 className="text-xl mb-2 text-black font-semibold" id="glo"> 72000 global ratings</h3>
+         {/* reviews  */}
+         <div className="flex flex-col gap-2">
+        <div className="flex flex-col border-b-[1.5px] border-b-gray-500 p-2  py-10 " id="reviews">
+          <div className="flex flex-row items-center">
+          <div className="w-[3rem] rounded-full mb-2" id="userimg"> 
+            <img  src={Review.revieverimg}  className="rounded-full"  alt="" />
+            </div> 
+            <h1 className="text-2xl ml-2 mb-1 font-[500] text-black" id="reviever">{Review.reviever}</h1>
           </div>
-        
-        
+          <span className="text-2xl" id="reviever">{renderStars()}</span>
+          <p className="text-xl text-black mb-2" id="comments">{Review.comments}</p>
+          <div className="flex flex-row overflow-x-auto gap-2">
+            <img  src={Review.reviews}  className="w-[200px] h-[200px]"  alt="" id="rev"/>
+          </div>
         </div>
+        <div className="flex flex-col border-b-[1.5px] border-b-gray-500 p-2  py-10 " id="reviews">
+          <div className="flex flex-row items-center">
+          <div className="w-[3rem] rounded-full mb-2" id="userimg"> 
+            <img  src={Review.revieverimg}  className="rounded-full"  alt="" />
+            </div> 
+            <h1 className="text-2xl ml-2 mb-1 font-[500] text-black" id="reviever">{Review.reviever}</h1>
+          </div>
+          <span className="text-2xl" id="reviever">{renderStars()}</span>
+          <p className="text-xl text-black mb-2" id="comments">{Review.comments}</p>
+          <div className="flex flex-row overflow-x-auto gap-2">
+            <img  src={Review.reviews}  className="w-[200px] h-[200px]"  alt="" id="rev"/>
+          </div>
+        </div>
+        <div className="flex flex-col border-b-[1.5px] border-b-gray-500 p-2 py-10 " id="reviews">
+          <div className="flex flex-row items-center">
+          <div className="w-[3rem] rounded-full mb-2" id="userimg"> 
+            <img  src={Review.revieverimg}  className="rounded-full"  alt="" />
+            </div> 
+            <h1 className="text-2xl ml-2 mb-1 font-[500] text-black" id="reviever">{Review.reviever}</h1>
+          </div>
+          <span className="text-2xl" id="reviever">{renderStars()}</span>
+          <p className="text-xl text-black mb-2" id="comments">{Review.comments}</p>
+          <div className="flex flex-row overflow-x-auto gap-2">
+            <img  src={Review.reviews}  className="w-[200px] h-[200px]"  alt="" id="rev"/>
+          </div>
+        </div>
+
+         </div>
+
       </div>
       </div>
   
