@@ -16,6 +16,9 @@ function LoginPage() {
     try{
      event.preventDefault()
      const response=await axios.post("http://localhost:5080/api/v1/login",{email,password})
+     const jwtToken=response.data.jwtToken
+     localStorage.setItem("jwtToken",jwtToken)
+    console.log(response)
      navigate("/") ;
     }
     catch(e){

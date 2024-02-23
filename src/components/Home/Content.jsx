@@ -2,6 +2,7 @@ import "./Content.css";
 import img1 from "../assets/rover_2.png";
 
 function Content() {
+
   return (
     <div className=" bg-white " id="contenttt">
         <h1 className="text-2xl ml-10 pt-4 sm:text-7xl font-bold">

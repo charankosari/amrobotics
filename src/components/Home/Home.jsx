@@ -7,6 +7,7 @@ import FullCard from './FullCard'
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 function Home() {
+  console.log(document.cookie)
 
   return (
     <div>
