@@ -10,6 +10,7 @@ import IndividualBlog from './components/Blog/SpecificBlog';
 import SignupPage from './components/LoginAndSignup/SignupPage'
 import Login from './components/LoginAndSignup/Login'
 import Profile from './components/Profile/Profile'
+import Cart from './components/profileTabsDetailview/cart'
 function App() {
   return (
     <>
@@ -25,6 +26,8 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/cart" element={<Cart />} />
+
         </Routes>
       </BrowserRouter>
     </>

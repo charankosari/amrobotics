@@ -1,3 +1,6 @@
+*{
+    color: black;
+}
 .button-1{
     cursor: pointer;
     width: 180px;

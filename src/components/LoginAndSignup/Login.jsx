@@ -4,9 +4,12 @@ import Logo from "../assets/imgg.png";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import {storeUser} from '../../storeFeatures/authenticationReducer'
+import { useDispatch } from "react-redux";
 
 function LoginPage() {
   const navigate=useNavigate()
+  const dispatch=useDispatch()
 
   const [email,setEmail]=useState('');
   const [password,setPassword]=useState('');
@@ -17,12 +20,12 @@ function LoginPage() {
      event.preventDefault()
      const response=await axios.post("http://localhost:5080/api/v1/login",{email,password})
      const jwtToken=response.data.jwtToken
+     dispatch(storeUser(jwtToken))
      localStorage.setItem("jwtToken",jwtToken)
-    console.log(response)
      navigate("/") ;
     }
     catch(e){
-     console.log(e.response.data)
+     console.log(e.response)
     }
   }
 
@@ -110,7 +113,7 @@ function LoginPage() {
                 setEmail(e.target.value);
                 console.log(e.target.value)
               }}
-              id="in"
+              id="email"
               className="w-[50%] rounded bg-white border-2 border-black text-3xl leading-[3rem]"
             />
 
@@ -122,7 +125,7 @@ function LoginPage() {
               setPassword(e.target.value);
             }}
               type="password"
-              id="in"
+              id="password"
               name="password"
               className="w-[50%] rounded bg-white border-2 border-zinc-800 text-3xl leading-[3rem]"
             />

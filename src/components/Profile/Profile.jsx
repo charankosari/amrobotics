@@ -11,44 +11,67 @@ import { RiQuestionnaireFill } from "react-icons/ri";
 import "./Profile.css";
 import { IoExitOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import { GetUserDetails } from "../../helper.js";
+import UserProfile from "../../components/profileTabsDetailview/profileView.jsx"
+import Cart from "../profileTabsDetailview/cart.jsx";
+import Wishlist from "../profileTabsDetailview/wishlist.jsx"
+
+
+const cartopen=true
+
+const tabIds={
+account:"ACCOUNT",
+order:"ORDER",
+wishlist:"WISHLIST",
+cart:"CART",
+changepass:"CHANGEPASS",
+contact:"CONTACT",
+faqs:"FAQS"
+}
 
 function Profile() {
-  const [details, setDetails] = useState("");
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    getDetails();
-  }, []);
+  const[activeId,setActiveId]=useState(tabIds.account)
+  console.log(activeId)
 
-  const getDetails = async () => {
-    const response = await GetUserDetails();
-    console.log(response);
-    if (response.status == 200) {
-      setDetails(response.data.user);
-      setLoading(false);
-    }
-    console.log(details);
-  };
-  const addressess = [
-    "Lorem ipsum dolor, sit amet consectetui e perferendis quo perspiciatis, voluptatem architecto alias inventore!",
-    " Lorem ipsum dolor, sit amesi aliquid? Quibusdam itaque perferendis quo perspiciatis, voluptatem architecto alias inventore!",
-  ];
-  const loadingView = () => {
-    return <div>loading</div>;
-  };
+  const changeActiveId=(id)=>{
+    setActiveId(id)
 
-  const successView = () => {
-    const { _id, name, email, number, role, wishList, cart } = details;
+  }
+
+
+   const showPages=()=>{
+    switch(activeId){
+    case tabIds.account:
+      return <UserProfile/>
+    case tabIds.cart:
+      return <Cart/>
+    case tabIds.wishlist:
+      return <Wishlist/>
+     }
+  }
+
     return (
       <div className="bg-white">
         <Navbar />
         <div className="flex flex-row  mt-12 h-[90dvh]  " id="some">
           <div className="flex flex-col gap-12 mx-12 w-[30%]" id="gap">
-
-         
-
-
+            
+          <div  id={tabIds.account} onClick={()=>{changeActiveId(tabIds.account)}} className="flex flex-row gap-2 mx-4 border-b-2 border-b-zinc-400 pb-2">
+              <CiViewList
+                className="w-[90px] h-[90px] mr-3 text-[#FF9F1C]"
+                id="icon"
+              />
+              <Link>
+                <div className="flex flex-col">
+                  <h1 className="text-5xl" id="head">
+                    Account Details
+                  </h1>
+                  <p className="text-2xl w-[70%]" id="head-text">
+                    All your account details will be available
+                  </p>
+                </div>
+              </Link>
+            </div> 
             <div className="flex flex-row gap-2 mx-4 border-b-2 border-b-zinc-400 pb-2">
               <CiViewList
                 className="w-[90px] h-[90px] mr-3 text-[#FF9F1C]"
@@ -66,7 +89,7 @@ function Profile() {
                 </div>
               </Link>
             </div> 
-            <div className="flex flex-row gap-2 mx-4 border-b-2 border-b-zinc-400 pb-2">
+            <div  id={tabIds.wishlist} onClick={()=>{changeActiveId(tabIds.wishlist)}} className="flex flex-row gap-2 mx-4 border-b-2 border-b-zinc-400 pb-2">
               <RiUserHeartLine
                 className="w-[90px] h-[90px] mr-3 text-[#FF9F1C]"
                 id="icon"
@@ -80,8 +103,8 @@ function Profile() {
                 </p>
               </div>
             </div>
-            <div className="flex flex-row gap-2 mx-4 border-b-2 border-b-zinc-400 pb-2">
-              <BsCart3
+            <div   id={tabIds.cart} onClick={()=>{changeActiveId(tabIds.cart)}}  className="flex flex-row gap-2 mx-4 border-b-2 border-b-zinc-400 pb-2">
+              <BsCart3 
                 className="w-[90px] h-[90px] mr-3 text-[#FF9F1C]"
                 id="icon"
               />
@@ -142,76 +165,15 @@ function Profile() {
               Sign Out <IoExitOutline className="ml-4" />{" "}
             </button>
           </div>
-          <div className="w-[63%] bg-[#D9D9D94D]" id="profile">
-            <div className="flex flex-col ml-[44px] mt-[44px]" id="a1">
-              <div className="text-6xl mb-[4rem]" id="prof">
-                Profile Details
-              </div>
-              <div className="flex flex-row ">
-                <div className="flex flex-col w-[70%]">
-                  <div className="text-4xl mb-4" id="prof-name">
-                    {name}
-                  </div>
-                  <div className="flex flex-row gap-24" id="col">
-                    <h1 className="text-4xl" id="prof-name">
-                      {number}
-                    </h1>
-                    <h1 className="text-4xl " id="prof-name">
-                      {email}
-                    </h1>
-                  </div>
-                </div>
-                <div className="w-[190px] h-[190px] " id="prof-img">
-                  <img
-                    src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                    alt=""
-                    id="prof-img"
-                    className="w-[190px] h-[190px] rounded-xl"
-                  />
-                </div>
-              </div>
-              <button
-                className="bg-[#FF9F1C] w-[205px] h-[75px] rounded-xl text-4xl text-white text-bold"
-                id="or-b"
-              >
-                {" "}
-                Edit Profile{" "}
-              </button>
 
-              <div className="flex flex-col mt-[4rem] gap-4" id="mt">
-                <div className="text-6xl" id="prof">
-                  Previous Adresses
-                </div>
-                <div className="flex flex-col gap-6" id="row">
-                  {addressess.map((address, index) => (
-                    <div
-                      key={index}
-                      className="text-3xl bg-white p-4 w-[80%] h-[180px] items-center flex"
-                      id="adresses"
-                    >
-                      {address}
-                    </div>
-                  ))}
-                  <button
-                    className="text-3xl bg- p-4 w-[20%] h-[180px] items-center flex bg-[#bebdbd4d] rounded-xl"
-                    id="adresses-but"
-                  >
-                    Add one more address
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div className="w-[63%] bg-[#D9D9D94D]" id="profile">
+         {
+        showPages()
+         }
+         </div>
         </div>
       </div>
     );
-  };
-
-  if (loading) {
-    return loadingView();
-  } else {
-    return successView();
   }
-}
 
 export default Profile;

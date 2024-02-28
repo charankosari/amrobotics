@@ -4,12 +4,22 @@ import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import './Specificproduct.css'
 import { useParams } from 'react-router-dom';
-import {GetDetailProduct} from "../../helper.js";
+import {GetDetailProduct,sendToWishlistApi} from "../../helper.js";
 import axios from "axios"
 import {ThreeDots} from 'react-loader-spinner'
+import {sendToCartApi} from '../../helper.js/'
+// redux 
+import { useDispatch ,useSelector} from "react-redux";
+import {addToCart}  from "../../storeFeatures/cartReducers.js";
+import { IoIosHeart } from 'react-icons/io';
+
+
 
 
 export default function MyComponent() {
+  const dispatch=useDispatch()
+
+  console.log("render")
   
   const Review={
     reviever:'david bhai',
@@ -30,6 +40,10 @@ export default function MyComponent() {
     const {id}=useParams()
     const [details, setDetails] = useState("");
     const [loading, setLoading] = useState(true);
+    const [cartCount,setCartCount]=useState(1)
+    const[isLoveClicked,setLoveClicked]=useState(false)
+
+     console.log("love clicked",isLoveClicked)
 
     useEffect(() => {
       getDetails();
@@ -51,7 +65,23 @@ export default function MyComponent() {
         setMainImage(response.data.product.images[0].url)
       }
       setLoading(false);
-      };
+    };
+
+    const sendToCart=async()=>{
+      console.log(cartCount)
+      const response=await sendToCartApi({id,cartCount})
+      if(response.status==200){
+        alert("product added to cart")
+      }
+    }
+
+    const wishListItem=async()=>{
+      const response=await sendToWishlistApi(id)
+      console.log(response)
+      if(response.status==200){
+        setLoveClicked(!isLoveClicked)
+      }
+    }
 
   return (
     <div className="overflow-hidden" >
@@ -73,8 +103,21 @@ export default function MyComponent() {
       <div className="self-stretch mx-6 max-md:max-w-full max-md:mr-2.5">
         <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
           <div className="flex flex-col items-stretch w-[56%] max-md:w-full max-md:ml-0">
-            <div className="flex grow flex-col items-stretch max-md:max-w-full max-md:mt-10">
-              <img
+            <div style={{position:"relative"}} className="flex grow flex-col items-stretch max-md:max-w-full max-md:mt-10">
+              
+           <button
+          onClick={wishListItem}
+          style={{
+            position: "absolute",
+            top: "0px",
+            right: "10px",
+            cursor: "pointer",
+            border: "none",
+            backgroundColor: "transparent"}}>
+          <IoIosHeart color={"red"} size={24}  className="bg-white text-red-500 rounded-full p-[3px]"/> 
+         </button>
+
+                <img
                 loading="lazy"
                 srcSet={mainImage}
                 className="aspect-[1.4] object-contain object-center w-full overflow-hidden max-md:max-w-full"
@@ -116,8 +159,8 @@ export default function MyComponent() {
                   {details.price}
                   </div>
                   <div className="text-zinc-800 text-opacity-60 text-sm whitespace-nowrap mt-5">
-                    <span className="font-semibold text-base ">
-                      <span className="text-amber-500">Shipping </span> calculated at the checkout.
+                    <span className="font-semibold text-base p-0">
+                      <span className="text-amber-500 p-0">Shipping </span> calculated at the checkout.
                     </span>
                   </div>
                 </div>
@@ -128,12 +171,32 @@ export default function MyComponent() {
                   
                 </div>
               </div>
+      
+
+              <div className="flex flex-row items-center mt-4">
+              <label>Quantity : </label>
+                
+              <select onChange={(event)=>setCartCount(event.target.value)} className="w-10 border border-gray-500 rounded-md px-0.5">
+               <option value={1} className="bg-white w-10">1</option>
+               <option value={2} className="bg-white w-10">2</option>
+               <option  value={3} className="bg-white w-10">3</option>
+               </select>
+              </div>
+              
+              <button onClick={() => { dispatch(addToCart(id)); sendToCart(); }} className="text-white sm:text-4xl text-xl font-semibold bg-neutral-700 self-stretch justify-center items-center mt-4 px-12 py-6 rounded-xl max-md:max-w-full max-md:px-5">
+                Add to cart
+              </button>
+
               <button className="text-white sm:text-4xl text-xl font-semibold bg-amber-500 self-stretch justify-center items-center mt-6 px-12 py-6 rounded-xl max-md:max-w-[400px] max-md:px-5">
                 Buy Now
               </button>
-              <button className="text-white sm:text-4xl text-xl font-semibold bg-neutral-700 self-stretch justify-center items-center mt-7 px-12 py-6 rounded-xl max-md:max-w-full max-md:px-5">
-                Add to cart
-              </button>
+
+             
+            
+          
+
+               
+
             </div>
           </div>
         </div>

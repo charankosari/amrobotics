@@ -31,7 +31,7 @@ const MarketProduct = (props) => {
             objectFit: "cover",
           }}
         />
-        <button
+        {/* <button
           onClick={handleLoveClick}
           style={{
             position: "absolute",
@@ -43,7 +43,7 @@ const MarketProduct = (props) => {
           }}
         >
           <IoIosHeart color={isLoveClicked ? "red" : "gray"}  size={24}  className="bg-white rounded-full p-[3px]"/> 
-        </button>
+        </button> */}
       </div>
 
       <span className="mt-3 ml-3 bg-gray-500 rounded-lg text-xs p-[2px] text-white justify-center flex w-[60px]">
