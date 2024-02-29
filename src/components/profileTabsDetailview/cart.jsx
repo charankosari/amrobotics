@@ -23,7 +23,7 @@ const CartItem=(props)=>{
   const {handleDelete,each}=props
   const{name,images,quantity,price,id}=each
   return(
-    <div className='flex flex-row bg-white rounded-md p-3 items-center justify-between' >
+    <div className='flex flex-row bg-white rounded-md p-3 items-center justify-between text-black' >
     <img className='w-28 rounded-md mr-6' src={images[0]?.url} />
     <div>
        <h1 className='text-base font-bold'>{name}</h1>
