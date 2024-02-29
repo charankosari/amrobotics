@@ -10,6 +10,7 @@ const DiyProduct = () => {
 
   return (
     <div style={styles.card}>
+      <button>
       <div style={{ position: "relative" }}>
         <img
           src="https://imgs.search.brave.com/L87L2KblRPj0xEgErVwIvAfP-nYOf3yRqLa6aSEa_oQ/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/YWxsLW9mLW15LWNh/cnMtYXJlbnQtYnJv/a2VuLXdoYXQtbm93/LXYwLTlxem56MWdw/bzhxYjEuanBnP3dp/ZHRoPTY0MCZjcm9w/PXNtYXJ0JmF1dG89/d2VicCZzPWE3MjZk/NmYxNzRmMzVkZmFh/OGZhYjIwMTAyNjdh/ZmJlYmYzN2YwZjU"
@@ -55,8 +56,9 @@ const DiyProduct = () => {
       </div>
       <div style={styles.buttons}>
         <button style={styles.buttonn}>Buy Now</button>
-        <button style={styles.button}>Buy Now</button>
+        <button style={styles.button}>Add cart</button>
       </div>
+      </button>
     </div>
   );
 };

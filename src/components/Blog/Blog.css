@@ -28,6 +28,9 @@
 }
 }
 @media only screen and (max-width:1700px){
+    #spec-cont{
+        font-size: 1.2rem;
+    }
 #textt{
     font-size:0.8rem;
     line-height: 1rem;
@@ -64,9 +67,7 @@
 #spec-head{
     font-size: 2rem;
 }
-#spec-cont{
-font-size: 1.5rem;
-}
+
 }
 @media only screen and (max-width:1289px){
 #nothing{

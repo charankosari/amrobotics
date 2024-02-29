@@ -51,13 +51,17 @@
       transform: translateY(-0.1em);
     }
   }
-  @media only screen and (max-width: 1550px) {
+  @media only screen and (max-width: 1650px) {
 #contenttt h1{
-  font-size: 3rem;
+  font-size: 2rem;
+  font-weight: bolder;
 
 }
+#kq b{
+  font-size: 1.3rem;
+}
 #contenttt p{
-  font-size: 2rem;
+  font-size: 1.3rem;
 }
 #kq{
   width: 100%;
@@ -67,11 +71,19 @@
 font-weight: 500;
 
 }
+.button{
+  height: 50px;
+  width: 120px;
+  font-size: 1rem;
+}
+.button span{
+  font-size: 1rem;
+}
   }
 
   @media only screen and (max-width: 1270px) {
     #contenttt h1{
-      font-size: 2rem;
+      font-size: 1.5rem;
     
     }
     #contenttt p{
