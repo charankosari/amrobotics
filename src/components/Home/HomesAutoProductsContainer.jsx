@@ -6,7 +6,7 @@ function Products() {
 
     <div className='px-6 '>
     
-    <h1 className='ml-3 font-bold text-black lg:text-6xl text-2xl '>Home Automation</h1>
+    <h1 className='ml-3 font-bold text-black lg:text-6xl text-2xl ' id='homw'>Home Automation</h1>
     <div className='overflow-auto' id='no-scrollbar'>
     <div className="carousel rounded-box">
   <div className="carousel-item">

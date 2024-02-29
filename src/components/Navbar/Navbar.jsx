@@ -136,7 +136,9 @@ function Navbar() {
               <Link to="/wishlist">Wishlist</Link>
             </li>
             <li>
-              <Link to="/signout">Signout</Link>
+              <Link to="/" onClick={()=>{
+                localStorage.clear()
+              }}>Signout</Link>
             </li>
           </ul>
         </div>

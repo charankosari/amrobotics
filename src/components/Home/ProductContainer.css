@@ -11,3 +11,13 @@
   #no-scrollbar::-webkit-scrollbar-thumb {
     background-color: transparent;
   }
+
+  @media  only screen and (max-width:1650px){
+    #text{
+      font-size: 2rem;
+    }
+    #homw{
+      font-size: 2.3rem;
+
+    }
+  }

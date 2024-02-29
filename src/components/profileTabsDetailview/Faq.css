@@ -1,0 +1,9 @@
+@media only screen and (max-width:1650px)
+{
+    #remove{
+        font-size: 1.5rem;
+    }
+    #remove1{
+        font-size: 1rem;
+    }
+}

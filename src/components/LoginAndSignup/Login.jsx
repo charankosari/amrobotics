@@ -145,7 +145,7 @@ function LoginPage() {
           <br />
           <p className="text-3xl text-black " id="labell">
             didn't have an account?{" "}
-            <a href="#" className="link leading-10 mb-2">
+            <a href="/signup" className="link leading-10 mb-2">
               Sign Up
             </a>
           </p>

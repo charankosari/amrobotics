@@ -132,7 +132,7 @@ function Vehicles() {
 
         <div className="h-[85vh] ml-4 ">
           <div className="flex flex-col-reverse sm:flex-row">
-            <div className="flex justify-center mr-8 sm:mr-32 sm:ml-32 ml-0 " id="some">
+            <div className="flex justify-center items-center mr-8 sm:mr-32 sm:ml-32 ml-0 " id="some">
             <div className="flex flex-col gap-3 bg-white w-[30%] justify-center items-center py-3  ">
                 
                 <div className="flex flex-row bg-[#e0e1dd] w-[400px] h-[100px] rounded-md" id="car">

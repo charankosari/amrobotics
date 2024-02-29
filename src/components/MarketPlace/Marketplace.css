@@ -46,9 +46,15 @@
    
 
 
+   @media only screen and (max-width: 1650px) {
+    #input{
+      line-height: 1rem;
+      font-size: 0.7rem !important;
+    }
+   }
 
-  
-  @media (max-width: 1200px) {
+   
+   @media (max-width: 1200px) {
     .image-grid {
       grid-template-columns: repeat(3, 1fr);
     }

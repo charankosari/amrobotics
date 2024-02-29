@@ -46,7 +46,7 @@ const MarketProduct = (props) => {
         </button> */}
       </div>
 
-      <span className="mt-3 ml-3 bg-gray-500 rounded-lg text-xs p-[2px] text-white justify-center flex w-[60px]">
+      <span className="mt-3 ml-3 bg-gray-500 rounded-lg text-xs p-[2px] text-white justify-center flex w-[30%]">
         {category}
       </span>
       <h3 style={styles.heading} className="pl-3 text-black font-semibold">
@@ -64,7 +64,10 @@ const MarketProduct = (props) => {
       <div style={styles.rating} className="ml-3">
       ⭐⭐⭐⭐⭐
       </div>
-      
+      <div style={styles.buttons}>
+        <button style={styles.buttonn}>Buy Now</button>
+        <button style={styles.button}>Add Cart</button>
+      </div>
     </div>
     </button>
     </div>
@@ -103,6 +106,27 @@ const styles = {
     padding: "10px",
   },
  
+  buttonss: {
+    display: "flex",
+    gap: "15px",
+    padding: "10px",
+  },
+  button: {
+    padding: "8px 12px",
+    fontSize: "14px",
+    cursor: "pointer",
+    backgroundColor: "gray",
+    borderRadius: "10px",
+    color: "white",
+  },
+  buttonn: {
+    padding: "8px 12px",
+    fontSize: "14px",
+    cursor: "pointer",
+    backgroundColor: "orange",
+    borderRadius: "10px",
+    color: "white",
+  },
 };
 
 export default MarketProduct;

@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import Navbar from "../Navbar/Navbar";
-import { FaUserCircle } from "react-icons/fa";
 import { CiViewList } from "react-icons/ci";
-import Footer from "../Footer/Footer";
 import { RiUserHeartLine } from "react-icons/ri";
 import { BsCart3 } from "react-icons/bs";
 import { FaKey } from "react-icons/fa";
@@ -10,12 +8,12 @@ import { RiCustomerServiceLine } from "react-icons/ri";
 import { RiQuestionnaireFill } from "react-icons/ri";
 import "./Profile.css";
 import { IoExitOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
 import UserProfile from "../../components/profileTabsDetailview/profileView.jsx"
 import Cart from "../profileTabsDetailview/cart.jsx";
 import Wishlist from "../profileTabsDetailview/wishlist.jsx"
-
-
+import ForgotPassword from "../profileTabsDetailview/ForgotPassword.jsx";
+import ContactUs from "../profileTabsDetailview/ContactUs.jsx";
+import Faq from '../profileTabsDetailview/FAQ.jsx'
 const cartopen=true
 
 const tabIds={
@@ -47,6 +45,12 @@ function Profile() {
       return <Cart/>
     case tabIds.wishlist:
       return <Wishlist/>
+    case tabIds.changepass:
+      return <ForgotPassword/>
+    case tabIds.contact:
+      return <ContactUs/>
+    case tabIds.faqs:
+      return <Faq/>
      }
   }
 
@@ -56,12 +60,12 @@ function Profile() {
         <div className="flex flex-row  mt-12 h-[90dvh]  " id="some">
           <div className="flex flex-col gap-12 mx-12 w-[30%]" id="gap">
             
-          <div  id={tabIds.account} onClick={()=>{changeActiveId(tabIds.account)}} className="flex flex-row gap-2 mx-4 border-b-2 border-b-zinc-400 pb-2">
+          <div  id={tabIds.account} onClick={()=>{changeActiveId(tabIds.account)}} className="flex flex-row gap-2 mx-4 border-b-2 cursor-pointer border-b-zinc-400 pb-2">
               <CiViewList
                 className="w-[90px] h-[90px] mr-3 text-[#FF9F1C]"
                 id="icon"
               />
-              <Link>
+            
                 <div className="flex flex-col">
                   <h1 className="text-5xl" id="head">
                     Account Details
@@ -70,14 +74,14 @@ function Profile() {
                     All your account details will be available
                   </p>
                 </div>
-              </Link>
+             
             </div> 
             <div className="flex flex-row gap-2 mx-4 border-b-2 border-b-zinc-400 pb-2">
               <CiViewList
                 className="w-[90px] h-[90px] mr-3 text-[#FF9F1C]"
                 id="icon"
               />
-              <Link>
+              
                 <div className="flex flex-col">
                   <h1 className="text-5xl" id="head">
                     Your Orders
@@ -87,9 +91,9 @@ function Profile() {
                     here
                   </p>
                 </div>
-              </Link>
+              
             </div> 
-            <div  id={tabIds.wishlist} onClick={()=>{changeActiveId(tabIds.wishlist)}} className="flex flex-row gap-2 mx-4 border-b-2 border-b-zinc-400 pb-2">
+            <div  id={tabIds.wishlist} onClick={()=>{changeActiveId(tabIds.wishlist)}} className="flex flex-row cursor-pointer gap-2 mx-4 border-b-2 border-b-zinc-400 pb-2">
               <RiUserHeartLine
                 className="w-[90px] h-[90px] mr-3 text-[#FF9F1C]"
                 id="icon"
@@ -103,7 +107,7 @@ function Profile() {
                 </p>
               </div>
             </div>
-            <div   id={tabIds.cart} onClick={()=>{changeActiveId(tabIds.cart)}}  className="flex flex-row gap-2 mx-4 border-b-2 border-b-zinc-400 pb-2">
+            <div   id={tabIds.cart} onClick={()=>{changeActiveId(tabIds.cart)}}  className="flex flex-row gap-2 cursor-pointer mx-4 border-b-2 border-b-zinc-400 pb-2">
               <BsCart3 
                 className="w-[90px] h-[90px] mr-3 text-[#FF9F1C]"
                 id="icon"
@@ -117,7 +121,7 @@ function Profile() {
                 </p>
               </div>
             </div>
-            <div className="flex flex-row gap-2 mx-4 border-b-2 border-b-zinc-400 pb-2">
+            <div id={tabIds.changepass} onClick={()=>{changeActiveId(tabIds.changepass)}}  className="flex cursor-pointer flex-row gap-2 mx-4 border-b-2 border-b-zinc-400 pb-2">
               <FaKey
                 className="w-[90px] h-[90px] mr-3 text-[#FF9F1C]"
                 id="icon"
@@ -131,12 +135,12 @@ function Profile() {
                 </p>
               </div>
             </div>
-            <div className="flex flex-row gap-2 mx-4 border-b-2 border-b-zinc-400 pb-2">
+            <div className="flex flex-row gap-2 mx-4 border-b-2 border-b-zinc-400 pb-2 cursor-pointer"  id={tabIds.contact} onClick={()=>{changeActiveId(tabIds.contact)}}>
               <RiCustomerServiceLine
                 className="w-[90px] h-[90px] mr-3 text-[#FF9F1C] "
                 id="icon"
               />
-              <div className="flex flex-col">
+              <div className="flex flex-col " >
                 <h1 className="text-5xl" id="head">
                   Contact support
                 </h1>
@@ -146,7 +150,7 @@ function Profile() {
                 </p>
               </div>
             </div>
-            <div className="flex flex-row gap-2 mx-4 border-b-2 border-b-zinc-400 pb-2">
+            <div className="flex flex-row gap-2 mx-4 border-b-2 border-b-zinc-400 pb-2" id={tabIds.faqs} onClick={()=>{changeActiveId(tabIds.faqs)}}>
               <RiQuestionnaireFill
                 className="w-[90px] h-[90px] mr-3 text-[#FF9F1C]"
                 id="icon"

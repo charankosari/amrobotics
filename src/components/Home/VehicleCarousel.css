@@ -1,3 +1,23 @@
+@media only screen and (max-width: 1650px) {
+
+  #car{
+    width: 320px;
+    height: 100px;
+  }
+  #car h1{
+    padding-top:2rem ;
+    font-size: 1.3rem;
+}
+#car p{
+  font-size: 1rem;
+}
+
+
+}
+
+
+
+
 @media only screen and (max-width: 1440px) {
 #car{
     width:320px ;
