@@ -18,13 +18,13 @@ function Faq() {
     ];
       
     return (
-        <div className='px-10 py-5 flex flex-col h-full'>
+        <div className='px-10 py-5 flex flex-col h-full' id='mrdiv'>
             <h1 className='text-black font-black text-2xl'>FAQ'S</h1>
-            <div className=''>
+            <div >
                 {object.map((item, index) => (
-                    <div key={index} className=' gap-2 flex flex-col bg-[#98989d] rounded-md p-2 w-auto mb-2'>
-                        <h1 className='text-3xl'>{item.question}</h1>
-                        <p className='text-xl'>{item.answer}</p>
+                    <div key={index} className=' gap-2 flex flex-col bg-[#ceced2] rounded-md p-2 w-auto mb-2 'id='thediv'>
+                        <h1 className='text-3xl' id='remove'>{item.question}</h1>
+                        <p className='text-xl' id='remove1'>{item.answer}</p>
                     </div>
                 ))}
             </div>

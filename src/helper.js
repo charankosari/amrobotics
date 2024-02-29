@@ -161,6 +161,36 @@ export  async function sendToWishlistApi(id) {
       }
     }
   
+
+    export  async function ForgotPassword(oldpassword,password,confirmpassword) {
+      const jwtToken=localStorage.getItem("jwtToken")
+      const data = {
+        oldPassword: oldpassword,
+        password: password,
+        confirmPassword: confirmpassword
+
+      };
+        const config={
+          method:"put",
+          url:`password/update`,
+          headers:{
+            "Authorization":`Bearer ${jwtToken}`,
+            "Content-Type":"application/json"
+              },
+          data: JSON.stringify(data) // Pass data in the request body
+
+        }
+        try {
+          const response =await axios(config)
+          return response
+         } 
+        catch (error) {
+          return error
+        }
+      }
+
+
+
           // delete my wishlisstitem
   // export  async function deleteWishlistItem(id) {
   //   const jwtToken=localStorage.getItem("jwtToken")
