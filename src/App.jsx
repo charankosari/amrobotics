@@ -11,6 +11,10 @@ import SignupPage from './components/LoginAndSignup/SignupPage'
 import Login from './components/LoginAndSignup/Login'
 import Profile from './components/Profile/Profile'
 import Cart from './components/profileTabsDetailview/cart'
+import Services from '../src/components/ourServices/services.jsx'
+import Checkmail from "./components/LoginAndSignup/checkmail.jsx"
+import GmailAccountPage from './components/LoginAndSignup/gmailRedirect.jsx';
+import ResetPasswordFunc from './components/LoginAndSignup/resetPass.jsx'
 function App() {
   return (
     <>
@@ -26,8 +30,11 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/cart" element={<Cart />} />
-
+          <Route path="/cart" element={<Cart />}/>
+          <Route path="/forgotpassword" element={<Checkmail/>}/>
+          <Route path="/gmailredirect" element={<GmailAccountPage/>}/>
+          <Route path="/resetpassword/:id" element={<ResetPasswordFunc/>}/>
+          
         </Routes>
       </BrowserRouter>
     </>

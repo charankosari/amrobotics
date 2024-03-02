@@ -191,22 +191,51 @@ export  async function sendToWishlistApi(id) {
 
 
 
-          // delete my wishlisstitem
-  // export  async function deleteWishlistItem(id) {
-  //   const jwtToken=localStorage.getItem("jwtToken")
-  //     const config={
-  //       method:"delete",
-  //       url:`/me/wishlist/${id}`,
-  //       headers:{
-  //         "Authorization":`Bearer ${jwtToken}`,
-  //         "Content-Type":"application/json"
-  //           }
-  //     }
-  //     try {
-  //       const response =await axios(config)
-  //       return response
-  //      } 
-  //     catch (error) {
-  //       return error
-  //     }
-  //   }
+      // forgot password________________________________
+      
+      export  async function forgotpass(email){
+        const data = {
+          email
+        };
+          const config={
+            method:"post",
+            url:`/forgotpassword`,
+            headers:{
+              "Content-Type":"application/json"
+                },
+            data: JSON.stringify(data) // Pass data in the request body
+  
+          }
+          try {
+            const response =await axios(config)
+            return response
+           } 
+          catch (error) {
+            return error
+          }
+      }
+
+        // reset password________________________________
+      
+        export  async function ResetPass(password,confirmPassword,id){
+          const data = {
+            password,confirmPassword
+          };
+            const config={
+              method:"post",
+              url:`/resetpassword/${id}`,
+              headers:{
+                "Content-Type":"application/json"
+                  },
+              data: JSON.stringify(data) // Pass data in the request body
+    
+            }
+            try {
+              const response =await axios(config)
+              return response
+             } 
+            catch (error) {
+              return error
+            }
+          
+        }

@@ -11,8 +11,7 @@ import { ThreeDots } from "react-loader-spinner";
 function Marketplace() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  console.log(document.cookie)
-  console.log("helllllll")
+  // const [filters,setFilters]=useState({name:"",})
 
   useEffect(() => {
     getAllProducts();

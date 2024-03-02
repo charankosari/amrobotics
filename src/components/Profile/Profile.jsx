@@ -191,7 +191,7 @@ function Profile() {
             </button>
           </div>
 
-          <div className="w-[63%] bg-[#D9D9D94D]" id="profile">
+          <div className="w-[63%] bg-[#D9D9D94D] text-black" id="profile">
          {
         showPages()
          }

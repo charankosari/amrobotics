@@ -6,13 +6,18 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import {storeUser} from '../../storeFeatures/authenticationReducer'
 import { useDispatch } from "react-redux";
+import {ThreeDots} from 'react-loader-spinner'
+import {forgotpass} from '../../helper'
 
 function LoginPage() {
+
   const navigate=useNavigate()
   const dispatch=useDispatch()
 
   const [email,setEmail]=useState('');
   const [password,setPassword]=useState('');
+  const [loading,setloading]=useState(false)
+
 
 
   const login=async(event)=>{
@@ -29,8 +34,43 @@ function LoginPage() {
     }
   }
 
+  const forgotPass=async()=>{
+   if(email==""){
+    alert("enter email to reset your password")
+   }
+   setloading(true)
+   const response=await forgotpass(email)
+   console.log(response)
+
+   if(response.status==201){
+    setloading(false)
+    navigate("/forgotpassword")
+   }
+
+  }
+
+
+
   return (
-    <div className="overflow-hidden overscroll-x-none">
+   <div>
+    {
+      loading?
+      <div className="h-dvh  flex flex-col justify-center items-center gap-3">
+      <ThreeDots
+    visible={true}
+    height="80"
+    width="80"
+    color="#ff8c00"
+    radius="9"
+    ariaLabel="three-dots-loading"
+    wrapperStyle={{}}
+    wrapperClass=""
+     />
+     <p>please wait sending reset mail to your mail account....</p>
+
+      </div>
+      :
+      <div className="overflow-hidden overscroll-x-none">
       <div
         className="flex flex-row-reverse h-[100dvh] overflow-hidden "
         id="main"
@@ -117,9 +157,12 @@ function LoginPage() {
               className="w-[50%] rounded bg-white border-2 border-black text-3xl leading-[3rem]"
             />
 
+            <div className="flex flex-row w-[50%] justify-between items-center">
             <label className="text-3xl text-black " id="labell">
               Password:
             </label>
+            <a onClick={forgotPass} className="text-sm underline hover:text-blue-500 hover:cursor-pointer text-black ">Forgot Password</a>
+            </div>
             <input
             onChange={(e)=>{
               setPassword(e.target.value);
@@ -135,7 +178,7 @@ function LoginPage() {
             <button
               style={{ width: "200px" }}
               onClick={login}
-              className="text-3xl text-white  bg-orange-500 rounded-xl leading-[4rem]"
+              className="text-3xl text-white  bg-orange-500 rounded-xl leading-[4rem] py-1.5"
               id="button"
             >
               Sign In
@@ -183,7 +226,9 @@ function LoginPage() {
           </p>
         </div>
       </div>
-    </div>
+      </div>
+    }
+   </div>
   );
 }
 
