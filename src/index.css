@@ -5,6 +5,7 @@
     font-family: "Poppins", sans-serif;
   font-weight: 300;
   font-style: normal;
+ 
 }
 .cart-items-container::-webkit-scrollbar {
     display: none;
