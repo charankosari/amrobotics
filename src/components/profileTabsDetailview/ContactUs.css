@@ -4,7 +4,7 @@
     align-items: flex-start;
     flex-direction: column;
     gap: 10px;
-    width: 500px;
+    width: auto;
     height: auto;
     background-color: white;
     padding: 20px;
@@ -60,7 +60,17 @@
   @media only screen and (max-width:950px)
   {
     #form {
-    width: auto;
+    width: auto !important;
     
     }
+    #expand{
+      width: 100%;
+    }
+
+    #remove-1{
+      display: none;
+      width: 0%;
+    }
+
   }
+
