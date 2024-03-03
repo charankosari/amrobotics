@@ -124,13 +124,13 @@ export default function MyComponent() {
               />
               <div className=" max-md:max-w-full">
                 <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
-                  <div className="flex flex-row gap-2  items-stretch w-[26%] max-md:w-full max-md:ml-25 no-scrollbar ">
+                  <div className="flex flex-row gap-2  items-stretch w-[26%] max-md:w-full max-md:ml-25 no-scrollbar  ml-5 " id="mleft">
                   {(details.images).map((image, index) => (
                   <img
                     key={index}
                     loading="lazy"
                     srcSet={image.url}
-                    className="aspect-[1.14] object-contain object-center w-[148px] overflow-hidden shrink-0 max-w-full grow max-md:mt-3 cursor-pointer"
+                    className="aspect-[1.14] object-contain object-center w-[128px] overflow-hidden shrink-0 max-w-full grow max-md:mt-3 cursor-pointer "
                     onClick={() => handleImageClick(image)}
                   />
                 ))}
@@ -183,11 +183,11 @@ export default function MyComponent() {
                </select>
               </div>
               
-              <button onClick={() => { dispatch(addToCart(id)); sendToCart(); }} className="text-white sm:text-4xl text-xl font-semibold bg-neutral-700 self-stretch justify-center items-center mt-4 px-12 py-6 rounded-xl max-md:max-w-full max-md:px-5">
+              <button onClick={() => { dispatch(addToCart(id)); sendToCart(); }} id="button-to-change" className="text-white sm:text-4xl text-xl font-semibold bg-neutral-700 mt-6 rounded-xl max-md:max-w-full max-md:px-5" >
                 Add to cart
               </button>
 
-              <button className="text-white sm:text-4xl text-xl font-semibold bg-amber-500 self-stretch justify-center items-center mt-6 px-12 py-6 rounded-xl max-md:max-w-[400px] max-md:px-5">
+              <button id="button-to-change" className="text-white sm:text-4xl text-xl font-semibold bg-amber-500 self-stretch justify-center items-center mt-6 rounded-xl max-md:max-w-[400px] max-md:px-5">
                 Buy Now
               </button>
 
@@ -216,6 +216,7 @@ export default function MyComponent() {
             className={`cursor-pointer ${
               activeSection === "insideBox" ? "text-amber-500" : "text-zinc-500"
             } text-2xl font-semibold mt-14 ml-20 self-end max-md:mt-0`}
+            
             onClick={() => handleSectionClick("insideBox")}
           >
             Inside Box
@@ -233,20 +234,20 @@ export default function MyComponent() {
       </div>
       
       {activeSection === "description" && (
-          <div className="text-zinc-800 text-opacity-60 text-2xl self-stretch mt-5 max-md:max-w-full">
+          <div className="text-zinc-800 text-opacity-60 text-2xl self-stretch mt-5 max-md:max-w-full"  id="text-to-be-expanded">
            {details.description}
           </div>
         )}
 
         {activeSection === "insideBox" && (
-          <div className="text-zinc-800 text-opacity-60 text-2xl self-stretch mt-5 max-md:max-w-full">
+          <div className="text-zinc-800 text-opacity-60 text-2xl self-stretch mt-5 max-md:max-w-full"  id="text-to-be-expanded">
                         consectetur adipisicing elit. Voluptates obcaecati nesciunt repudiandae ut, id quis ex sunt vel earum dolores quisquam, eligendi impedit laboriosam blanditiis dolorum dicta ad aliquam ducimus corporis. Repudiandae suscipit saepe officia minima ad, sed laboriosam magnam, est corrupti voluptate assumenda vel nostrum. Dolorem sequi libero voluptatem iusto nesciunt perspiciatis, adipisci perferendis cum! Odit eligendi, ad doloremque magnam earum aliquam dignissimos commodi quod obcaecati, voluptates eius consequuntur debitis laborum maxime neque totam possimus enim nulla doloribus aut ullam reprehenderit voluptatum. Aspernatur, a velit. Expedita eligendi sit possimus eum facilis voluptatem aliquid hic quidem voluptatibus minima natus cumque maxime ipsum vel perferendis mollitia voluptates sed vero cupiditate quibusdam, beatae qui. Incidunt ab, quaerat praesentium impedit perferendis reiciendis provident sapiente? Enim accusamus voluptatibus, modi facilis vitae consequuntur voluptates praesentium veritatis ipsam delectus illo reiciendis aperiam. Sint dolore impedit, esse dignissimos ducimus ut, officiis, itaque voluptatum voluptate dolorem deserunt obcaecati assumenda? Quis amet veniam error magni, laudantium perspiciatis, quidem distinctio facilis illum voluptatibus numquam minima praesentium. Facilis modi nihil facere! Culpa libero repellat vero quae explicabo itaque fuga magnam quia. Magni illum id iure minima dolorum deserunt voluptatem optio, beatae perspiciatis quos voluptatibus quae alias at aperiam eius! Cumque, nesciunt?
 
           </div>
         )}
 
         {activeSection === "productDetails" && (
-          <div className="text-zinc-800 text-opacity-60 text-2xl self-stretch mt-5 max-md:max-w-full">
+          <div className="text-zinc-800 text-opacity-60 text-2xl self-stretch mt-5 max-md:max-w-full"  id="text-to-be-expanded">
                         elit. Voluptates obcaecati nesciunt repudiandae ut, id quis ex sunt vel earum dolores quisquam, eligendi impedit laboriosam blanditiis dolorum dicta ad aliquam ducimus corporis. Repudiandae suscipit saepe officia minima ad, sed laboriosam magnam, est corrupti voluptate assumenda vel nostrum. Dolorem sequi libero voluptatem iusto nesciunt perspiciatis, adipisci perferendis cum! Odit eligendi, ad doloremque magnam earum aliquam dignissimos commodi quod obcaecati, voluptates eius consequuntur debitis laborum maxime neque totam possimus enim nulla doloribus aut ullam reprehenderit voluptatum. Aspernatur, a velit. Expedita eligendi sit possimus eum facilis voluptatem aliquid hic quidem voluptatibus minima natus cumque maxime ipsum vel perferendis mollitia voluptates sed vero cupiditate quibusdam, beatae qui. Incidunt ab, quaerat praesentium impedit perferendis reiciendis provident sapiente? Enim accusamus voluptatibus, modi facilis vitae consequuntur voluptates praesentium veritatis ipsam delectus illo reiciendis aperiam. Sint dolore impedit, esse dignissimos ducimus ut, officiis, itaque voluptatum voluptate dolorem deserunt obcaecati assumenda? Quis amet veniam error magni, laudantium perspiciatis, quidem distinctio facilis illum voluptatibus numquam minima praesentium. Facilis modi nihil facere! Culpa libero repellat vero quae explicabo itaque fuga magnam quia. Magni illum id iure minima dolorum deserunt voluptatem optio, beatae perspiciatis quos voluptatibus quae alias at aperiam eius! Cumque, nesciunt?
 
           </div>
