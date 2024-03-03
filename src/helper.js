@@ -239,3 +239,31 @@ export  async function sendToWishlistApi(id) {
             }
           
         }
+
+        // update user data_______________________
+             
+        export  async function UpdateUserDetails({name,email,number}){
+          const jwtToken=localStorage.getItem("jwtToken")
+          const data = {
+            name,email,number
+          };
+          console.log(data)
+            const config={
+              method:"put",
+              url:`/me/profileupdate`,
+              headers:{
+                "Authorization":`Bearer ${jwtToken}`,
+                "Content-Type":"application/json"
+                  },
+              data: JSON.stringify(data) // Pass data in the request body
+    
+            }
+            try {
+              const response =await axios(config)
+              return response
+             } 
+            catch (error) {
+              return error
+            }
+          
+        }

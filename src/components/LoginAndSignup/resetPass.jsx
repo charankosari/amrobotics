@@ -10,10 +10,13 @@ function ResetPasswordFunc(props){
     const [resetSuccess,setresetSuccess]=useState(false)
 
     const resetPassword=async(event)=>{
+      console.log("h")
       event.preventDefault();
       const pass=document.getElementById("pass").value 
       const conPass=document.getElementById("conPass").value
       const response=await ResetPass(pass,conPass,id)
+      console.log(response)
+
       if(response.status==201){
        setresetSuccess(true)
       }

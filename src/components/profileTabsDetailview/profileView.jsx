@@ -1,31 +1,61 @@
 import { useEffect, useState } from "react";
 import { GetUserDetails } from "../../helper.js";
 import {ThreeDots} from 'react-loader-spinner'
-
+import {UpdateUserDetails} from "../../helper.js"
 
 
 
 const UserProfile=()=>{
-    const [details, setDetails] = useState("");
+    // const [details, setDetails] = useState("");
     const [loading, setLoading] = useState(true);
+    const [editMode,setEditMode]=useState(false);
+    const [detailsFetched,setDetailsFetched]=useState(false)
+    const [details, setDetails] = useState({
+      name: "",
+      email: "",
+      number: "",
+      address:[]
+    });
+    const [formData, setFormData] = useState({
+      name: "",
+      email: "",
+      number: "",
+      address:{
+        "country":"",
+        "state":"",
+        "city":"",
+        "number":"",
+        "pin":""
+      }
+    });
   
+  
+    console.log(details)
     useEffect(() => {
-      getDetails();
+      if (!detailsFetched) { 
+        getDetails();
+    }
     }, []);
   
     const getDetails = async () => {
       const response = await GetUserDetails();
       console.log(response);
       if (response.status == 200) {
+        console.log(response.data.user)
+        const data={name:response.data.user.name,email:response.data.user.email,number:response.data.user.number}
         setDetails(response.data.user);
+        setDetailsFetched(true)
         setLoading(false);
       }
-      console.log(details);
     };
+
+
     const addressess = [
       "Lorem ipsum dolor, sit amet consectetui e perferendis quo perspiciatis, voluptatem architecto alias inventore!",
-      " Lorem ipsum dolor, sit amesi aliquid? Quibusdam itaque perferendis quo perspiciatis, voluptatem architecto alias inventore!",
+      "Lorem ipsum dolor, sit amet consectetui e perferendis quo perspiciatis, voluptatem architecto alias inventore!",
     ];
+    
+
     const loadingView = () => {
       return (
         <div className='w-full h-full flex flex-row justify-center items-center'>
@@ -42,17 +72,81 @@ const UserProfile=()=>{
         </div>
       )
     };
+
+    const handleEdit = () => {
+      setEditMode(true);
+    };
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      const response = await UpdateUserDetails(details);
+      if (response.status === 201) {
+        setDetails(response.data.user);
+        setEditMode(false);
+      }
+    };
+
+    const handleChange = (e) => {
+      console.log(e.target.name, e.target.value)
+      setDetails({ ...details, [e.target.name]: e.target.value });
+    };
+
+    const addressHandleChange = (e) => {
+      console.log(e.target.name, e.target.value)
+      setDetails({ ...details, [e.target.name]: e.target.value });
+    };
   
 
     const successView = () => {
-        const { _id, name, email, number, role, wishList, cart } = details;
-        console.log(details)
+        const { _id, name, email, number,address} = details;
     return(
-      // <div className="w-[63%] bg-[#D9D9D94D]" id="profile">
+    <>
+    {
+      editMode?<div className="ml-[44px] mt-[44px]" >
+        <h1 className="text-xl mb-2  font-semibold">Edit Profile</h1>
+          <form  className=" flex flex-col gap-4 max-w-[500px] shadow-2xl p-4 rounded-md" onSubmit={handleSubmit}>
+
+            <div className=" w-[100%] flex flex-col">
+              <label className="text-md font-semibold">Name</label>
+              <input value={name} name="name"  onChange={handleChange} type="text" className=" outline-none w-[100%] bg-transparent border border-gray-500 p-3 rounded-md "/>
+            </div>
+            <div className=" w-[100%] flex flex-col">
+              <label className="text-md font-semibold ">Email</label>
+              <input value={email} name="email" onChange={handleChange} type="text" className=" outline-none w-[100%] bg-transparent border border-gray-500 p-3 rounded-md "/>
+            </div>
+            <div className=" w-[100%] flex flex-col">
+              <label className="text-md font-semibold">Mobile</label>
+              <input value={number} name="number" onChange={handleChange} type="text" className=" outline-none w-[100%] bg-transparent border border-gray-500 p-3 rounded-md "/>
+            </div>
+            <div className=" flex flex-col gap-2">
+              <h1 className="font-semibold">Address</h1>
+
+             <div  className="flex flex-row gap-2">
+             <input  placeholder="Country" name="country" type="text" className=" outline-none w-[100%] bg-transparent border border-gray-500 p-3 rounded-md "/>
+
+              <input placeholder="State"  name="state" type="text" className=" outline-none w-[100%] bg-transparent border border-gray-500 p-3 rounded-md "/>
+             </div>
+
+             <div className="flex flex-row gap-2">
+             <input  placeholder="City"  name="city" type="text" className=" outline-none w-[100%] bg-transparent border border-gray-500 p-3 rounded-md "/>
+
+              <input  placeholder="PIN"  name="pin" type="number" className=" outline-none w-[100%] bg-transparent border border-gray-500 p-3 rounded-md "/>     
+              </div>     
+              <input  placeholder="Number"  name="number" type="tel" className=" outline-none w-[100%] bg-transparent border border-gray-500 p-3 rounded-md "/>        
+            
+            </div>
+            
+
+           <button className="self-center bg-[#ff9f1c] px-6 py-2 rounded-sm text-white">save</button>
+          </form>
+
+      </div>:
       <div className="flex flex-col ml-[44px] mt-[44px]" id="a1">
+
         <div className="text-6xl mb-[4rem]" id="prof">
           Profile Details
         </div>
+        
         <div className="flex flex-row ">
           <div className="flex flex-col w-[70%]">
             <div className="text-4xl mb-4" id="prof-name">
@@ -76,19 +170,16 @@ const UserProfile=()=>{
             />
           </div>
         </div>
-        <button
-          className="bg-[#FF9F1C] w-[205px] h-[75px] rounded-xl text-4xl text-white text-bold"
-          id="or-b"
-        >
-          {" "}
-          Edit Profile{" "}
-        </button>
-  
+
+       
         <div className="flex flex-col mt-[4rem] gap-4" id="mt">
           <div className="text-6xl" id="prof">
             Previous Adresses
           </div>
-          <div className="flex flex-col gap-6" id="row">
+          <div className="flex flex-col gap-6 overflow-auto" id="row">
+           {
+            address.length==0?<div>no address</div>:
+            <div>
             {addressess.map((address, index) => (
               <div
                 key={index}
@@ -98,16 +189,19 @@ const UserProfile=()=>{
                 {address}
               </div>
             ))}
-            <button
-              className="text-3xl bg- p-4 w-[20%] h-[180px] items-center flex bg-[#bebdbd4d] rounded-xl"
-              id="adresses-but"
-            >
-              Add one more address
-            </button>
+              </div>
+
+           }
           </div>
         </div>
-      {/* </div> */}
+        <button onClick={handleEdit} className="bg-[#FF9F1C] w-[2190px] h-[75px] rounded-md  text-white text-semibold mt-4 text-xl"id="or-b">
+          Edit Profile
+        </button>
+
+     
     </div>
+    }
+    </>
     )
   }
 

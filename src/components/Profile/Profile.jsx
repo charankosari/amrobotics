@@ -15,7 +15,6 @@ import Wishlist from "../profileTabsDetailview/wishlist.jsx"
 import ForgotPassword from "../profileTabsDetailview/ForgotPassword.jsx";
 import ContactUs from "../profileTabsDetailview/ContactUs.jsx";
 import Faq from '../profileTabsDetailview/FAQ.jsx'
-import ResetPassword from "../profileTabsDetailview/ResetPassword.jsx";
 const cartopen=true
 
 const tabIds={
@@ -54,10 +53,7 @@ function Profile() {
     case tabIds.contact:
       return <ContactUs/>
     case tabIds.faqs:
-      return <Faq/>
-    case tabIds.Resetpassword:
-      return <ResetPassword/>
-   
+      return <Faq/>   
      }
   }
 
@@ -142,20 +138,7 @@ function Profile() {
                 </p>
               </div>
             </div>
-            <div id={tabIds.Resetpassword} onClick={()=>{changeActiveId(tabIds.Resetpassword)}}  className="flex cursor-pointer flex-row gap-2 mx-4 border-b-2 border-b-zinc-400 pb-2">
-            <MdLockReset 
-                className="w-[90px] h-[90px] mr-3 text-[#FF9F1C]"
-                id="icon"
-              />
-              <div className="flex flex-col">
-                <h1 className="text-5xl" id="head">
-                  Reset your passwpord
-                </h1>
-                <p className="text-2xl w-[70%]" id="head-text">
-                  Reset password if you forgot your old password
-                </p>
-              </div>
-            </div>
+            
             <div className="flex flex-row gap-2 mx-4 border-b-2 border-b-zinc-400 pb-2 cursor-pointer"  id={tabIds.contact} onClick={()=>{changeActiveId(tabIds.contact)}}>
               <RiCustomerServiceLine
                 className="w-[90px] h-[90px] mr-3 text-[#FF9F1C] "
