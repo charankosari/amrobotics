@@ -15,7 +15,6 @@ import Wishlist from "../profileTabsDetailview/wishlist.jsx"
 import ForgotPassword from "../profileTabsDetailview/ForgotPassword.jsx";
 import ContactUs from "../profileTabsDetailview/ContactUs.jsx";
 import Faq from '../profileTabsDetailview/FAQ.jsx'
-const cartopen=true
 
 const tabIds={
 account:"ACCOUNT",
@@ -24,6 +23,7 @@ wishlist:"WISHLIST",
 cart:"CART",
 changepass:"CHANGEPASS",
 contact:"CONTACT",
+Resetpassword:"RESETPASSWORD",
 faqs:"FAQS",
 
 }
@@ -52,13 +52,8 @@ function Profile() {
     case tabIds.contact:
       return <ContactUs/>
     case tabIds.faqs:
-<<<<<<< HEAD
-      return <Faq/>   
-=======
       return <Faq/>
     
-   
->>>>>>> e113a60d252eb9240cc854546f686029f13b0a86
      }
   }
 
@@ -143,11 +138,6 @@ function Profile() {
                 </p>
               </div>
             </div>
-<<<<<<< HEAD
-            
-=======
-           
->>>>>>> e113a60d252eb9240cc854546f686029f13b0a86
             <div className="flex flex-row gap-2 mx-4 border-b-2 border-b-zinc-400 pb-2 cursor-pointer"  id={tabIds.contact} onClick={()=>{changeActiveId(tabIds.contact)}}>
               <RiCustomerServiceLine
                 className="w-[90px] h-[90px] mr-3 text-[#FF9F1C] "
