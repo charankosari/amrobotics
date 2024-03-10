@@ -15,12 +15,13 @@ const MarketProduct = (props) => {
 
   return (
     <div className="w-[320px] ">
-        <button onClick={
+       
+    <div style={styles.card}>
+    <button onClick={
             ()=>{
                 navigate(`/marketplace/${_id}`)
             }
         }>
-    <div style={styles.card}>
       <div style={{ position: "relative" }}>
         <img
           src={images[0].url}
@@ -52,6 +53,7 @@ const MarketProduct = (props) => {
       <h3 style={styles.heading} className="pl-3 text-black font-semibold">
         {name}
       </h3>
+      </button>
       <div className="flex flex-row gap-2">
         <p style={styles.price} className="ml-3">
          {price}
@@ -69,7 +71,7 @@ const MarketProduct = (props) => {
         <button style={styles.button}>Add Cart</button>
       </div>
     </div>
-    </button>
+
     </div>
   );
 };
