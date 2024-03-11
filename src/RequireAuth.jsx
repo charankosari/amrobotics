@@ -31,7 +31,6 @@ const RequireAuth = ({ allowedRoles }) => {
                 setLoading(false);
             }
         };
-
         fetchUser();
     }, []);
 
