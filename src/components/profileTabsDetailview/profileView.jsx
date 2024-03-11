@@ -10,6 +10,7 @@ const UserProfile=()=>{
     const [loading, setLoading] = useState(true);
     const [editMode,setEditMode]=useState(false);
     const [detailsFetched,setDetailsFetched]=useState(false)
+    const [isAddressVisible, setIsAddressVisible] = useState(false);
     const [details, setDetails] = useState({
       name: "",
       email: "",
@@ -24,7 +25,7 @@ const UserProfile=()=>{
         "country":"",
         "state":"",
         "city":"",
-        "number":"",
+        "mobile":"",
         "pin":""
       }
     });
@@ -42,9 +43,10 @@ const UserProfile=()=>{
       console.log(response);
       if (response.status == 200) {
         console.log(response.data.user)
-        const data={name:response.data.user.name,email:response.data.user.email,number:response.data.user.number}
+        const data={name:response.data.user.name,email:response.data.user.email,number:response.data.user.number,address:""}
         setDetails(response.data.user);
         setDetailsFetched(true)
+        setFormData(data)
         setLoading(false);
       }
     };
@@ -79,8 +81,10 @@ const UserProfile=()=>{
 
     const handleSubmit = async (e) => {
       e.preventDefault();
-      const response = await UpdateUserDetails(details);
+      console.log(formData)
+      const response = await UpdateUserDetails(formData);
       if (response.status === 201) {
+        console.log(response)
         setDetails(response.data.user);
         setEditMode(false);
       }
@@ -91,14 +95,26 @@ const UserProfile=()=>{
       setDetails({ ...details, [e.target.name]: e.target.value });
     };
 
+    const handleCheckboxChange = (e) => {
+      setIsAddressVisible(e.target.checked);
+  };
+
     const addressHandleChange = (e) => {
-      console.log(e.target.name, e.target.value)
-      setDetails({ ...details, [e.target.name]: e.target.value });
+      console.log(formData)
+      const {name,value}=e.target
+      setFormData({
+        ...formData,
+        address: {
+          ...formData.address,
+          [name]: value // Dynamically update the correct address field
+        }
+      });
     };
   
 
     const successView = () => {
         const { _id, name, email, number,address} = details;
+      console.lo
     return(
     <>
     {
@@ -118,23 +134,36 @@ const UserProfile=()=>{
               <label className="text-md font-semibold">Mobile</label>
               <input value={number} name="number" onChange={handleChange} type="text" className=" outline-none w-[100%] bg-transparent border border-gray-500 p-3 rounded-md "/>
             </div>
-            <div className=" flex flex-col gap-2">
+
+           <div className="flex flex-row align-center gap-1">
+            <lable className="text-md " htmlFor="addAddressId">Addaddress</lable>
+            <input
+                type="checkbox"
+                id="addAddressId"
+                checked={isAddressVisible}
+                onChange={handleCheckboxChange}
+            />
+           </div>
+
+            {
+              isAddressVisible&& <div className=" flex flex-col gap-2">
               <h1 className="font-semibold">Address</h1>
 
              <div  className="flex flex-row gap-2">
-             <input  placeholder="Country" name="country" type="text" className=" outline-none w-[100%] bg-transparent border border-gray-500 p-3 rounded-md "/>
+             <input onChange={addressHandleChange} placeholder="Country" name="country" type="text" className=" outline-none w-[100%] bg-transparent border border-gray-500 p-3 rounded-md "/>
 
-              <input placeholder="State"  name="state" type="text" className=" outline-none w-[100%] bg-transparent border border-gray-500 p-3 rounded-md "/>
+              <input onChange={addressHandleChange}  placeholder="State"  name="state" type="text" className=" outline-none w-[100%] bg-transparent border border-gray-500 p-3 rounded-md "/>
              </div>
 
              <div className="flex flex-row gap-2">
-             <input  placeholder="City"  name="city" type="text" className=" outline-none w-[100%] bg-transparent border border-gray-500 p-3 rounded-md "/>
+             <input  onChange={addressHandleChange}  placeholder="City"  name="city" type="text" className=" outline-none w-[100%] bg-transparent border border-gray-500 p-3 rounded-md "/>
 
-              <input  placeholder="PIN"  name="pin" type="number" className=" outline-none w-[100%] bg-transparent border border-gray-500 p-3 rounded-md "/>     
+              <input onChange={addressHandleChange}   placeholder="PIN"  name="pin" type="number" className=" outline-none w-[100%] bg-transparent border border-gray-500 p-3 rounded-md "/>     
               </div>     
-              <input  placeholder="Number"  name="number" type="tel" className=" outline-none w-[100%] bg-transparent border border-gray-500 p-3 rounded-md "/>        
+              <input  onChange={addressHandleChange}  placeholder="Number"  name="mobile" type="tel" className=" outline-none w-[100%] bg-transparent border border-gray-500 p-3 rounded-md "/>        
             
             </div>
+            }
             
 
            <button className="self-center bg-[#ff9f1c] px-6 py-2 rounded-sm text-white">save</button>
@@ -176,17 +205,22 @@ const UserProfile=()=>{
           <div className="text-6xl" id="prof">
             Previous Adresses
           </div>
-          <div className="flex flex-col gap-6 overflow-auto" id="row">
+          <div className="" id="row">
            {
             address.length==0?<div>no address</div>:
-            <div>
-            {addressess.map((address, index) => (
+            <div className="flex flex-row  gap-6 overflow-auto">
+            {address.map((address, index) => (
               <div
                 key={index}
-                className="text-3xl bg-white p-4 w-[80%] h-[180px] items-center flex"
+                className=" flex flex-col align-start gap-4 text-3xl bg-white p-4 w-[80%] h-[180px] items-center flex"
                 id="adresses"
               >
-                {address}
+                
+               <p>{address.country}</p>
+               <p>{address.state}</p>
+               <p>{address.city}</p>
+               <p>{address.mobile}</p>
+               <p>{address.pin}</p>
               </div>
             ))}
               </div>
