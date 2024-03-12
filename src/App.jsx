@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Aboutus from "./components/Aboutus/Aboutus";
 import Service from "./components/Services/Services";
@@ -21,22 +21,9 @@ import AdminPanel from "./ProtectedRoutes/AdminPanel.jsx";
 import Adminusers from "./ProtectedRoutes/Adminusers.jsx";
 import AdminProducts from "./ProtectedRoutes/AdminProducts.jsx";
 import Adminorders from "./ProtectedRoutes/Adminorders.jsx";
+import RequireLogin from './RequireLogin.jsx'
 
 function App() {
-  // const { loading, user } = RequireAuth();
-
-  // if (loading) {
-  //   return <div>Loading...</div>;
-  // }
-
-  // if (!user) {
-  //   return <Navigate to="/login" />;
-  // }
-
-  //exp
-  // return(
-  //   <RequireAuth/>
-  // );
 
   return (
     <>
@@ -51,16 +38,18 @@ function App() {
           <Route path="/blog/:id" element={<IndividualBlog />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/forgotpassword" element={<Checkmail />} />
-          <Route path="/gmailredirect" element={<GmailAccountPage />} />
-          <Route path="/resetpassword/:id" element={<ResetPasswordFunc />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
-          {/* protected routes */}
+          <Route element={<RequireLogin  />}>
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/forgotpassword" element={<Checkmail />} />
+            <Route path="/gmailredirect" element={<GmailAccountPage />} />
+            <Route path="/resetpassword/:id" element={<ResetPasswordFunc />} />
+          </Route>
+
           <Route element={<RequireAuth allowedRoles={["user"]} />}>
             <Route path="/admin" element={<Adminpage />} />
-            <Route path="/adminpanel" element={<AdminPanel />} /> 
+            <Route path="/adminpanel" element={<AdminPanel />} />
             <Route path="/admin/users" element={<Adminusers />} />
             <Route path="/admin/products" element={<AdminProducts />} />
             <Route path="/admin/orders" element={<Adminorders />} />
