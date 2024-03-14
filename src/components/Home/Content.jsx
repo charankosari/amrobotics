@@ -4,15 +4,15 @@ import img1 from "../assets/rover_2.png";
 function Content() {
 
   return (
-    <div className=" bg-white " id="contenttt">
-        <h1 className="text-2xl ml-10 pt-4 sm:text-7xl font-bold">
-         <b> Empowering</b> <b className=" text-orange-500">  Innovation </b> <br /> <b> Through Robotics</b>
+    <div className=" bg-white text-black" id="contenttt">
+        <h1 className="text-2xl ml-10 pt-4 sm:text-7xl font-[200]">
+         <b> Empowering</b> <b className=" text-[#FF9F1C]">  Innovation </b> <br /> <b> Through Robotics</b>
         </h1>
 
         <div className="flex sm:flex-row flex-col-reverse items-center">
       <div className="m-10 w-[80%]" id="kq">
-        <p className="text-4xl w-[90%]">
-         <b className="text-orange-600 text-5xl">AM Robotics: </b>  Unleashing Innovation through Product Design, Robotics
+        <p className="text-4xl w-[90%] text-black ">
+         <b className="text-[#ffa629] text-5xl">AM Robotics: </b>  Unleashing Innovation through Product Design, Robotics
           Research, and Advanced DIY Robokits. Join us in Driving Your Ideas
           towards Innovation for DIY, Education, Research, and Automation.
         </p>

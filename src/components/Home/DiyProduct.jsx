@@ -36,7 +36,7 @@ const DiyProduct = () => {
           <IoIosHeart color={isLoveClicked ? "red" : "gray"}  size={24}  className="bg-white rounded-full p-[3px]"/> 
         </button>
       </div>
-      </button>
+     
 
       <span className="mt-3 ml-3 bg-gray-500 rounded-lg text-xs p-[2px] text-white justify-center flex w-[60px]">
         Home
@@ -53,6 +53,7 @@ const DiyProduct = () => {
           <s> Rs 10,999/-</s>
         </p>
       </div>
+      </button>
       <div style={styles.rating} className="ml-3">
         ⭐⭐⭐⭐⭐
       </div>
@@ -80,6 +81,7 @@ const styles = {
   heading: {
     fontSize: "18px",
     margin: "10px 0",
+    textAlign:"left"
   },
   price: {
     fontSize: "16px",
@@ -97,7 +99,7 @@ const styles = {
     padding: "10px",
   },
   button: {
-    padding: "8px 12px",
+    padding: "8px 8px",
     fontSize: "14px",
     cursor: "pointer",
     backgroundColor: "gray",
@@ -105,7 +107,7 @@ const styles = {
     color: "white",
   },
   buttonn: {
-    padding: "8px 12px",
+    padding: "8px 8px",
     fontSize: "14px",
     cursor: "pointer",
     backgroundColor: "orange",

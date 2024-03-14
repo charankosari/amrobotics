@@ -1,7 +1,9 @@
 import './Footer.css'
 import { FaInstagram  } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
-import { FaTwitter } from "react-icons/fa";
+// import { FaTwitter } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+
 function Footer() {
   return (
     <div>
@@ -53,7 +55,7 @@ function Footer() {
     </li>
     <li className="icon twitter" id='some'>
         <span className="tooltip">Twitter</span>
-        <span><FaTwitter size={24} /></span>
+        <span><FaXTwitter size={24} /></span>
     </li>
     <li className="icon instagram" id='some'>
         <span className="tooltip">Instagram</span>

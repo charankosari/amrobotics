@@ -9,7 +9,7 @@
     display: block;
     width: 0;
     height: 1.5px; 
-    background-color: #ff8c00;
+    background-color: #FF9F1C;
     position: absolute;
     bottom: -3px;
     left: 0%; 
@@ -33,7 +33,7 @@
   }
   
   #searchButton {
-    background-color: #ff8c00;
+    background-color: #FF9F1C;
     border: none;
     height: 4rem;
     width: 3rem;
@@ -133,7 +133,7 @@ height: 5rem;
   }
   
   #searchButton {
-    background-color: #ff8c00;
+    background-color: #FF9F1C;
     border: none;
     height: 2.8rem;
     width: 3rem;
@@ -185,7 +185,7 @@ height: 5rem;
   }
   
   #searchButton {
-    background-color: #ff8c00;
+    background-color: #FF9F1C;
     border: none;
     height: 2.8rem;
     width: 3rem;
@@ -238,7 +238,7 @@ height: 5rem;
   }
   
   #searchButton {
-    background-color: #ff8c00;
+    background-color: #FF9F1C;
     border: none;
     height: 2rem;
     width: 1.8rem;
@@ -283,7 +283,7 @@ height: 5rem;
   padding-right: 10px;
 }
 #searchButton {
-  background-color: #ff8c00;
+  background-color: #FF9F1C;
   border: none;
   height: 1.7rem;
   width: 1.5rem;
@@ -336,7 +336,7 @@ height: 5rem;
     padding-right: 10px;
   }
   #searchButton {
-    background-color: #ff8c00;
+    background-color: #FF9F1C;
     border: none;
     height: 1.7rem;
     width: 1.5rem;
