@@ -47,7 +47,7 @@ function App() {
             <Route path="/resetpassword/:id" element={<ResetPasswordFunc />} />
           </Route>
 
-          <Route element={<RequireAuth allowedRoles={["user"]} />}>
+          <Route element={<RequireAuth allowedRoles={["admin"]} />}>
             <Route path="/admin" element={<Adminpage />} />
             <Route path="/adminpanel" element={<AdminPanel />} />
             <Route path="/admin/users" element={<Adminusers />} />

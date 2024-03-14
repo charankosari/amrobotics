@@ -39,24 +39,29 @@ const Product = () => {
       <span className="mt-3 ml-3 bg-gray-500 rounded-lg text-xs p-[2px] text-white justify-center flex w-[60px]">
         Home
       </span>
-      <h3 style={styles.heading} className="pl-3 text-black font-semibold">
+      <h3 style={styles.heading} className="pl-3 text-black font-semibold flex flex-row">
         2 Module 23A Touch Switchboard White/Black
       </h3>
-      <div className="flex flex-row gap-2">
-        <p style={styles.price} className="ml-3">
+      <div className="flex flex-col ml-3">
+      <div className="flex flex-row gap-2 ">
+        <p style={styles.price} className="">
           Rs 6,999/-
         </p>{" "}
         <p style={styles.pricee} className="text-red-500">
           {" "}
           <s> Rs 10,999/-</s>
         </p>
-      </div>
-      <div style={styles.rating} className="ml-3">
+        </div>
+        <div>
+        <div style={styles.rating} className="flex flex-row ">
         ⭐⭐⭐⭐⭐
       </div>
+      </div>
+      </div>
+     
       <div style={styles.buttons}>
         <button style={styles.buttonn}>Buy Now</button>
-        <button style={styles.button}>Buy Now</button>
+        <button style={styles.button}>Add to cart</button>
       </div>
       </button>
     </div>
@@ -78,6 +83,7 @@ const styles = {
   heading: {
     fontSize: "18px",
     margin: "10px 0",
+    textAlign: "left"
   },
   price: {
     fontSize: "16px",
@@ -88,6 +94,7 @@ const styles = {
   },
   rating: {
     fontSize: "20px",
+
   },
   buttons: {
     display: "flex",

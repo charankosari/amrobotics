@@ -39,7 +39,7 @@ const Product = () => {
       <span className="mt-3 ml-3 bg-gray-500 rounded-lg text-xs p-[2px] text-white justify-center flex w-[60px]">
         Home
       </span>
-      <h3 style={styles.heading} className="pl-3 text-black font-semibold">
+      <h3 style={styles.heading} className="pl-3 text-black font-semibold text-left">
         2 Module 23A Touch Switchboard White/Black
       </h3>
       <div className="flex flex-row gap-2">
@@ -55,7 +55,7 @@ const Product = () => {
         ⭐⭐⭐⭐⭐
       </div>
       <div style={styles.buttons}>
-        <button style={styles.buttonn}>Buy Now</button>
+        <button style={styles.buttonn} className="bg-[#FF9F1C]">Buy Now</button>
         <button style={styles.button}>Add cart</button>
       </div>
       </button>
@@ -88,6 +88,8 @@ const styles = {
   },
   rating: {
     fontSize: "20px",
+
+    textAlign:'left'
   },
   buttons: {
     display: "flex",
@@ -95,7 +97,7 @@ const styles = {
     padding: "10px",
   },
   button: {
-    padding: "8px 12px",
+    padding: "8px 8px",
     fontSize: "14px",
     cursor: "pointer",
     backgroundColor: "gray",
@@ -103,10 +105,9 @@ const styles = {
     color: "white",
   },
   buttonn: {
-    padding: "8px 12px",
+    padding: "8px 8px",
     fontSize: "14px",
     cursor: "pointer",
-    backgroundColor: "orange",
     borderRadius: "10px",
     color: "white",
   },
