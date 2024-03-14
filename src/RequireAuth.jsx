@@ -14,9 +14,10 @@ const RequireAuth = ({ allowedRoles }) => {
                 if (response.status === 200) {
                     const userData = response.data;
                     setUser(userData.user.role);
-
+                    console.log(userData.user.role)
                     // Check if user's role is allowed
                     if (!allowedRoles.includes(userData.user.role)) {
+                  
                         // Redirect to unauthorized page if not allowed
                         navigate('/unauthorized');
                     }
