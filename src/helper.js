@@ -5,9 +5,15 @@ axios.defaults.baseURL="http://localhost:5080/api/v1"
 
 
 
-export  async function GetProducts() {
+export  async function GetProducts(filter) {
   try {
-    const response = await axios.get("/products")
+    console.log(filter)
+    const config={
+      method:"post",
+      url:"/products",
+      data:filter
+    }
+    const response = await axios(config)
     return response
    } 
   catch (error) {

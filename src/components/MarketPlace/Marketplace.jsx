@@ -9,16 +9,17 @@ import {GetProducts} from "../../helper.js";
 import { ThreeDots } from "react-loader-spinner";
 
 function Marketplace() {
+  const [filter,setFilter]=useState({})
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  // const [filters,setFilters]=useState({name:"",})
+  console.log(filter)
 
   useEffect(() => {
-    getAllProducts();
-  }, []);
+    getAllProducts({filter});
+  }, [filter]);
 
-  const getAllProducts = async () => {
-    const response = await GetProducts();
+  const getAllProducts = async (filter) => {
+    const response = await GetProducts(filter);
     if (response.status == 200) {
      
       setProducts(response.data.products);
@@ -26,6 +27,13 @@ function Marketplace() {
     }
     setLoading(false);
   };
+  
+  const filterChanges=(event)=>{
+    console.log("hello",filter)
+    setFilter((prevState)=>({...prevState,[event.target.name]:event.target.value}))
+    // getAllProducts(filter)
+  
+  }
 
   return (
     <div className="overflow-hidden">
@@ -66,17 +74,19 @@ function Marketplace() {
                 Whats new
               </button>
               <select
+                name="category"
+                onChange={filterChanges}
                 className="p-2 mr-2 text-black bg-white text-3xl font-bold   rounded-md"
                 id="font"
               >
-                <option value="option1" className="text-xl">
+                <option value="" className="text-xl">
                   Categories
                 </option>
-                <option value="option2" className="text-xl">
-                  Option 2
+                <option value="Home" className="text-xl">
+                  Home
                 </option>
-                <option value="option3" className="text-xl">
-                  Option 3
+                <option value="Electronics" className="text-xl">
+                Electronics
                 </option>
               </select>
             </div>
@@ -86,7 +96,9 @@ function Marketplace() {
               id="aghh"
             >
               <input
+              onChange={filterChanges}
                 type="text"
+                name="keyword"
                 placeholder="Search..."
                 id="input"
                 className="p-2 mr-2 border border-gray-600 sm:w-[700px] text-black text-3xl   w-[150px] rounded-md bg-white"

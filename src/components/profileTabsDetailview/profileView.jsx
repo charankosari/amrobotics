@@ -214,8 +214,7 @@ const UserProfile=()=>{
                 key={index}
                 className=" flex flex-col align-start gap-4 text-3xl bg-white p-4 w-[80%] h-[180px] items-center flex"
                 id="adresses"
-              >
-                
+              >              
                <p>{address.country}</p>
                <p>{address.state}</p>
                <p>{address.city}</p>

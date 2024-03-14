@@ -23,10 +23,12 @@ const RequireAuth = ({ allowedRoles }) => {
                 } else {
                     console.log("Failed to fetch user data");
                     setUser(null);
+                    navigate('/unauthorized');
                 }
             } catch (error) {
                 console.error('Error fetching user:', error);
                 setUser(null);
+                navigate('/unauthorized');
             } finally {
                 setLoading(false);
             }
