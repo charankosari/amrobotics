@@ -72,7 +72,6 @@ function Profile() {
                 className="w-[90px] h-[90px] mr-3 text-[#FF9F1C]"
                 id="icon"
               />
-            
                 <div className="flex flex-col">
                   <h1 className="text-5xl" id="head">
                     Account Details
