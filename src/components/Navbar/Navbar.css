@@ -56,6 +56,9 @@
   
   /* Responsive Styles for Small Screens */
   @media only screen and (max-width: 768px) {
+    #ghost{
+      margin-left: 0%;
+    }
     #searchbar {
       margin-right: 0;
     }

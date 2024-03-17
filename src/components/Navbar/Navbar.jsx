@@ -17,7 +17,7 @@ function Navbar() {
   return (
     <div className="navbar bg-white " id="nav">
       <div className="flex-[0.97] " id="ele">
-        <Link to="/" className="btn btn-ghost text-xl sm:pl-1 pl-0 h-20" id="ghost">
+        <Link to="/" className="btn btn-ghost text-xl sm:pl-1 pl-0 h-20 ml-4" id="ghost">
           <img src={Logo} alt="" className="h-20" />
         </Link>
 
