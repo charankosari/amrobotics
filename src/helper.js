@@ -120,6 +120,29 @@ export  async function sendToCartApi({id,cartCount}) {
       }
     }
 
+    // update quantity of the cart item___________
+export  async function updateCart(details) {
+  console.log(details)
+  const jwtToken=localStorage.getItem("jwtToken")
+  
+    const config={
+      method:"put",
+      url:`/me/cart`,
+      headers:{
+        "Authorization":`Bearer ${jwtToken}`,
+        "Content-Type":"application/json"
+          },
+      data:details
+    }
+    try {
+      const response =await axios(config)
+      return response
+     } 
+    catch (error) {
+      return error
+    }
+  }
+
     
 
    // add to wishlist item___________

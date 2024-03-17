@@ -20,8 +20,6 @@ import {createReview} from "../../helper.js";
 export default function MyComponent() {
   const dispatch = useDispatch();
 
-  console.log("render");
-
   const Review = {
     reviever: "david bhai",
     revieverimg:
@@ -32,9 +30,9 @@ export default function MyComponent() {
     comments:
       "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint cupiditate ipsam, quia neque hic ratione, dolorem, illum quo error commodi adipisci quisquam voluptatibus ex provident?",
   };
-  const renderStars = () => {
+  const renderStars = (rating) => {
     let stars = "";
-    for (let i = 0; i < Review.ratings; i++) {
+    for (let i = 0; i < rating; i++) {
       stars += "⭐";
     }
     return stars;
@@ -73,6 +71,7 @@ export default function MyComponent() {
 
   const sendToCart = async () => {
     const response = await sendToCartApi({ id, cartCount });
+    console.log(response)
     if (response.status == 200) {
       toast.success("Product added to cart")
     }
@@ -442,7 +441,7 @@ export default function MyComponent() {
                     </h1>
                   </div>
                   <span className="text-2xl" id="reviever">
-                    {renderStars()}{each.rating}
+                    {renderStars(each.rating)}
                   </span>
                   <p className="text-xl text-black mb-2" id="comments">
                     {each.comment}
