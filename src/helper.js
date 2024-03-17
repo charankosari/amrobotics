@@ -261,9 +261,7 @@ export  async function sendToWishlistApi(id) {
                 "Authorization":`Bearer ${jwtToken}`,
                 "Content-Type":"application/json"
                   },
-              data: JSON.stringify(data) // Pass data in the request body
-    
-            }
+              data: JSON.stringify(data)}
             try {
               const response =await axios(config)
               return response
@@ -271,5 +269,27 @@ export  async function sendToWishlistApi(id) {
             catch (error) {
               return error
             }
-          
+        }
+
+        export  async function createReview({rating,comment,productId}){
+          const jwtToken=localStorage.getItem("jwtToken")
+          const data = {
+            rating,comment,productId
+          };
+          console.log(data)
+            const config={
+              method:"put",
+              url:`/review`,
+              headers:{
+                "Authorization":`Bearer ${jwtToken}`,
+                "Content-Type":"application/json"
+                  },
+              data: JSON.stringify(data)}
+            try {
+              const response =await axios(config)
+              return response
+             } 
+            catch (error) {
+              return error
+            }
         }

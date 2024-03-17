@@ -50,7 +50,7 @@ const MarketProduct = (props) => {
       <span className="mt-3 ml-3 bg-gray-500 rounded-lg text-xs p-[2px] text-white justify-center flex w-[30%]">
         {category}
       </span>
-      <h3 style={styles.heading} className="pl-3 text-black font-semibold text-start">
+      <h3 style={styles.heading} className="pl-3 text-black font-semibold text-left">
         {name}
       </h3>
       </button>

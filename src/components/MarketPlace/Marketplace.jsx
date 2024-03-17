@@ -9,7 +9,7 @@ import {GetProducts} from "../../helper.js";
 import { ThreeDots } from "react-loader-spinner";
 
 function Marketplace() {
-  const [filter,setFilter]=useState({})
+  const [filter,setFilter]=useState({page:1})
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   console.log(filter)
@@ -34,6 +34,23 @@ function Marketplace() {
     // getAllProducts(filter)
   
   }
+  const clearAllFilters=()=>{
+
+    setFilter({})
+  }
+
+  const incPagination=()=>{
+    setFilter(prevState=>({...prevState,page:prevState.page+1}))
+  }
+
+  const decPagination=()=>{
+    if(filter.page<=0)
+    setFilter(prevState=>({...prevState,page:0}))
+
+    else
+    setFilter(prevState=>({...prevState,page:prevState.page-1}))
+  }
+
 
   return (
     <div className="overflow-hidden">
@@ -62,6 +79,7 @@ function Marketplace() {
             </div>
           </div>
           <div className="flex items-center  sm:gap-0 gap-0 sm:p-4 p-1 bg-white sm:mx-8 mx-2">
+           
             <div
               className="flex sm:gap-8 gap-2
                 "
@@ -91,12 +109,9 @@ function Marketplace() {
               </select>
             </div>
             <div
-              className="sm:pl-20 pl-0
-                "
-              id="aghh"
-            >
-              <input
-              onChange={filterChanges}
+              className="sm:pl-20 pl-0"
+              id="aghh">
+              <input onChange={filterChanges}
                 type="text"
                 name="keyword"
                 placeholder="Search..."
@@ -109,6 +124,7 @@ function Marketplace() {
               >
                 Search
               </button>
+              <button className="text-md font-semibold bg-[#FF9F1C] p-1 text-white rounded-md" onClick={clearAllFilters}>clear</button>
             </div>
             <div
               className="flex gap-0  sm:gap-12  w-auto right-12 absolute"
@@ -127,6 +143,7 @@ function Marketplace() {
                 Offers
               </button>
             </div>
+
           </div>
           {loading ? (
         <div className="flex justify-center items-center h-[5cm]">
@@ -141,14 +158,14 @@ function Marketplace() {
             wrapperClass=""
           />
         </div>
-      ) : (
+           ) : (
         <>
           <div
             className="grid grid-cols-6   gap-3 p-5   place-items-center "
             id="k" >
                
                {
-                products.slice(0,5).map((item) => (
+                products.map((item) => (
 
                   <MarketProduct each={item} key={item.id}/>
                   
@@ -156,17 +173,15 @@ function Marketplace() {
               }
   
           </div>
-          <Card />
-          <div className="grid grid-cols-6 gap-4 place-items-center" id="k">
-          {
-                products.slice(0,5).map((item) => (
 
-                  <MarketProduct each={item} key={item.id}/>
-                  
-              ))
-              }
-  
+        <div className="flex justify-center mb-3">
+          <div className="join">
+          <button className="join-item btn" onClick={decPagination}>«</button>
+          <button className="join-item btn">ss</button>
+          <button className="join-item btn" onClick={incPagination}>»</button>
           </div>
+        </div>
+          
         </>
       )}
       <Footer />

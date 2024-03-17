@@ -42,7 +42,6 @@ function App() {
 
           <Route element={<RequireLogin  />}>
             <Route path="/profile" element={<Profile />} />
-            <Route path="/cart" element={<Cart />} />
             <Route path="/forgotpassword" element={<Checkmail />} />
             <Route path="/gmailredirect" element={<GmailAccountPage />} />
             <Route path="/resetpassword/:id" element={<ResetPasswordFunc />} />
@@ -50,8 +49,7 @@ function App() {
 
           <Route element={<RequireAuth allowedRoles={["admin"]} />}>
             <Route path="/admin" element={<Adminpage />} />
-            <Route path="/adminpanel" element={<AdminPanel />} />dex.css (x2)
-
+            <Route path="/adminpanel" element={<AdminPanel />} />
             <Route path="/admin/users" element={<Adminusers />} />
             <Route path="/admin/products" element={<AdminProducts />} />
             <Route path="/admin/orders" element={<Adminorders />} />

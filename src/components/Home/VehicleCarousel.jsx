@@ -47,7 +47,7 @@ function Vehicles() {
               />
               <div id="one">
               <h1 className="flex flex-row font-bold sm:text-3xl text-xl gap-3 font-sans ml-6 " >
-                ROVER <h1 className="text-[#FF9F1C]  font-bold sm:text-3xl text-xl ">4WDXL60R</h1>
+                ROVER <h1 className=" text-[#FF9F1C]  font-bold sm:text-3xl text-xl ">4WDXL60R</h1>
               </h1>
               </div>
             </div>

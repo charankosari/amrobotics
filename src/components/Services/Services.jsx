@@ -169,6 +169,7 @@ export default function MyComponent(props) {
               <div className="text-neutral-700 text-center text-2xl font-semibold mt-6">
                 Metal Fabrication <br />& Assembly
               </div>
+              
             </div>
           </div>
         </div>

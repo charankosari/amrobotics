@@ -205,26 +205,21 @@ const UserProfile=()=>{
           <div className="text-6xl" id="prof">
             Previous Adresses
           </div>
-          <div className="" id="row">
+          <div className="p-2 flex gap-2 flex-wrap" >
            {
             address.length==0?<div>no address</div>:
-            <div className="flex flex-row  gap-6 overflow-auto">
-            {address.map((address, index) => (
-              <div
-                key={index}
-                className=" flex flex-col align-start gap-4 text-3xl bg-white p-4 w-[80%] h-[180px] items-center flex"
-                id="adresses"
-              >              
-               <p>{address.country}</p>
-               <p>{address.state}</p>
-               <p>{address.city}</p>
-               <p>{address.mobile}</p>
-               <p>{address.pin}</p>
-              </div>
-            ))}
-              </div>
+          
+            address.map((address, index) =>(
+              <div key={index} className="w-[95%] sm:w-[200px] bg-white rounded-sm flex justify-center p-5">
+                <p>{address.city} , {address.country} , {address.state} , {address.pin}</p>
+                </div>
+            ))
+            
+            }
 
-           }
+
+            
+           
           </div>
         </div>
         <button onClick={handleEdit} className="bg-[#FF9F1C] w-[2190px] h-[75px] rounded-md  text-white text-semibold mt-4 text-xl"id="or-b">

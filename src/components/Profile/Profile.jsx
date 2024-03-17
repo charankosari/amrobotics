@@ -15,6 +15,7 @@ import Wishlist from "../profileTabsDetailview/wishlist.jsx"
 import ForgotPassword from "../profileTabsDetailview/ForgotPassword.jsx";
 import ContactUs from "../profileTabsDetailview/ContactUs.jsx";
 import Faq from '../profileTabsDetailview/FAQ.jsx'
+import { useNavigate } from "react-router-dom";
 
 
 const tabIds={
@@ -30,6 +31,7 @@ faqs:"FAQS",
 }
 
 function Profile() {
+  const navigate=useNavigate();
 
   const[activeId,setActiveId]=useState(tabIds.account)
   console.log(activeId)
@@ -170,7 +172,10 @@ function Profile() {
                 </p>
               </div>
             </div>
-            <button className="button-1 ">
+            <button className="button-1 " onClick={()=>{
+              localStorage.removeItem('jwtToken');
+              navigate('/');
+            }}>
               {" "}
               Sign Out <IoExitOutline className="ml-4" />{" "}
             </button>

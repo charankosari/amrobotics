@@ -137,7 +137,8 @@ function Navbar() {
             </li>
             <li>
               <Link to="/" onClick={()=>{
-                localStorage.clear()
+                localStorage.clear();
+                
               }}>Signout</Link>
             </li>
           </ul>

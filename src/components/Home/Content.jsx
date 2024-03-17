@@ -12,7 +12,7 @@ function Content() {
         <div className="flex sm:flex-row flex-col-reverse items-center">
       <div className="m-10 w-[80%]" id="kq">
         <p className="text-4xl w-[90%] text-black ">
-         <b className="text-[#ffa629] text-5xl">AM Robotics: </b>  Unleashing Innovation through Product Design, Robotics
+         <b className=" bbb text-[#ffa629] text-5xl">AM Robotics: </b>  Unleashing Innovation through Product Design, Robotics
           Research, and Advanced DIY Robokits. Join us in Driving Your Ideas
           towards Innovation for DIY, Education, Research, and Automation.
         </p>
