@@ -5,7 +5,8 @@ import { FiPlusCircle } from "react-icons/fi";
 import { LuMinusCircle } from "react-icons/lu";
 import {ThreeDots} from 'react-loader-spinner'
 import emptycart from '../assets/emptycart.png'
-import {updateCart} from '../../helper'
+import {updateCart,deleteAllCart} from '../../helper'
+
 import "./cart.css"
 
 
@@ -69,11 +70,19 @@ const Cart = () => {
     // const newDetails=id.map((item)=>details.filter((each)=>each.id!=item))
     setDetails(newDetails)
  };
+//  delete all cart items________________
+const deleteMycart=async()=>{
+  const response = await deleteAllCart()
+  if(response.status==200)
+  setDetails([])
+
+}
 
 // increment the quantity of the cart item
 const updateCartQuantity = async(a) => {
     const response=await updateCart(a)
-    console.log(response)
+    if(response.status==200)
+    getDetails()
 };
 
 
@@ -115,7 +124,7 @@ const updateCartQuantity = async(a) => {
        <div className='flex flex-row justify-between '>
        <h1 className='text-black font-black text-2xl'>Cart Details</h1>
       {
-           CartDetails.length<=0?<></>: <button  className='flex flex-row items-center gap-1 bg-[#434142] px-2 py-1.5 rounded-md'> <MdDeleteOutline className=' deleteall-icon text-2xl' /><span className='text-lg text-white'>Delete All</span> </button>
+           CartDetails.length<=0?<></>: <button onClick={deleteMycart}  className='flex flex-row items-center gap-1 bg-[#434142] px-2 py-1.5 rounded-md'> <MdDeleteOutline className=' deleteall-icon text-2xl' /><span className='text-lg text-white'>Delete All</span> </button>
       }
       
       

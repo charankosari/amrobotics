@@ -21,15 +21,12 @@ export default function MyComponent() {
   const dispatch = useDispatch();
 
   const Review = {
-    reviever: "david bhai",
     revieverimg:
       "https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg",
     reviews:
-      "https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg",
-    ratings: 4,
-    comments:
-      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint cupiditate ipsam, quia neque hic ratione, dolorem, illum quo error commodi adipisci quisquam voluptatibus ex provident?",
+      "https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
   };
+  
   const renderStars = (rating) => {
     let stars = "";
     for (let i = 0; i < rating; i++) {
@@ -384,28 +381,17 @@ export default function MyComponent() {
                       </textarea>
 
                       <div className="flex flex-row items-center mt-4">
-                        <label>Rating : </label>
+                        <label className="text-bold text-md mt-3">Rating : </label>
 
-                        <select
-                          onChange={(event) => setreviewDetails((prev) => ({ ...prev, rating: event.target.value }))}
-                          className="w-10 border border-gray-500 rounded-md px-0.5"
-                        >
-                          <option value={1} className="bg-white w-10">
-                            1
-                          </option>
-                          <option value={2} className="bg-white w-10">
-                            2
-                          </option>
-                          <option value={3} className="bg-white w-10">
-                            3
-                          </option>
-                          <option value={4} className="bg-white w-10">
-                            4
-                          </option>
-                          <option value={5} className="bg-white w-10">
-                            5
-                          </option>
-                        </select>
+                        <div className="rating">
+                          <input value={1}  onClick={(event) => setreviewDetails((prev) => ({ ...prev, rating: event.target.value }))} type="radio" name="rating-2" className="mask mask-star-2 w-10 bg-orange-400" />
+                          <input value={2}  onClick={(event) => setreviewDetails((prev) => ({ ...prev, rating: event.target.value }))} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400"/>
+                          <input value={3}  onClick={(event) => setreviewDetails((prev) => ({ ...prev, rating: event.target.value }))} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                          <input value={4}  onClick={(event) => setreviewDetails((prev) => ({ ...prev, rating: event.target.value }))} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                          <input value={5}  onClick={(event) => setreviewDetails((prev) => ({ ...prev, rating: event.target.value }))} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                        </div>
+
+
                       </div>
 
 

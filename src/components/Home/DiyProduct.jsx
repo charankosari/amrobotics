@@ -6,12 +6,13 @@ const DiyProduct = () => {
   const [isLoveClicked, setLoveClicked] = useState(false);
 
   const handleLoveClick = () => {
+    console.log("hello")
     setLoveClicked(!isLoveClicked);
   };
 
   return (
-    <div style={styles.card}>
-      <button onClick={navigate('marketplace/sgsefefw')}>
+    <div style={styles.card} onClick={()=>console.log("hiii")}>
+     
       <div style={{ position: "relative" }}>
         <img
           src="https://imgs.search.brave.com/L87L2KblRPj0xEgErVwIvAfP-nYOf3yRqLa6aSEa_oQ/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/YWxsLW9mLW15LWNh/cnMtYXJlbnQtYnJv/a2VuLXdoYXQtbm93/LXYwLTlxem56MWdw/bzhxYjEuanBnP3dp/ZHRoPTY0MCZjcm9w/PXNtYXJ0JmF1dG89/d2VicCZzPWE3MjZk/NmYxNzRmMzVkZmFh/OGZhYjIwMTAyNjdh/ZmJlYmYzN2YwZjU"
@@ -22,7 +23,7 @@ const DiyProduct = () => {
             objectFit: "cover",
           }}
         />
-        <button
+        <div
           onClick={handleLoveClick}
           style={{
             position: "absolute",
@@ -34,7 +35,7 @@ const DiyProduct = () => {
           }}
         >
           <IoIosHeart color={isLoveClicked ? "red" : "gray"}  size={24}  className="bg-white rounded-full p-[3px]"/> 
-        </button>
+        </div>
       </div>
      
 
@@ -53,7 +54,6 @@ const DiyProduct = () => {
           <s> Rs 10,999/-</s>
         </p>
       </div>
-      </button>
       <div style={styles.rating} className="ml-3">
         ⭐⭐⭐⭐⭐
       </div>

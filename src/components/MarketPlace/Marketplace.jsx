@@ -177,7 +177,7 @@ function Marketplace() {
         <div className="flex justify-center mb-3">
           <div className="join">
           <button className="join-item btn" onClick={decPagination}>«</button>
-          <button className="join-item btn">ss</button>
+          <button className="join-item btn">{filter.page}</button>
           <button className="join-item btn" onClick={incPagination}>»</button>
           </div>
         </div>
