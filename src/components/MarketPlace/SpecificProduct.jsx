@@ -19,21 +19,16 @@ import { createReview } from "../../helper.js";
 export default function MyComponent() {
   const dispatch = useDispatch();
 
-  console.log("render");
-
   const Review = {
-    reviever: "david bhai",
     revieverimg:
       "https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg",
     reviews:
-      "https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg",
-    ratings: 4,
-    comments:
-      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint cupiditate ipsam, quia neque hic ratione, dolorem, illum quo error commodi adipisci quisquam voluptatibus ex provident?",
+      "https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
   };
-  const renderStars = () => {
+  
+  const renderStars = (rating) => {
     let stars = "";
-    for (let i = 0; i < Review.ratings; i++) {
+    for (let i = 0; i < rating; i++) {
       stars += "⭐";
     }
     return stars;
@@ -76,6 +71,7 @@ export default function MyComponent() {
 
   const sendToCart = async () => {
     const response = await sendToCartApi({ id, cartCount });
+    console.log(response)
     if (response.status == 200) {
       toast.success("Product added to cart");
     }
@@ -346,76 +342,42 @@ export default function MyComponent() {
             )}
 
             {/* review form _____________*/}
-            {showreview ? (
-              <div className="form-container relative">
-                <button
-                  onClick={() => {
-                    setshowreview(!showreview);
-                  }}
-                  className="absolute top-3 right-3 "
-                >
-                  <IoCloseSharp className="text-xl" />
-                </button>
-                <div className="logo-container">Create Review</div>
-
-                <form className="form">
-                  <div className="form-group">
-                    <label htmlFor="review font-bold">Comment</label>
-                    <textarea
-                      onChange={(event) =>
-                        setreviewDetails((prev) => ({
-                          ...prev,
-                          comment: event.target.value,
-                        }))
-                      }
-                      rows={10}
-                      className="border p-2"
-                      id="reivew"
-                      placeholder="Write your experience of product....."
-                    ></textarea>
-
-                    <div className="flex flex-row items-center mt-4">
-                      <label>Rating : </label>
-
-                      <select
-                        onChange={(event) =>
-                          setreviewDetails((prev) => ({
-                            ...prev,
-                            rating: event.target.value,
-                          }))
-                        }
-                        className="w-10 border border-gray-500 rounded-md px-0.5"
-                      >
-                        <option value={1} className="bg-white w-10">
-                          1
-                        </option>
-                        <option value={2} className="bg-white w-10">
-                          2
-                        </option>
-                        <option value={3} className="bg-white w-10">
-                          3
-                        </option>
-                        <option value={4} className="bg-white w-10">
-                          4
-                        </option>
-                        <option value={5} className="bg-white w-10">
-                          5
-                        </option>
-                      </select>
-                    </div>
-                  </div>
-                  <button
-                    onClick={submitReview}
-                    className="form-submit-btn"
-                    type="submit"
-                  >
+            {
+              showreview ?
+                <div className="form-container relative">
+                  <button onClick={() => { setshowreview(!showreview) }} className="absolute top-3 right-3 "><IoCloseSharp className="text-xl" /></button>
+                  <div className="logo-container">
                     Create Review
-                  </button>
-                </form>
-              </div>
-            ) : (
-              ""
-            )}
+                  </div>
+
+                  <form className="form">
+                    <div className="form-group">
+                      <label htmlFor="review font-bold">Comment</label>
+                      <textarea onChange={(event) => setreviewDetails((prev => ({ ...prev, comment: event.target.value })))} rows={10} className="border p-2" id="reivew" placeholder="Write your experience of product.....">
+
+                      </textarea>
+
+                      <div className="flex flex-row items-center mt-4">
+                        <label className="text-bold text-md mt-3">Rating : </label>
+
+                        <div className="rating">
+                          <input value={1}  onClick={(event) => setreviewDetails((prev) => ({ ...prev, rating: event.target.value }))} type="radio" name="rating-2" className="mask mask-star-2 w-10 bg-orange-400" />
+                          <input value={2}  onClick={(event) => setreviewDetails((prev) => ({ ...prev, rating: event.target.value }))} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400"/>
+                          <input value={3}  onClick={(event) => setreviewDetails((prev) => ({ ...prev, rating: event.target.value }))} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                          <input value={4}  onClick={(event) => setreviewDetails((prev) => ({ ...prev, rating: event.target.value }))} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                          <input value={5}  onClick={(event) => setreviewDetails((prev) => ({ ...prev, rating: event.target.value }))} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                        </div>
+
+
+                      </div>
+
+
+                    </div>
+                    <button onClick={submitReview} className="form-submit-btn" type="submit">Create Review</button>
+                  </form>
+
+                </div> : ""
+            }
 
             {/* reviews  */}
             <div className="flex flex-col gap-2">
@@ -441,8 +403,7 @@ export default function MyComponent() {
                     </h1>
                   </div>
                   <span className="text-2xl" id="reviever">
-                    {renderStars()}
-                    {each.rating}
+                    {renderStars(each.rating)}
                   </span>
                   <p className="text-xl text-black mb-2" id="comments">
                     {each.comment}

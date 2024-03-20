@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getWishlist,sendToWishlistApi} from '../../helper';
+import { getWishlist,sendToWishlistApi,deleteAllWishlist} from '../../helper';
 import { MdDeleteOutline } from "react-icons/md";
 import { FiPlusCircle } from "react-icons/fi";
 import { LuMinusCircle } from "react-icons/lu";
@@ -51,10 +51,10 @@ const Wishlist = () => {
 
   const getDetails = async () => {
     const response = await getWishlist();
-   
+     console.log(response)
     if (response.status == 200) {
-      setDetails(response.data.data);
       setLoading(false);
+      setDetails(response.data.data);
     }
   };
  
@@ -66,13 +66,15 @@ const Wishlist = () => {
    setDetails(newDetails)
 
  };
+
+ const deleteWishlist=async()=>{
+  const response=await deleteAllWishlist()
+  if(response.status==200)
+  setDetails([])
+  // console.log(response)
+ }
  
 
-//  const deleteAll=()=>{
-//   let allCartIds=details.map((each)=>each.id)
-//   handleDelete(allCartIds)
-//  }
- 
  
   const loadingView = () => {
   
@@ -111,7 +113,7 @@ const Wishlist = () => {
        <div className='flex flex-row justify-between '>
        <h1 className='text-black font-black text-2xl'>Wishlist Details</h1>
       {
-           wishDetails.length<=0?<></>: <button  className='flex flex-row items-center gap-1 bg-[#434142] px-2 py-1.5 rounded-md'> <MdDeleteOutline className=' deleteall-icon text-2xl' /><span className='text-lg text-white'>Delete All</span> </button>
+           wishDetails.length<=0?<></>: <button onClick={deleteWishlist} className='flex flex-row items-center gap-1 bg-[#434142] px-2 py-1.5 rounded-md'> <MdDeleteOutline className=' deleteall-icon text-2xl' /><span className='text-lg text-white'>Delete All</span> </button>
       }
       
       

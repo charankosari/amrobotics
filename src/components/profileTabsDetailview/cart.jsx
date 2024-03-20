@@ -5,6 +5,8 @@ import { FiPlusCircle } from "react-icons/fi";
 import { LuMinusCircle } from "react-icons/lu";
 import {ThreeDots} from 'react-loader-spinner'
 import emptycart from '../assets/emptycart.png'
+import {updateCart,deleteAllCart} from '../../helper'
+
 import "./cart.css"
 
 
@@ -20,7 +22,7 @@ const handleDecrement = (itemId) => {
 
 // cart item component 
 const CartItem=(props)=>{
-  const {handleDelete,each}=props
+  const {handleDelete,each,updateCartQuantity}=props
   const{name,images,quantity,price,id}=each
   return(
     <div className='flex flex-row bg-white rounded-md p-3 items-center justify-between text-black' >
@@ -30,11 +32,11 @@ const CartItem=(props)=>{
        <p className='text-base font-bold'>{price}</p>
     </div>
     <div className='flex gap-5 items-center'>
-      <button>
+      <button onClick={()=>{updateCartQuantity({id,operation:"inc"})}}>
       <FiPlusCircle className="text-2xl"/>
       </button>
       <p className='text-2xl'>{quantity}</p>
-      <button>
+      <button onClick={()=>{updateCartQuantity({id,operation:"dec"})}}>
         <LuMinusCircle className="text-2xl"/>
       </button>
     </div>
@@ -68,13 +70,22 @@ const Cart = () => {
     // const newDetails=id.map((item)=>details.filter((each)=>each.id!=item))
     setDetails(newDetails)
  };
- 
+//  delete all cart items________________
+const deleteMycart=async()=>{
+  const response = await deleteAllCart()
+  if(response.status==200)
+  setDetails([])
 
-//  const deleteAll=()=>{
-//   let allCartIds=details.map((each)=>each.id)
-//   handleDelete(allCartIds)
-//  }
- 
+}
+
+// increment the quantity of the cart item
+const updateCartQuantity = async(a) => {
+    const response=await updateCart(a)
+    if(response.status==200)
+    getDetails()
+};
+
+
  
   const loadingView = () => {
   
@@ -113,7 +124,7 @@ const Cart = () => {
        <div className='flex flex-row justify-between '>
        <h1 className='text-black font-black text-2xl'>Cart Details</h1>
       {
-           CartDetails.length<=0?<></>: <button  className='flex flex-row items-center gap-1 bg-[#434142] px-2 py-1.5 rounded-md'> <MdDeleteOutline className=' deleteall-icon text-2xl' /><span className='text-lg text-white'>Delete All</span> </button>
+           CartDetails.length<=0?<></>: <button onClick={deleteMycart}  className='flex flex-row items-center gap-1 bg-[#434142] px-2 py-1.5 rounded-md'> <MdDeleteOutline className=' deleteall-icon text-2xl' /><span className='text-lg text-white'>Delete All</span> </button>
       }
       
       
@@ -123,7 +134,7 @@ const Cart = () => {
       <div className='cart-items-container mt-4 flex flex-col gap-5 h-70 overflow-scroll'>
         {
           // console.log(details.lenght)
-          CartDetails.length<=0? emptyCartView():CartDetails.map((each)=><CartItem each={each} key={each.id} handleDelete={handleDelete}/>)
+          CartDetails.length<=0? emptyCartView():CartDetails.map((each)=><CartItem each={each} key={each.id} handleDelete={handleDelete} updateCartQuantity={updateCartQuantity}/>)
           
         }
 

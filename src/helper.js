@@ -104,12 +104,11 @@ export  async function sendToCartApi({id,cartCount}) {
     
       const config={
         method:"delete",
-        url:"/me/cart",
+        url:`/me/cart/${id}`,
         headers:{
           "Authorization":`Bearer ${jwtToken}`,
           "Content-Type":"application/json"
-            },
-            data:[id]
+            }
       }
       try {
         const response =await axios(config)
@@ -119,6 +118,51 @@ export  async function sendToCartApi({id,cartCount}) {
         return error
       }
     }
+
+    // delete all cart items__________________
+    export async function deleteAllCart(){
+      const jwtToken=localStorage.getItem("jwtToken")
+      const config={
+        method:"delete",
+        url:"/me/cart",
+        headers:{
+          "Authorization":`Bearer ${jwtToken}`,
+          "Content-Type":"application/json"
+            }
+      }
+      try {
+        const response =await axios(config)
+        return response
+       } 
+      catch (error) {
+        return error
+      }
+
+    }
+
+    // update quantity of the cart item___________
+export  async function updateCart(details) {
+  const{id,operation}=details
+  console.log(id,operation)
+  const jwtToken=localStorage.getItem("jwtToken")
+  
+    const config={
+      method:"put",
+      url:`/me/cart/${id}`,
+      headers:{
+        "Authorization":`Bearer ${jwtToken}`,
+        "Content-Type":"application/json"
+          },
+      data:{operation}
+    }
+    try {
+      const response =await axios(config)
+      return response
+     } 
+    catch (error) {
+      return error
+    }
+  }
 
     
 
@@ -167,6 +211,26 @@ export  async function sendToWishlistApi(id) {
       }
     }
   
+     // delete all wishlist items__________________
+     export async function deleteAllWishlist(){
+      const jwtToken=localStorage.getItem("jwtToken")
+      const config={
+        method:"delete",
+        url:"/me/wishlist",
+        headers:{
+          "Authorization":`Bearer ${jwtToken}`,
+          "Content-Type":"application/json"
+            }
+      }
+      try {
+        const response =await axios(config)
+        return response
+       } 
+      catch (error) {
+        return error
+      }
+
+    }
 
     export  async function ForgotPassword(oldpassword,password,confirmpassword) {
       const jwtToken=localStorage.getItem("jwtToken")
