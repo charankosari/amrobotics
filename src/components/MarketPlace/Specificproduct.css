@@ -1,5 +1,11 @@
 /* Add this CSS to your stylesheet or within your component */
 @media screen and (max-width: 767px) {
+#a1j{
+margin-left: 22px !important;
+}
+  /* #text-to-be-expanded{
+    margin-left: 22px;
+  } */
   #mleft{
     margin-left: 0%;
   }
