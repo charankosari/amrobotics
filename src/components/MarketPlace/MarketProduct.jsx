@@ -14,14 +14,14 @@ const MarketProduct = (props) => {
   };
 
   return (
-    <div className="w-[320px] ">
+    <div onClick={
+      ()=>{
+          navigate(`/marketplace/${_id}`)
+      }
+  } className="w-[320px] ">
        
     <div style={styles.card}>
-    <button onClick={
-            ()=>{
-                navigate(`/marketplace/${_id}`)
-            }
-        }>
+    <button >
       <div style={{ position: "relative" }}>
         <img
           src={images[0].url}

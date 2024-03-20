@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getWishlist,sendToWishlistApi,deleteAllWishlist} from '../../helper';
 import { MdDeleteOutline } from "react-icons/md";
+import { useNavigate } from 'react-router-dom';
 import { FiPlusCircle } from "react-icons/fi";
 import { LuMinusCircle } from "react-icons/lu";
 import {ThreeDots} from 'react-loader-spinner'
@@ -18,12 +19,20 @@ const handleDecrement = (itemId) => {
 
 
 
+
+
 // cart item component 
 const WishlistItem=(props)=>{
   const {handleDelete,each}=props
   const{name,images,stock,price,id}=each
+  const navigate=useNavigate()
+
   return(
-    <div className='flex flex-row bg-white rounded-md p-3 items-center justify-between' >
+    <div onClick={
+      ()=>{
+          navigate(`/marketplace/${id}`)
+      }
+  } className='flex flex-row bg-white rounded-md p-3 items-center justify-between' >
     <img className='w-28 rounded-md mr-6' src={images[0]?.url} />
     <div>
        <h1 className='text-base font-bold'>{name}</h1>

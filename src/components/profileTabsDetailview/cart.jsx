@@ -6,37 +6,84 @@ import { LuMinusCircle } from "react-icons/lu";
 import {ThreeDots} from 'react-loader-spinner'
 import emptycart from '../assets/emptycart.png'
 import {updateCart,deleteAllCart} from '../../helper'
-
+import axios from 'axios'
 import "./cart.css"
 
 
-const handleIncrement = (itemId) => {
-  // Increment item quantity logic
-};
+// pay now button function____________________________________
+const payButton = async(cartAmount) => {
+  console.log(cartAmount)
+    const getPaymentGatewayId= await axios.get("http://localhost:5080/payment/getkey")   //getting razorpay id
+    const paymentOrderId = await axios.post("http://localhost:5080/api/v1/initpayment",{  //creating order and get id
+      "totalPrice":120
+    })
 
-const handleDecrement = (itemId) => {
-  // Decrement item quantity logic
-};
+    const options = {
+      key:getPaymentGatewayId.data.key, // Enter the Key ID generated from the Dashboard
+      amount: 2000, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      currency: "INR",
+      name: "Amrobotics", //your business name
+      description: "Test Transaction",
+      image: "https://example.com/your_logo",
+      order_id: paymentOrderId.data.paymentId.id, 
+
+      handler:  (response)=>{
+              let razorpayid=response.razorpay_payment_id;  
+              console.log(razorpayid,"in handler") 
+              axios.post("http://localhost:5080/api/v1/order/new", { response }).then(response => {
+              console.log(response)
+          if (response.status==200) {
+              window.location.href = "http://localhost:3000/success";
+          } else {
+              // Handle error if needed
+          }
+      })
+      .catch(error => {
+          console.error("Error sending payment confirmation:", error);
+          // Handle error if needed
+      });
+                  
+       },
+      // callback_url: `http://localhost:5080/api/v1/order/conformPayment/`,
+      prefill: {
+        //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
+        name: "", //your customer's name
+        email: "sanjaykumar@example.com",
+        contact: "9000090000", //Provide the customer's phone number for better conversion rates
+      },
+      notes: {
+        address: "Razorpay Corporate Office",
+      },
+      theme: {
+        color: "#3399cc",
+      },
+    };
+
+    const razor = new window.Razorpay(options);
+    razor.open();
+  };
 
 
 
-// cart item component 
+
+
+// cart item component ________________________________________
 const CartItem=(props)=>{
   const {handleDelete,each,updateCartQuantity}=props
   const{name,images,quantity,price,id}=each
   return(
     <div className='flex flex-row bg-white rounded-md p-3 items-center justify-between text-black' >
-    <img className='w-28 rounded-md mr-6' src={images[0]?.url} />
-    <div>
-       <h1 className='text-base font-bold'>{name}</h1>
-       <p className='text-base font-bold'>{price}</p>
-    </div>
-    <div className='flex gap-5 items-center'>
-      <button onClick={()=>{updateCartQuantity({id,operation:"inc"})}}>
+      <img className='w-28 rounded-md mr-6' src={images[0]?.url} />
+        <div className='w-[30%]'>
+          <h1 className='text-base font-bold'>{name}</h1>
+          <p className='text-base font-bold'>{price}</p>
+        </div>
+    <div className='flex gap-5 items-center w-[30%] justify-center'>
+      <button className='w-[10%]' onClick={()=>{updateCartQuantity({id,operation:"inc"})}}>
       <FiPlusCircle className="text-2xl"/>
       </button>
-      <p className='text-2xl'>{quantity}</p>
-      <button onClick={()=>{updateCartQuantity({id,operation:"dec"})}}>
+      <p className='text-2xl w-[10%]'>{quantity}</p>
+      <button  className='w-[10%]'  onClick={()=>{updateCartQuantity({id,operation:"dec"})}}>
         <LuMinusCircle className="text-2xl"/>
       </button>
     </div>
@@ -49,28 +96,37 @@ const CartItem=(props)=>{
 const Cart = () => {
   const [CartDetails, setDetails] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [cartAmount,setCartAmount]=useState(0)
 
   useEffect(() => {
     getDetails();
   }, []);
 
+
+// getting cart details________________________________________
   const getDetails = async () => {
     const response = await getCartDetails();
     console.log(response);
-    if (response.status == 200) {
+    if (response.status == 200){
+      const money= CartDetails.reduce((accumulator, currentValue) => accumulator + (currentValue.price*currentValue.quantity), 0)
+      console.log(money)
+      setCartAmount(money);
       setDetails(response.data.data);
       setLoading(false);
     }
   };
 
-  // delete cart item______
+
+// delete cart item______________________________________________
   const handleDelete = async(id) => {
     const response = await deleteCart(id)
     const newDetails=CartDetails.filter((each)=>each.id!=id)
     // const newDetails=id.map((item)=>details.filter((each)=>each.id!=item))
     setDetails(newDetails)
  };
-//  delete all cart items________________
+
+
+//  delete all cart items_______________________________________
 const deleteMycart=async()=>{
   const response = await deleteAllCart()
   if(response.status==200)
@@ -78,13 +134,12 @@ const deleteMycart=async()=>{
 
 }
 
-// increment the quantity of the cart item
+// increment the quantity of the cart item_______________________
 const updateCartQuantity = async(a) => {
     const response=await updateCart(a)
     if(response.status==200)
     getDetails()
 };
-
 
  
   const loadingView = () => {
@@ -144,15 +199,13 @@ const updateCartQuantity = async(a) => {
      {
       CartDetails.length<=0?<></>: <div className='self-end mt-auto'>
       <h1 className='font-bold text-xl'>{`Sub Total : ₹ ${ CartDetails.reduce((accumulator, currentValue) => accumulator + (currentValue.price*currentValue.quantity), 0)}/-`}</h1>
-      <button className=' bg-[#ff9f1c] px-2 py-1.5 rounded-md  font-bold'>Check Out</button>
+      <button  onClick={()=>payButton(cartAmount)} className=' bg-[#ff9f1c] px-2 py-1.5 rounded-md  font-bold'>Check Out</button>
       </div>
 
      }
     </div>
    )
   }
-
-
  
   if (loading) {
     return loadingView();

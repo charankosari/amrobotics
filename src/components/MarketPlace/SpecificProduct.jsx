@@ -43,7 +43,6 @@ export default function MyComponent() {
   const [reviewDetails, setreviewDetails] = useState({ rating: 0, comment: "", productId: id })
   const [showreview, setshowreview] = useState(false)
 
-  console.log("love clicked", isLoveClicked);
 
   useEffect(() => {
     getDetails();
