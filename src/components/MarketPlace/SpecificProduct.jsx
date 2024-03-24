@@ -46,7 +46,6 @@ export default function MyComponent() {
   });
   const [showreview, setshowreview] = useState(false);
 
-  console.log("love clicked", isLoveClicked);
 
   useEffect(() => {
     getDetails();

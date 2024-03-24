@@ -114,7 +114,7 @@ const UserProfile=()=>{
 
     const successView = () => {
         const { _id, name, email, number,address} = details;
-      console.lo
+ 
     return(
     <>
     {
