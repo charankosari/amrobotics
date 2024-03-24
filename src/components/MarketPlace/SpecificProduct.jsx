@@ -49,7 +49,7 @@ export default function MyComponent() {
 
   useEffect(() => {
     getDetails();
-  }, []);
+   }, []);
 
   const handleImageClick = (image) => {
     setMainImage(image.url);

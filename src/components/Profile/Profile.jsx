@@ -7,7 +7,6 @@ import { FaKey } from "react-icons/fa";
 import { RiCustomerServiceLine } from "react-icons/ri";
 import { RiQuestionnaireFill } from "react-icons/ri";
 import "./Profile.css";
-import { MdLockReset } from "react-icons/md";
 import { IoExitOutline } from "react-icons/io5";
 import UserProfile from "../../components/profileTabsDetailview/profileView.jsx"
 import Cart from "../profileTabsDetailview/cart.jsx";
@@ -16,7 +15,6 @@ import ForgotPassword from "../profileTabsDetailview/ForgotPassword.jsx";
 import ContactUs from "../profileTabsDetailview/ContactUs.jsx";
 import Faq from '../profileTabsDetailview/FAQ.jsx'
 import { useNavigate } from "react-router-dom";
-
 
 const tabIds={
 account:"ACCOUNT",
@@ -31,17 +29,21 @@ faqs:"FAQS",
 }
 
 function Profile() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const toggleMenu = () => {
+    setIsMenuOpen(prevState => !prevState);
+  };
+
   const navigate=useNavigate();
 
   const[activeId,setActiveId]=useState(tabIds.account)
   console.log(activeId)
 
   const changeActiveId=(id)=>{
+    toggleMenu();
     setActiveId(id)
 
   }
-
-
    const showPages=()=>{
     switch(activeId){
     case tabIds.account:
@@ -65,7 +67,13 @@ function Profile() {
       <div className="bg-white h-auto pb-12">
         <Navbar />
         <div className="flex flex-row  mt-12 h-[90dvh]  " id="some">
-          <div className="flex flex-col gap-12 mx-12 w-[30%]" id="gap">
+        <div id="navv">
+        <button onClick={toggleMenu} style={{backgroundColor:'black',color:'white',padding:'10px',borderRadius:'5px',marginBottom:'5px'}}>menu</button>
+      </div>
+      
+  <div className={`flex flex-col gap-12 mx-12 w-[30%] `} id="gap" style={{ left: isMenuOpen ? '0' : '-100%',zIndex:2,backgroundColor:'#fff' }}>
+
+
             
           <div  id={tabIds.account} onClick={()=>{changeActiveId(tabIds.account)}} className="flex flex-row gap-2 mx-4 border-b-2 cursor-pointer border-b-zinc-400 pb-2">
               <CiViewList
