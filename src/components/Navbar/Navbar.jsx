@@ -107,7 +107,7 @@ function Navbar() {
             </div>
           </div>
          
-        <div className="dropdown dropdown-end ml-3">
+        <div className="dropdown dropdown-end">
           <div
             tabIndex={0}
             role="button"

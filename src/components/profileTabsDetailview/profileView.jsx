@@ -176,7 +176,7 @@ const UserProfile=()=>{
           Profile Details
         </div>
         
-        <div className="flex flex-row ">
+        <div className="flex sm:flex-row flex-col-reverse ">
           <div className="flex flex-col w-[70%]">
             <div className="text-4xl mb-4" id="prof-name">
               {name}

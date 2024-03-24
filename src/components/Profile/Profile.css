@@ -2,228 +2,240 @@
     color: black;
 } */
 
-.button-1{
-    cursor: pointer;
-    width: 180px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 64px;
-    font-size: 25px;
-    background: black;
-    margin-left: 22px;
-    color: white;
-    padding-left: 20px;
-    text-align: center;
-    display: flex;
-    border-radius: 5px;
-    align-items: center;
+.mobileButton {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
 }
-#adresses-but{
-color: black;
+#gap {
+  transition: transform 0.5s ease-in-out;
+  transform-origin: left;
+}
+#gap.visible {
+  transform: translateX(0%);
 }
 
-#adresses{
-    color: black;
+.button-1 {
+  cursor: pointer;
+  width: 180px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 64px;
+  font-size: 25px;
+  background: black;
+  margin-left: 22px;
+  color: white;
+  padding-left: 20px;
+  text-align: center;
+  display: flex;
+  border-radius: 5px;
+  align-items: center;
 }
-#head{
-    color: black;
-}
-#head-text{
-    color: black;
-}
-
-
-#prof{
-    color: black;
-}
-#prof-name{
-    color: black;
-}
-
-#some{
-    color: black;
-}
-
-
-@media only screen and (max-width:2100px)
-{
-    #head{
-        font-size: 2.2rem;
-    }
-    #head-text{
-        font-size: 1.3rem;
-    }
-    #icon{
-        width: 70px;
-        height: 70px;
-    }
-
-    #prof{
-        font-size: 2.8rem;
-    }
-    #prof-name{
-        font-size: 1.8rem;
-    }
-    #prof-img{
-        height: 150px;
-        width: 150px;
-    }
+#adresses-but {
+  color: black;
 }
 
-
-@media only screen and (max-width:1700px)
-{
-    #prof{
-        margin-bottom:20px ;
-        font-size: 2rem;
-        line-height: 2.5rem;
-    }
-
-    #prof-name{
-        font-size: 1.5rem;
-        line-height: 2rem;
-    }
-    #prof-img{
-        height: 100px;
-        width: 100px;
-    }
-    #gap{
-        gap: 10px;
-    }
-    
-    #head{
-        font-size: 1.5rem;
-        line-height: 2rem;
-     
-    }
-    #head-text{
-        font-size: 0.8rem;
-        line-height: 1rem;
-        width: 90%;
-      
-       
-    }
-    #or-b{
-    
-        line-height: 2rem;
-        height: 40px;
-        width: 140px;
-    }
-    #icon{
-        width: 30px;
-        height: 50px;
-    }
-
-    #g-p{
-        gap:5px;
-        padding-bottom: 5px;
-    }
-    #some{
-        margin-top: 20px;
-    }
-    .button-1{
-        font-size: 20px;
-        width: 150px;
-    }
-    #row{
-        flex-direction: row;
-
-    }
-    #adresses{
-        font-size: 0.9rem;
-        line-height: 1.5rem;
-        height: 150px;
-        width: 30%;
-    }
-    #adresses-but{
-        font-size: 1rem;
-        line-height: 1.5rem;
-        height: 150px;
-    }
-
-    #mt{
-        margin-top: 30px;
-    }
-
+#adresses {
+  color: black;
+}
+#head {
+  color: black;
+}
+#head-text {
+  color: black;
 }
 
-@media only screen and (max-width:1050px)
-{
-    #gap{
-        margin-left: 10px;
-        margin-right: 10px;
-    }
-    #col{
-        gap: 5px;
-        flex-direction: column;
-        margin-bottom: 10px;
-    }
-    #adresses{
-        height: auto;
-    }
+#prof {
+  color: black;
 }
-@media only screen and (max-width:684px)
-{
-#some{
-    flex-direction: column;
-    height: auto;
+#prof-name {
+  color: black;
 }
-#gap{
-    width: 100%;
+
+#some {
+  color: black;
 }
-#profile{
-    width: 100%;
+
+@media only screen and (max-width: 2100px) {
+  #head {
+    font-size: 2.2rem;
+  }
+  #head-text {
+    font-size: 1.3rem;
+  }
+  #icon {
+    width: 70px;
+    height: 70px;
+  }
+
+  #prof {
+    font-size: 2.8rem;
+  }
+  #prof-name {
+    font-size: 1.8rem;
+  }
+  #prof-img {
+    height: 150px;
+    width: 150px;
+  }
 }
-#a1{
-    margin-top: 10px;
-    margin-left: 10px;
-}
-#prof{
+
+@media only screen and (max-width: 1700px) {
+  #prof {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+
+  #prof-name {
     font-size: 1.5rem;
     line-height: 2rem;
+  }
+  #prof-img {
+    height: 100px;
+    width: 100px;
+  }
+  #gap {
+    gap: 10px;
+  }
+
+  #head {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  #head-text {
+    font-size: 0.8rem;
+    line-height: 1rem;
+    width: 90%;
+  }
+  #or-b {
+    line-height: 2rem;
+    height: 40px;
+    width: 140px;
+  }
+  #icon {
+    width: 30px;
+    height: 50px;
+  }
+
+  #g-p {
+    gap: 5px;
+    padding-bottom: 5px;
+  }
+  #some {
+    margin-top: 20px;
+  }
+  .button-1 {
+    font-size: 20px;
+    width: 150px;
+  }
+  #row {
+    flex-direction: row;
+  }
+  #adresses {
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+    height: 150px;
+    width: 30%;
+  }
+  #adresses-but {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    height: 150px;
+  }
+
+  #mt {
+    margin-top: 30px;
+  }
 }
-#prof-name{
+#navv{
+  display: none;
+}
+@media only screen and (max-width: 1050px) {
+  #gap {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  #col {
+    gap: 5px;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  #adresses {
+    height: auto;
+  }
+}
+
+
+@media only screen and (max-width: 684px) {
+
+  #navv{
+    display: block;
+  }
+  #some {
+    flex-direction: column;
+    height: clamp(80vh,auto,180vh);
+  }
+  #gap {
+    width: 100%;
+    left: -100%;
+    position: absolute;
+    transition: left 0.5s ease-in-out;
+  }
+  #profile {
+    width: 100%;
+  }
+  #a1 {
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+  #prof {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  #prof-name {
     font-size: 1rem;
     line-height: 1.5rem;
     margin-bottom: 5px;
-}
-  #or-b{ 
+  }
+  #or-b {
     font-size: 1rem;
     line-height: 1.5rem;
     height: 26px;
-    width: 101px;   
+    width: 101px;
   }
-  #row{
+  #row {
     overflow-x: scroll;
     width: auto;
     margin-bottom: 10px;
   }
-  #adresses{
+  #adresses {
     width: auto;
     padding: 7px;
     font-size: 0.8rem;
   }
 
-  #adresses-but{
+  #adresses-but {
     width: auto;
   }
-  #head{
+  #head {
     font-size: 1.3rem;
     line-height: 1.5rem;
-}
-#gap{
+  }
+  #gap {
     margin-left: 0%;
-}
-.button-1{
+  }
+  .button-1 {
     font-size: 18px;
     width: 136px;
     height: 51px;
     padding-bottom: 10px;
-}
-#some{
+  }
+  #some {
     margin-bottom: 0%;
     /* padding-bottom: 10px; */
+  }
 }
-}
-
