@@ -6,6 +6,7 @@ import { LuMinusCircle } from "react-icons/lu";
 import {ThreeDots} from 'react-loader-spinner'
 import emptycart from '../assets/emptycart.png'
 import {updateCart,deleteAllCart} from '../../helper'
+
 import axios from 'axios'
 import "./cart.css"
 
@@ -20,7 +21,7 @@ const payButton = async(cartAmount) => {
 
     const options = {
       key:getPaymentGatewayId.data.key, // Enter the Key ID generated from the Dashboard
-      amount: 2000, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      // amount: 2000, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
       currency: "INR",
       name: "Amrobotics", //your business name
       description: "Test Transaction",
@@ -106,7 +107,6 @@ const Cart = () => {
 // getting cart details________________________________________
   const getDetails = async () => {
     const response = await getCartDetails();
-    console.log(response);
     if (response.status == 200){
       const money= CartDetails.reduce((accumulator, currentValue) => accumulator + (currentValue.price*currentValue.quantity), 0)
       console.log(money)

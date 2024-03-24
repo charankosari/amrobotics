@@ -315,7 +315,7 @@ export  async function sendToWishlistApi(id) {
         export  async function UpdateUserDetails({name,email,number,address}){
           const jwtToken=localStorage.getItem("jwtToken")
           const data = {
-            name,email,number
+            name,email,number,address
           };
           console.log(data)
             const config={

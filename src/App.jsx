@@ -22,6 +22,7 @@ import Adminusers from "./ProtectedRoutes/Adminusers.jsx";
 import AdminProducts from "./ProtectedRoutes/AdminProducts.jsx";
 import Adminorders from "./ProtectedRoutes/Adminorders.jsx";
 import RequireLogin from './RequireLogin.jsx'
+import Checkout from "./components/profileTabsDetailview/checkout.jsx"
 
 function App() {
 
@@ -45,7 +46,7 @@ function App() {
             <Route path="/forgotpassword" element={<Checkmail />} />
             <Route path="/gmailredirect" element={<GmailAccountPage />} />
             <Route path="/resetpassword/:id" element={<ResetPasswordFunc />} />
-
+            <Route path="/checkout" element={<Checkout/>} />
           </Route>
 
           <Route element={<RequireAuth allowedRoles={["admin"]} />}>

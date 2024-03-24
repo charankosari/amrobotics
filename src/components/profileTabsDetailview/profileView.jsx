@@ -106,9 +106,10 @@ const UserProfile=()=>{
         ...formData,
         address: {
           ...formData.address,
-          [name]: value // Dynamically update the correct address field
+          [name]: value //Dynamically update the correct address field           
         }
       });
+      console.log(formData)
     };
   
 
@@ -210,7 +211,7 @@ const UserProfile=()=>{
             address.length==0?<div>no address</div>:
           
             address.map((address, index) =>(
-              <div key={index} className="w-[95%] sm:w-[200px] bg-white rounded-sm flex justify-center p-5">
+              <div key={index} className="w-[95%]  sm:w-[200px] bg-white rounded-sm flex justify-center p-5">
                 <p>{address.city} , {address.country} , {address.state} , {address.pin}</p>
                 </div>
             ))
