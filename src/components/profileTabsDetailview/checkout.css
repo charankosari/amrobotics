@@ -1,0 +1,28 @@
+/* .removescrollbar::-webkit-scrollbar {
+    display: none;
+  } */
+  /* .removescrollbar { */
+    /* overflow: scroll; */
+    /* scrollbar-color:gray;
+    scrollbar-width: thin;
+  } */
+
+  
+  .removescrollbar::-webkit-scrollbar {
+    scrollbar-width:thin; /* width of the entire scrollbar */
+    width:10px;
+  }
+  
+  .removescrollbar::-webkit-scrollbar-track {
+    background: white;        /* color of the tracking area */
+  }
+  
+  .removescrollbar::-webkit-scrollbar-thumb {
+    background-color: gray;    /* color of the scroll thumb */
+    border-radius: 10px;   
+    border:4px solid white;    /* roundness of the scroll thumb */
+      /* creates padding around scroll thumb */
+  }
+  .address-card:hover{
+    cursor: pointer;
+  }

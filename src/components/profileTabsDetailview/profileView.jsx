@@ -26,7 +26,10 @@ const UserProfile=()=>{
         "state":"",
         "city":"",
         "mobile":"",
-        "pin":""
+        "pin":"",
+        "email":"",
+        "name":"",
+        "address":""  
       }
     });
   
@@ -102,7 +105,7 @@ const UserProfile=()=>{
     const addressHandleChange = (e) => {
       console.log(formData)
       const {name,value}=e.target
-      setFormData({
+      setFormData({ 
         ...formData,
         address: {
           ...formData.address,
@@ -114,7 +117,7 @@ const UserProfile=()=>{
   
 
     const successView = () => {
-        const { _id, name, email, number,address} = details;
+        const { _id, name, email, number,addresses} = details;
  
     return(
     <>
@@ -145,23 +148,30 @@ const UserProfile=()=>{
                 onChange={handleCheckboxChange}
             />
            </div>
-
             {
               isAddressVisible&& <div className=" flex flex-col gap-2">
               <h1 className="font-semibold">Address</h1>
+
+              <input  onChange={addressHandleChange}  placeholder="Name"  name="name" type="tel" className=" outline-none w-[100%] bg-transparent border border-gray-500 p-3 rounded-md "/>     
+
+             <div  className="flex flex-row gap-2">
+             <input onChange={addressHandleChange} placeholder="Number" name="mobile" type="text" className=" outline-none w-[100%] bg-transparent border border-gray-500 p-3 rounded-md "/>
+
+              <input onChange={addressHandleChange}  placeholder="E-mail"  name="email" type="text" className=" outline-none w-[100%] bg-transparent border border-gray-500 p-3 rounded-md "/>
+             </div>
 
              <div  className="flex flex-row gap-2">
              <input onChange={addressHandleChange} placeholder="Country" name="country" type="text" className=" outline-none w-[100%] bg-transparent border border-gray-500 p-3 rounded-md "/>
 
               <input onChange={addressHandleChange}  placeholder="State"  name="state" type="text" className=" outline-none w-[100%] bg-transparent border border-gray-500 p-3 rounded-md "/>
              </div>
-
+            
              <div className="flex flex-row gap-2">
              <input  onChange={addressHandleChange}  placeholder="City"  name="city" type="text" className=" outline-none w-[100%] bg-transparent border border-gray-500 p-3 rounded-md "/>
 
               <input onChange={addressHandleChange}   placeholder="PIN"  name="pin" type="number" className=" outline-none w-[100%] bg-transparent border border-gray-500 p-3 rounded-md "/>     
               </div>     
-              <input  onChange={addressHandleChange}  placeholder="Number"  name="mobile" type="tel" className=" outline-none w-[100%] bg-transparent border border-gray-500 p-3 rounded-md "/>        
+              <input  onChange={addressHandleChange}  placeholder="Address"  name="address" type="tel" className=" outline-none w-[100%] bg-transparent border border-gray-500 p-3 rounded-md "/>        
             
             </div>
             }
@@ -206,13 +216,13 @@ const UserProfile=()=>{
           <div className="text-6xl" id="prof">
             Previous Adresses
           </div>
-          <div className="p-2 flex gap-2 flex-wrap" >
+          <div className="p-2 flex flex-row gap-2 flex-wrap" >
            {
-            address.length==0?<div>no address</div>:
+            addresses.length==0?<div>no address</div>:
           
-            address.map((address, index) =>(
-              <div key={index} className="w-[95%]  sm:w-[200px] bg-white rounded-sm flex justify-center p-5">
-                <p>{address.city} , {address.country} , {address.state} , {address.pin}</p>
+            addresses.map((address, index) =>(
+              <div key={index} className=" sm:w-min w-full bg-white rounded-sm flex  justify-center p-5">
+                <p className="">{address.name} ,{address.mobile} ,{address.email} ,{address.address} ,{address.city} , {address.country} , {address.state} , {address.pin}</p>
                 </div>
             ))
             
