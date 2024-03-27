@@ -4,6 +4,23 @@ import { ThreeDots } from "react-loader-spinner";
 import { UpdateUserDetails } from "../../helper.js";
 import "./checkout.css"
 
+const CartItem=(props)=>{
+  const {each}=props
+  const{name,images,quantity,price,id}=each
+  return(
+    <div className='flex flex-row bg-white rounded-md p-3 items-center justify-between text-black' >
+      <img className='w-28 rounded-md mr-6' src={images[0]?.url} />
+        <div className='w-[30%]'>
+          <h1 className='text-base font-bold'>{name}</h1>
+          <p className='text-base font-bold'>{price}</p>
+        </div>
+  
+   </div>
+  )
+}
+
+
+
 function Checkout() {
   const [loading, setLoading] = useState(true);
   const [details, setDetails] = useState("");
@@ -189,6 +206,7 @@ function Checkout() {
               ))
             )}
           </div>
+
           <div className="bg-gray-100 h-[60vh] mt-2 flex flex-col pl-10 pt-5">
 
             {
@@ -260,7 +278,11 @@ function Checkout() {
         </div>
 
         <div className="w-[50%] pl-10 pr-10 flex flex-col justify-center">
-          <h1 className="mb-3">Select type of Payment</h1>
+          <div>
+         { details.cart.map((address, index) => )}
+          </div>
+         <div className="payment-part">
+         <h1 className="mb-3">Select type of Payment</h1>
           <div className="flex gap-4 mb-4">
             <div className="flex flex-row gap-2 items-center">
               <input name="payment-type" type="radio" />
@@ -289,12 +311,12 @@ function Checkout() {
             <h1>Total Amount :</h1>
             <p>12,345/-</p>
           </div>
-
           <div className="flex justify-end mt-5">
             <button className="p-1.5 rounded-sm bg-orange-500 font-semibold text-sm text-white">
               Proceed
             </button>
           </div>
+         </div>
         </div>
       </div>
     );
