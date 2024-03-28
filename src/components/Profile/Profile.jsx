@@ -66,7 +66,7 @@ function Profile() {
     return (
       <div className="bg-white h-auto pb-12">
         <Navbar />
-        <div className="flex flex-row  mt-12 h-[90dvh]  " id="some">
+        <div className="flex flex-row  mt-12 h-[80dvh]  " id="some">
         <div id="navv">
         <button onClick={toggleMenu} style={{backgroundColor:'black',color:'white',padding:'10px',borderRadius:'5px',marginBottom:'5px'}}>menu</button>
       </div>

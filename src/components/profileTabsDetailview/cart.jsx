@@ -5,6 +5,7 @@ import { FiPlusCircle } from "react-icons/fi";
 import { LuMinusCircle } from "react-icons/lu";
 import {ThreeDots} from 'react-loader-spinner'
 import emptycart from '../assets/emptycart.png'
+import { useNavigate } from 'react-router-dom';
 import {updateCart,deleteAllCart} from '../../helper'
 
 import axios from 'axios'
@@ -98,6 +99,7 @@ const Cart = () => {
   const [CartDetails, setDetails] = useState([]);
   const [loading, setLoading] = useState(true);
   const [cartAmount,setCartAmount]=useState(0)
+  const navigate=useNavigate()
 
   useEffect(() => {
     getDetails();
@@ -175,7 +177,7 @@ const updateCartQuantity = async(a) => {
 
   const successView=()=>{
    return(
-      <div className='px-10 py-5 flex flex-col h-full'>
+      <div className='px-10 py-5 flex flex-col h-[80vh]'>
        <div className='flex flex-row justify-between '>
        <h1 className='text-black font-black text-2xl'>Cart Details</h1>
       {
@@ -186,7 +188,7 @@ const updateCartQuantity = async(a) => {
        </div>
 
        {/* cart items part */}
-      <div className='cart-items-container mt-4 flex flex-col gap-5 h-70 overflow-scroll'>
+      <div className='cart-items-container mt-4 flex flex-col gap-5 h-[60vh] overflow-scroll'>
         {
           // console.log(details.lenght)
           CartDetails.length<=0? emptyCartView():CartDetails.map((each)=><CartItem each={each} key={each.id} handleDelete={handleDelete} updateCartQuantity={updateCartQuantity}/>)
@@ -199,7 +201,8 @@ const updateCartQuantity = async(a) => {
      {
       CartDetails.length<=0?<></>: <div className='self-end mt-auto'>
       <h1 className='font-bold text-xl'>{`Sub Total : ₹ ${ CartDetails.reduce((accumulator, currentValue) => accumulator + (currentValue.price*currentValue.quantity), 0)}/-`}</h1>
-      <button  onClick={()=>payButton(cartAmount)} className=' bg-[#ff9f1c] px-2 py-1.5 rounded-md  font-bold'>Check Out</button>
+      {/* <button  onClick={()=>payButton(cartAmount)} className=' bg-[#ff9f1c] px-2 py-1.5 rounded-md  font-bold'>Check Out</button> */}
+      <button onClick={()=>navigate("/checkout",{state:CartDetails})}  className=' bg-[#ff9f1c] px-2 py-1.5 rounded-md  font-bold'>Check Out</button>
       </div>
 
      }

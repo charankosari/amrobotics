@@ -2,22 +2,33 @@ import { useState, React, useEffect } from "react";
 import { GetUserDetails } from "../../helper.js";
 import { ThreeDots } from "react-loader-spinner";
 import { UpdateUserDetails } from "../../helper.js";
+import { useLocation,useNavigate } from "react-router-dom";
 import "./checkout.css"
 
 const CartItem=(props)=>{
   const {each}=props
+  console.log(each)
   const{name,images,quantity,price,id}=each
   return(
-    <div className='flex flex-row bg-white rounded-md p-3 items-center justify-between text-black' >
+    <div className='mb-2 border shadow-md flex flex-row bg-white rounded-md p-3 items-center justify-between text-black' >
       <img className='w-28 rounded-md mr-6' src={images[0]?.url} />
-        <div className='w-[30%]'>
+        
           <h1 className='text-base font-bold'>{name}</h1>
+
+          <div className="flex flex-col items-center">
+          <p>Price</p>
           <p className='text-base font-bold'>{price}</p>
-        </div>
+          </div>
+          <div  className="flex flex-col items-center">
+          <p>Quantity</p>
+          <p className='text-base font-bold'>{quantity}</p>
+          </div>
+    
   
    </div>
   )
 }
+
 
 
 
@@ -26,8 +37,14 @@ function Checkout() {
   const [details, setDetails] = useState("");
   const [address, setAddress] = useState({});
   const [selectAddress,setSelectedAddress]=useState("")
+  const location=useLocation();
+  const navigate=useNavigate();
+  const data=location.state
 
   useEffect(() => {
+   if(!data){
+    navigate('/profile')
+   }
     getDetails();
   }, []);
 
@@ -75,14 +92,13 @@ function Checkout() {
       address,
     });
     if (response.status === 201) {
-      console.log(response);
-      // setDetails(response.data.user);
+      window.location.reload()
     }
   };
 
   const successView = () => {
     return (
-      <div className="pt-5 pl-10 pr-10 flex flex-row ">
+      <div className="pt-5 pl-10 pr-10 flex flex-row  ">
         <div className="w-[50%] ">
           <div className="flex flex-row justify-between mb-5">
             <h1 className="text-center text-xl font-bold ">
@@ -277,11 +293,11 @@ function Checkout() {
           </div>
         </div>
 
-        <div className="w-[50%] pl-10 pr-10 flex flex-col justify-center">
-          <div>
-         { details.cart.map((address, index) => )}
+        <div className="w-[50%] pl-10 pr-10 flex flex-col mt-12  ">
+          <div className="overflow-y-auto h-[50vh]">
+         { data.map((each, index) =><CartItem each={each}/> )}
           </div>
-         <div className="payment-part">
+         <div className="payment-part mt-5">
          <h1 className="mb-3">Select type of Payment</h1>
           <div className="flex gap-4 mb-4">
             <div className="flex flex-row gap-2 items-center">

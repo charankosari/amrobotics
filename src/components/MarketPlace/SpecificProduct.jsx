@@ -92,6 +92,7 @@ export default function MyComponent() {
     if (response.status == 200) {
       getDetails();
       toast.success("Product reviewed successfully");
+      window.location.reload()
     }
   };
 
