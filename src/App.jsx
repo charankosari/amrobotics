@@ -23,6 +23,7 @@ import AdminProducts from "./ProtectedRoutes/AdminProducts.jsx";
 import Adminorders from "./ProtectedRoutes/Adminorders.jsx";
 import RequireLogin from './RequireLogin.jsx'
 import Checkout from "./components/profileTabsDetailview/checkout.jsx"
+import AdminSidebar from "./ProtectedRoutes/AdminSidebar.jsx";
 
 function App() {
 
@@ -49,12 +50,13 @@ function App() {
             <Route path="/checkout" element={<Checkout/>} />
           </Route>
 
-          <Route element={<RequireAuth allowedRoles={["admin"]} />}>
+          <Route element={<RequireAuth allowedRoles={["user"]} />}>
             <Route path="/admin" element={<Adminpage />} />
-            <Route path="/adminpanel" element={<AdminPanel />} />
+            <Route path="/adminpanel" element={<AdminSidebar />} />
             <Route path="/admin/users" element={<Adminusers />} />
             <Route path="/admin/products" element={<AdminProducts />} />
             <Route path="/admin/orders" element={<Adminorders />} />
+            <Route path="/admin/main" element={<AdminPanel />} />
           </Route>
         </Routes>
       </BrowserRouter>
