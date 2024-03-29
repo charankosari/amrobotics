@@ -119,7 +119,7 @@ const AdminUsers = () => {
      <div className='flex sm:flex-row flex-col sm:gap-12 gap-1 ml-12 sm:ml-0 items-center '> 
       <div><h2 className="text-2xl font-bold ">User Details</h2></div>
       <div className='flex flex-row gap-1 justify-center items-center'>
-        <input type="text" className='w-[200px] h-[34px] p-4' placeholder='enter name or email' />
+        <input type="text" className='w-[200px] h-[34px] p-4 bg-white text-black rounded-md border' placeholder='enter name or email' />
         <button className='bg-blue-500 p-[5px] rounded-md text-white'>search</button>
       </div>
       <div>

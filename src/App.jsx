@@ -17,13 +17,13 @@ import ResetPasswordFunc from "./components/LoginAndSignup/resetPass.jsx";
 import RequireAuth from "./RequireAuth.jsx";
 import Unauthorized from "./Unauthorized.jsx";
 import Adminpage from "./ProtectedRoutes/Adminpage.jsx";
-import AdminPanel from "./ProtectedRoutes/AdminPanel.jsx";
-import Adminusers from "./ProtectedRoutes/Adminusers.jsx";
-import AdminProducts from "./ProtectedRoutes/AdminProducts.jsx";
-import Adminorders from "./ProtectedRoutes/Adminorders.jsx";
+// import AdminPanel from "./ProtectedRoutes/AdminPanel.jsx";
+// import Adminusers from "./ProtectedRoutes/Adminusers.jsx";
+// import AdminProducts from "./ProtectedRoutes/AdminProducts.jsx";
+// import Adminorders from "./ProtectedRoutes/Adminorders.jsx";
 import RequireLogin from './RequireLogin.jsx'
 import Checkout from "./components/profileTabsDetailview/checkout.jsx"
-import AdminSidebar from "./ProtectedRoutes/AdminSidebar.jsx";
+// import AdminSidebar from "./ProtectedRoutes/AdminSidebar.jsx";
 import { Sidebar } from "./ProtectedRoutes/Sidebar.tsx";
 
 function App() {
@@ -54,10 +54,7 @@ function App() {
           <Route element={<RequireAuth allowedRoles={["user"]} />}>
             <Route path="/admin" element={<Adminpage />} />
             <Route path="/adminpanel" element={<Sidebar />} />
-            <Route path="/admin/users" element={<Adminusers />} />
-            <Route path="/admin/products" element={<AdminProducts />} />
-            <Route path="/admin/orders" element={<Adminorders />} />
-            <Route path="/admin/main" element={<AdminPanel />} />
+       
           </Route>
         </Routes>
       </BrowserRouter>
