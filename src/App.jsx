@@ -24,6 +24,7 @@ import Adminorders from "./ProtectedRoutes/Adminorders.jsx";
 import RequireLogin from './RequireLogin.jsx'
 import Checkout from "./components/profileTabsDetailview/checkout.jsx"
 import AdminSidebar from "./ProtectedRoutes/AdminSidebar.jsx";
+import { Sidebar } from "./ProtectedRoutes/Sidebar.tsx";
 
 function App() {
 
@@ -52,7 +53,7 @@ function App() {
 
           <Route element={<RequireAuth allowedRoles={["user"]} />}>
             <Route path="/admin" element={<Adminpage />} />
-            <Route path="/adminpanel" element={<AdminSidebar />} />
+            <Route path="/adminpanel" element={<Sidebar />} />
             <Route path="/admin/users" element={<Adminusers />} />
             <Route path="/admin/products" element={<AdminProducts />} />
             <Route path="/admin/orders" element={<Adminorders />} />

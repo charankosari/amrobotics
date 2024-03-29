@@ -112,3 +112,10 @@
     opacity: 0.5;
   }
   
+
+  #scroll::-webkit-scrollbar{
+
+  display: none;
+
+
+  }

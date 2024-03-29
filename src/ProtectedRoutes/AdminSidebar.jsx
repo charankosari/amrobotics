@@ -1,11 +1,16 @@
 import React from 'react'
 import { Sidebar } from './Sidebar.tsx'
+import AdminUsers from './Adminusers.jsx'
 
 function AdminSidebar() {
   return (
     <div>
-        <Sidebar/>
-
+        <div className=''>
+          <Sidebar/>
+          </div>
+<div className=''>
+  <AdminUsers/>
+</div>
 
     </div>
   )
