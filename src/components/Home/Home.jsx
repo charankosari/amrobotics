@@ -6,8 +6,26 @@ import PopularProducts from "./PopularProducts";
 import FullCard from './FullCard'
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
+import {GetHomeProducts} from "../../helper"
+import { useState, useEffect } from "react";
+
+
 function Home() {
-  console.log(document.cookie)
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getAllProducts();
+  }, []);
+
+  const getAllProducts = async () => {
+    const response = await GetHomeProducts();
+    console.log(response)
+    if (response.status == 200) {
+      setProducts(response.data.products);
+      }
+      setLoading(false);
+    };
 
   return (
     <div>
@@ -17,7 +35,7 @@ function Home() {
       <Content />
       <PropductsContainer />
       <Card />
-      <PopularProducts />
+      <PopularProducts products={products} />
       <br />
       {/* <FullCard/> */}
       <br />

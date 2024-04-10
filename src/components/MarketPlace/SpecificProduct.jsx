@@ -10,15 +10,11 @@ import { ThreeDots } from "react-loader-spinner";
 import { sendToCartApi } from "../../helper.js/";
 import { ToastContainer, toast } from "react-toastify";
 import { IoCloseSharp } from "react-icons/io5";
-// redux
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../storeFeatures/cartReducers.js";
+
 import { IoIosHeart } from "react-icons/io";
 import { createReview } from "../../helper.js";
 
 export default function MyComponent() {
-  const dispatch = useDispatch();
-
   const Review = {
     revieverimg:
       "https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg",
@@ -60,6 +56,7 @@ export default function MyComponent() {
     setActiveSection(section);
   };
   const getDetails = async () => {
+    console.log("hello")
     const response = await GetDetailProduct(id);
     if (response.status == 200) {
       setDetails(response.data.product);
@@ -72,6 +69,7 @@ export default function MyComponent() {
     const response = await sendToCartApi({ id, cartCount });
     console.log(response)
     if (response.status == 200) {
+      console.log("product added to cart ")
       toast.success("Product added to cart");
     }
   };
@@ -222,7 +220,7 @@ export default function MyComponent() {
                  
                     <button
                       onClick={() => {
-                        dispatch(addToCart(id));
+                     
                         sendToCart();
                       }}
                       id="button-to-change"

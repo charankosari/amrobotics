@@ -3,11 +3,14 @@ import { GetUserDetails } from "../../helper.js";
 import { ThreeDots } from "react-loader-spinner";
 import { UpdateUserDetails } from "../../helper.js";
 import { useLocation,useNavigate } from "react-router-dom";
+import axios from "axios"
 import "./checkout.css"
+
+
+
 
 const CartItem=(props)=>{
   const {each}=props
-  console.log(each)
   const{name,images,quantity,price,id}=each
   return(
     <div className='mb-2 border shadow-md flex flex-row bg-white rounded-md p-3 items-center justify-between text-black' >
@@ -29,13 +32,14 @@ const CartItem=(props)=>{
   )
 }
 
-
+ 
 
 
 function Checkout() {
   const [loading, setLoading] = useState(true);
   const [details, setDetails] = useState("");
   const [address, setAddress] = useState({});
+  const [paymode, setpaymode]=useState("")
   const [selectAddress,setSelectedAddress]=useState("")
   const location=useLocation();
   const navigate=useNavigate();
@@ -50,13 +54,17 @@ function Checkout() {
 
   const getDetails = async () => {
     const response = await GetUserDetails();
-    console.log(response);
     if (response.status == 200) {
-      console.log(response.data.user);
       setDetails(response.data.user);
       setLoading(false);
     }
   };
+
+
+
+
+
+  // loading view_______________________________________________________________________
 
   const loadingView = () => {
     return (
@@ -74,6 +82,64 @@ function Checkout() {
       </div>
     );
   };
+
+
+    // pay button_________________________________________________________________
+  
+const payButton = async(cartAmount) => {
+    const getPaymentGatewayId= await axios.get("http://localhost:5080/payment/getkey")   //getting razorpay id
+    const paymentOrderId = await axios.post("http://localhost:5080/api/v1/initpayment",{  //creating order and get id
+      "totalPrice":120
+    })
+
+    const options = {
+      key:getPaymentGatewayId.data.key, // Enter the Key ID generated from the Dashboard
+      // amount: 2000, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      currency: "INR",
+      name: "Amrobotics", //your business name
+      description: "Test Transaction",
+      image: "https://example.com/your_logo",
+      order_id: paymentOrderId.data.paymentId.id, 
+
+      handler:  (response)=>{
+              let razorpayid=response.razorpay_payment_id;  
+              axios.post("http://localhost:5080/api/v1/order/new", { paymentResponse:response,selectAddress,paymode }).then(response => {
+                console.log(response)
+          if (response.status==200) {
+              window.location.href = "http://127.0.0.1:5173/success";
+          } else {
+              // Handle error if needed
+          }
+      })
+      .catch(error => {
+          console.error("Error sending payment confirmation:", error);
+          // Handle error if needed
+      });
+                  
+       },
+      // callback_url: `http://localhost:5080/api/v1/order/conformPayment/`,
+      prefill: {
+        name: "ram", //your customer's name
+        email: "ram@example.com",//customer email
+        contact: "7799325343", //Provide the customer's phone number for better conversion rates
+      },
+      notes: {
+        address: "Razorpay Corporate Office",
+      },
+      theme: {
+        color: "#3399cc",
+      },
+    };
+
+    const razor = new window.Razorpay(options);
+    razor.open();
+  };
+
+
+
+
+
+
 
   const addressHandleChange = (e) => {
     const { name, value } = e.target;
@@ -301,11 +367,11 @@ function Checkout() {
          <h1 className="mb-3">Select type of Payment</h1>
           <div className="flex gap-4 mb-4">
             <div className="flex flex-row gap-2 items-center">
-              <input name="payment-type" type="radio" />
+              <input onClick={()=>{setpaymode("prepaid")}} name="payment-type" type="radio" />
               <label>Online</label>
             </div>
             <div className="flex flex-row gap-2 items-center">
-              <input name="payment-type" type="radio" />
+              <input onClick={()=>{setpaymode("cod")}} name="payment-type" type="radio" />
               <label>COD</label>
             </div>
           </div>
@@ -328,7 +394,7 @@ function Checkout() {
             <p>12,345/-</p>
           </div>
           <div className="flex justify-end mt-5">
-            <button className="p-1.5 rounded-sm bg-orange-500 font-semibold text-sm text-white">
+            <button onClick={payButton} className="p-1.5 rounded-sm bg-orange-500 font-semibold text-sm text-white">
               Proceed
             </button>
           </div>
