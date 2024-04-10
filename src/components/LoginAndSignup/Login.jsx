@@ -174,11 +174,11 @@ function LoginPage() {
             />
 
             <br />
-
+            
             <button
-              style={{ width: "200px" }}
+              style={{ width: "200px",backgroundColor:'#F2751F'}}
               onClick={login}
-              className="text-3xl text-white  bg-orange-500 rounded-xl leading-[4rem] py-1.5"
+              className="text-white text-3xl rounded-xl leading-[4rem] py-1.5"
               id="button"
             >
               Sign In

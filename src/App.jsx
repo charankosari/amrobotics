@@ -51,7 +51,7 @@ function App() {
             <Route path="/checkout" element={<Checkout/>} />
           </Route>
 
-          <Route element={<RequireAuth allowedRoles={["user"]} />}>
+          <Route element={<RequireAuth allowedRoles={["admin"]} />}>
             <Route path="/admin" element={<Adminpage />} />
             <Route path="/adminpanel" element={<Sidebar />} />
        
