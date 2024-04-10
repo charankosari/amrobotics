@@ -1,7 +1,9 @@
 import HomesAutoProductsContainer from './HomesAutoProductsContainer'
 import DiyProductContainer from './DiyProductContainer'
 
-function Popular() {
+function Popular(props) {
+   const{products}=props;
+   const home=products.filter((each)=>each.category==="Home")
   return (
     <div>
     <div className='flex flex-col items-center justify-center'>
@@ -10,7 +12,7 @@ function Popular() {
       <h3 className='sm:text-xl text-base text-gray-700'>Categories of products.</h3>
     </div>
     <br />
-    <HomesAutoProductsContainer/>
+    <HomesAutoProductsContainer products={home}/>
     <br />
     <DiyProductContainer/>
     </div>

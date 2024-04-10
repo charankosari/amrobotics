@@ -15,6 +15,7 @@ const register=async(event)=>{
  try{
   event.preventDefault()
   const response=await axios.post("http://localhost:5080/api/v1/register",userdata)
+  console.log(response)
   const jwtToken=response.data.jwtToken
   localStorage.setItem("jwtToken",jwtToken)
   toast.update(toastId, { render: "Login successful", type: "success", isLoading: false,autoClose:2000 });

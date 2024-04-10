@@ -361,3 +361,20 @@ export  async function sendToWishlistApi(id) {
               return error
             }
         }
+
+        // get home based products__________________________________________
+
+        export  async function GetHomeProducts() {
+          try {
+            const config={
+              method:"get",
+              url:"/productsHome",
+            }
+            const response = await axios(config)
+            return response
+           } 
+          catch (error) {
+            return error
+          }
+        }
+        
