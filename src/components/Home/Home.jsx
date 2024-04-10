@@ -3,7 +3,6 @@ import PropductsContainer from "./PropductsContainer";
 import VehicleCarousel from "./VehicleCarousel";
 import Card from "./Card";
 import PopularProducts from "./PopularProducts";
-import FullCard from './FullCard'
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import {GetHomeProducts} from "../../helper"
@@ -11,6 +10,7 @@ import { useState, useEffect } from "react";
 
 
 function Home() {
+<<<<<<< HEAD
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -26,6 +26,9 @@ function Home() {
       }
       setLoading(false);
     };
+=======
+  
+>>>>>>> 8c395068bb01b5272d3238ffbe4a1d594a409661
 
   return (
     <div>

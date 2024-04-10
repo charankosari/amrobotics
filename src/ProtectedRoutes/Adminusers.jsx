@@ -90,14 +90,13 @@ const AdminUsers = () => {
 
   const Modal = ({ onClose, user }) => {
     return (
-      <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-900 bg-opacity-50" >
+      <div className="fixed top-0 left-0 w-full  flex items-center justify-center bg-gray-900 bg-opacity-50 h-full" >
         <div className="bg-white p-6 rounded-lg shadow-md text-black " >
         <button onClick={onClose} className="absolute  mt-1 mr-2 text-red-500 focus:outline-none ml-[11.5rem]"><X /></button>
           <h2 className="text-2xl font-bold mb-4">Edit User Role</h2>
           <p>Name: {user.username}</p>
           <p>Email: {user.email}</p>
           <p>Role: {user.role}</p>
-          {/* <p>Email: {user.email}</p> */}
           <div className="mt-4">
             <h1>Update role :</h1>
           <select
@@ -116,9 +115,17 @@ const AdminUsers = () => {
     );
   };
   return (
-    <div className="container mx-auto p-4 lg:w-[90%]] xl:w-[66%]  block ">
-      <h2 className="text-2xl font-bold mb-4">User Details</h2>
+    <div className="container mx-auto p-4 sm:w-[80%] w-[100%]  block h-[100vh] overflow-y-auto mr-20" id='scroll'>
+     <div className='flex sm:flex-row flex-col sm:gap-12 gap-1 ml-12 sm:ml-0 items-center '> 
+      <div><h2 className="text-2xl font-bold ">User Details</h2></div>
+      <div className='flex flex-row gap-1 justify-center items-center'>
+        <input type="text" className='w-[200px] h-[34px] p-4 bg-white text-black rounded-md border' placeholder='enter name or email' />
+        <button className='bg-blue-500 p-[5px] rounded-md text-white'>search</button>
+      </div>
+      <div>
 
+      </div>
+     </div>
       <div>
         <ul>
           {users.map(user => (

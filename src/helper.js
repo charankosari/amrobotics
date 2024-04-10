@@ -14,10 +14,11 @@ export  async function GetProducts(filter) {
       data:filter
     }
     const response = await axios(config)
+    console.log(response);
     return response
    } 
   catch (error) {
-    return error
+    return error 
   }
 }
 
@@ -51,6 +52,9 @@ const jwtToken=localStorage.getItem("jwtToken")
     return error
   }
 }
+
+
+
 
 // add to cart item___________
 export  async function sendToCartApi({id,cartCount}) {

@@ -79,7 +79,6 @@
     font-size: 17px;
     text-transform: capitalize;
     line-height: 1;
-    padding: 0 10px;
     border-radius: 8px;
     color: #f9f9f9;
     opacity: 0.8;
@@ -113,3 +112,10 @@
     opacity: 0.5;
   }
   
+
+  #scroll::-webkit-scrollbar{
+
+  display: none;
+
+
+  }

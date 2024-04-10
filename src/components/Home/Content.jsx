@@ -1,7 +1,8 @@
 import "./Content.css";
 import img1 from "../assets/rover_2.png";
-
+import { useNavigate } from "react-router-dom";
 function Content() {
+  const navigate=useNavigate();
 
   return (
     <div className=" bg-white text-black" id="contenttt">
@@ -18,7 +19,10 @@ function Content() {
         </p>
         <br />
         <br />
-        <button className="button">
+        <button className="button" onClick={()=>{
+          navigate('/marketplace')
+        }
+        } > 
           <div className="svg-wrapper-1">
             <div className="svg-wrapper">
               <svg
