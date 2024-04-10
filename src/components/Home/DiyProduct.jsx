@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { IoIosHeart } from 'react-icons/io';
-import { useNavigate } from "react-router-dom";
+
 const DiyProduct = () => {
-  const navigate=useNavigate();
+
   const [isLoveClicked, setLoveClicked] = useState(false);
+ 
 
   const handleLoveClick = () => {
     console.log("hello")
     setLoveClicked(!isLoveClicked);
   };
+
+  
+
+  
 
   return (
     <div style={styles.card} onClick={()=>console.log("hiii")}>

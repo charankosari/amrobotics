@@ -6,6 +6,7 @@ import { RxCross1 } from "react-icons/rx";
 import { IoMdMenu } from "react-icons/io";
 import AdminUsers from "./Adminusers";
 import AdminProducts from "./AdminProducts";
+import AdminDash from "./AdminDash";
 
 export const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,7 +51,8 @@ export const Sidebar = () => {
       </div>
     </nav>
     </div>
-    <div>
+    <div className="h-[100vh]">
+      { activeComponent===''&& <AdminDash/> }
    {activeComponent === "users" && <AdminUsers />}
         {activeComponent === "products" && <AdminProducts />}
     </div>
