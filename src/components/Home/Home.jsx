@@ -10,7 +10,6 @@ import { useState, useEffect } from "react";
 
 
 function Home() {
-<<<<<<< HEAD
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -26,9 +25,6 @@ function Home() {
       }
       setLoading(false);
     };
-=======
-  
->>>>>>> 8c395068bb01b5272d3238ffbe4a1d594a409661
 
   return (
     <div>

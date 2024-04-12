@@ -10,7 +10,7 @@ const data = [
     { id: 1, value: 15, label: 'DIY Products' },
     { id: 2, value: 20, label: 'Some other Products' },
   ];
-function AdminDash() {
+function AdminDash() {``
   return (
     <div className="top-0 left-0 w-full h-full flex sm:flex-row flex-col items-center justify-center bg-gray-300 gap-6">
          <div className="flex flex-col items-center justify-center pl-12 sm:pl-0">
