@@ -1,13 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
+import axios from 'axios';
 import { X } from 'react-feather';
 import "./AdminStyles.css"
 const AdminProducts = () => {
-  // Sample products data
-  const [products, setProducts] = useState([
-    { id: 1, name: "Product 1",category:'home', price: 10,description:"lorem efjsonaine safawfwrf" },
-    { id: 2, name: "Product 2",category:'diy', price: 20,description:"lorem efjsonaine safawfwrf" },
-    { id: 3, name: "Product 3", price: 30,category:'home',description:"lorem efjsonaine safawfwrf" }
-  ]);
+  
+  const [products, setProducts] = useState([]);
+  //fetching all products
+  const fetchProducts = async () => {
+    try {
+      const authToken = localStorage.getItem('jwtToken'); // Replace with your actual authentication token
+      const response = await axios.post('http://localhost:5080/api/v1/allproducts', {
+        headers: {
+        
+          Authorization: `Bearer ${authToken}`  
+        }
+      });
+      setProducts(response.data.products);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    }
+  };
+  
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  //deleting specific product
+  
+  const handleDeleteProduct = async (productId) => {
+    
+    try {
+      const authToken = localStorage.getItem('jwtToken');
+      const response = await axios.delete(`http://localhost:5080/api/v1/product/${productId}`, {
+        headers: {
+          Authorization: `Bearer ${authToken}`
+        }
+      });
+  
+      if (response.status === 200 ) {
+        alert('Product deleted successfully');
+        fetchProducts();
+      } else {
+        alert(`Failed to delete Product: ${response.statusText}`);
+      }
+    } catch (error) {
+      console.error('Error deleting Product:', error);
+      alert('An error occurred while deleting the Product');
+    }
+  };
+
+ 
 
   // Form state
   const [formData, setFormData] = useState({ id: '', name: '', price: '' });
@@ -26,10 +68,6 @@ const AdminProducts = () => {
     setFormData({ id: '', name: '', price: '' });
   };
 
-  const handleDeleteProduct = (productId) => {
-    const updatedProducts = products.filter(product => product.id !== productId);
-    setProducts(updatedProducts);
-  };
 
   const handleEditProduct = (productId) => {
     const productToEdit = products.find(product => product.id === productId);
@@ -120,7 +158,7 @@ const AdminProducts = () => {
               </div>
               <div>
                 <button onClick={() => handleEditUser(product)}  className="bg-blue-500 text-white px-3 py-1 rounded mr-2">Edit</button>
-                <button onClick={() => handleDeleteProduct(product.id)} className="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
+                <button onClick={() => handleDeleteProduct(product._id)} className="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
               </div>
             </li>
           ))}

@@ -172,45 +172,41 @@ function LoginPage() {
                   className="w-[50%] rounded bg-white border-2 border-zinc-800 text-3xl leading-[3rem]"
                 />
 
-                <br />
-
-                <button
-                  style={{ width: "200px" }}
-                  onClick={login}
-                  className="text-3xl text-white  bg-orange-500 rounded-xl leading-[4rem] py-1.5"
-                  id="button"
-                >
-                  Sign In
-                </button>
-              </form>
-              <br />
-              <br />
-              <p className="text-3xl text-black " id="labell">
-                didn't have an account?{" "}
-                <a href="/signup" className="link leading-10 mb-2">
-                  Sign Up
-                </a>
-              </p>
-            </div>
+            <br />
+            
+            <button
+              style={{ width: "200px",backgroundColor:'#F2751F'}}
+              onClick={login}
+              className="text-white text-3xl rounded-xl leading-[4rem] py-1.5"
+              id="button"
+            >
+              Sign In
+            </button>
+          </form>
+          <br />
+          <br />
+          <p className="text-3xl text-black " id="labell">
+            didn't have an account?{" "}
+            <a href="/signup" className="link leading-10 mb-2">
+              Sign Up
+            </a>
+          </p>
+        </div>
+      </div>
+      <div className="container ">
+        <div className="card">
+          <a className="singup">Sign Up</a>
+          <img src={Logo} alt="" className="h-[130px] w-[200px]" />
+          <p className="px-[4rem] text-center text-black">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
+            minima enim facilis ipsa quibusdam alias.
+          </p>
+          <div className="inputBox1">
+            <input type="text" required="required"  onChange={(e)=>{
+                setEmail(e.target.value);
+              }} />
+            <span className="user">Email</span>
           </div>
-          <div className="container ">
-            <div className="card">
-              <a className="singup">Sign Up</a>
-              <img src={Logo} alt="" className="h-[130px] w-[200px]" />
-              <p className="px-[4rem] text-center text-black">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
-                minima enim facilis ipsa quibusdam alias.
-              </p>
-              <div className="inputBox1">
-                <input
-                  type="text"
-                  required="required"
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                  }}
-                />
-                <span className="user">Email</span>
-              </div>
 
               <div className="inputBox">
                 <input
