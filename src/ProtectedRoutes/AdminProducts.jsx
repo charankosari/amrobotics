@@ -1,21 +1,19 @@
 import React, { useState,useEffect } from 'react';
 import axios from 'axios';
-import { X } from 'react-feather';
 import "./AdminStyles.css"
+import Modal from './Modals/Modal';
+import Modal2 from './Modals/Modal2';
 const AdminProducts = () => {
   
   const [products, setProducts] = useState([]);
   const [filteredProduct,setFilteredProducts]=useState([]);
   const [search,setSearch]=useState('');
-  
 
- 
-  
   //fetching all products
   const fetchProducts = async () => {
     try {
       const authToken = localStorage.getItem('jwtToken'); // Replace with your actual authentication token
-      const response = await axios.post('http://localhost:5080/api/v1/allproducts', {
+      const response = await axios.get('http://localhost:5080/api/v1/productsHome', {
         headers: {
         
           Authorization: `Bearer ${authToken}`  
@@ -74,29 +72,10 @@ const AdminProducts = () => {
 
  
 
-  // Form state
-  const [formData, setFormData] = useState({ id: '', name: '', price: '' });
-  const [editMode, setEditMode] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
 
-  // Handlers
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  
 
-  const handleAddProduct = () => {
-    const newProduct = { ...formData, id: Date.now() };
-    setProducts([...products, newProduct]);
-    setFormData({ id: '', name: '', price: '' });
-  };
-
-
-  const handleEditProduct = (productId) => {
-    const productToEdit = products.find(product => product.id === productId);
-    setFormData(productToEdit);
-    setEditMode(true);
-  };
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   const handleEditUser = (product) => {
@@ -105,56 +84,10 @@ const AdminProducts = () => {
 
   const handleCloseModal = () => {
     setSelectedProduct(null);
+    fetchProducts();
   };
 
-  const handleUpdateProduct = () => {
-    const updatedProducts = products.map(product =>
-      product.id === formData.id ? formData : product
-    );
-    setProducts(updatedProducts);
-    setFormData({ id: '', name: '', price: '' });
-    setEditMode(false);
-  };
-  const Modal = ({ onClose, product }) => {
-    return (  
-      <div className="fixed top-0 left-0 w-full  flex items-center justify-center bg-gray-900 bg-opacity-50 h-full" >
-        <div className="bg-white p-6 rounded-lg shadow-md text-black w-[50%] h-[60%] " >
-        <button onClick={onClose} className="absolute  mt-1 mr-2 text-red-500 focus:outline-none sm:ml-[45%] ml-[34%]"><X /></button>
-          <h2 className="text-2xl font-bold mb-4">Edit Product</h2>
-         <div className='flex flex-col gap-2'>
-          <input type="text" placeholder={product.name} className='p-2 bg-white text-black border' />
-          <input type="number" placeholder={product.price}  className='p-2 bg-white text-black border'/>
-          <input type="text" placeholder={product.category} className='p-2 bg-white text-black border' />
-          <input type="text" placeholder={product.description}  className='p-2 bg-white text-black border'/>
-          <label htmlFor="image">update picture</label>
-          <input type="file" className='p-2 bg-white text-black border'  accept="image/*"/>
-          </div>
-          <button onClick={onClose} className="bg-gray-500 text-white px-3 py-1 rounded mt-4">Update</button>
-        </div>
-      </div>
-    );
-  };
-  const Modal2 = ({ onClose }) => {
-    return (  
-      <div className="fixed top-0 left-0 w-full  flex items-center justify-center bg-gray-900 bg-opacity-50 h-full" >
-        <div className="bg-white p-6 rounded-lg shadow-md text-black w-[70%] h-[70%] " >
-        <button onClick={onClose} className="absolute  mt-1 mr-2 text-red-500 focus:outline-none sm:ml-[65%] ml-[54%]"><X /></button>
-          <h2 className="text-2xl font-bold mb-4">Add Product</h2>
-         <div className='flex flex-col gap-2'>
-          <input type="text" placeholder='enter your product name' className='p-2 bg-white text-black border' />
-          <input type="number" placeholder='enter product price'  className='p-2 bg-white text-black border'/>
-          <input type="text" placeholder='enter product category'className='p-2 bg-white text-black border' />
-          <input type="text" placeholder='enter product description'  className='p-2 bg-white text-black border'/>
-          <input type="text" placeholder='enter inside box'  className='p-2 bg-white text-black border'/>
-          <input type="text" placeholder='enter product details'  className='p-2 bg-white text-black border'  accept="image/*"/>
-           <label htmlFor="image">Upload images</label>
-          <input type="file" id='image'   className='p-2 bg-white text-black border'/>
-          </div>
-          <button onClick={onClose} className="bg-gray-500 text-white px-3 py-1 rounded mt-4">Update</button>
-        </div>
-      </div>
-    );
-  };
+  
   
 
   return (
@@ -189,7 +122,7 @@ const AdminProducts = () => {
           ))}
         </ul>
       </div>
-      {showModal2 && <Modal2 onClose={() => setShowModal2(false)} />}
+      {showModal2 && <Modal2 onClose={() => setShowModal2(false)} fetchProducts ={()=>{fetchProducts}}  />}
       {selectedProduct && <Modal onClose={handleCloseModal} product={selectedProduct} />}
     </div>
   );
