@@ -1,7 +1,18 @@
 import React, { useState } from "react";
 import { IoIosHeart } from 'react-icons/io';
 
-const Product = () => {
+const Product = (props) => {
+  const {product}=props
+  console.log(product)
+  const {
+    name,
+    description,
+    price,
+    images,
+    category,
+    rating,
+    stock,
+} = product;
   const [isLoveClicked, setLoveClicked] = useState(false);
 
   const handleLoveClick = () => {
@@ -13,7 +24,7 @@ const Product = () => {
       <button>
       <div style={{ position: "relative" }}>
         <img
-          src="https://imgs.search.brave.com/L87L2KblRPj0xEgErVwIvAfP-nYOf3yRqLa6aSEa_oQ/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/YWxsLW9mLW15LWNh/cnMtYXJlbnQtYnJv/a2VuLXdoYXQtbm93/LXYwLTlxem56MWdw/bzhxYjEuanBnP3dp/ZHRoPTY0MCZjcm9w/PXNtYXJ0JmF1dG89/d2VicCZzPWE3MjZk/NmYxNzRmMzVkZmFh/OGZhYjIwMTAyNjdh/ZmJlYmYzN2YwZjU"
+          src={images[0]}
           alt="Product"
           style={{
             width: "100%",
@@ -37,14 +48,14 @@ const Product = () => {
       </div>
 
       <span className="mt-3 ml-3 bg-gray-500 rounded-lg text-xs p-[2px] text-white justify-center flex w-[60px]">
-        Home
+        {category}
       </span>
       <h3 style={styles.heading} className="pl-3 text-black font-semibold text-left">
-        2 Module 23A Touch Switchboard White/Black
+        {name}
       </h3>
       <div className="flex flex-row gap-2">
         <p style={styles.price} className="ml-3">
-          Rs 6,999/-
+          Rs {price}
         </p>{" "}
         <p style={styles.pricee} className="text-red-500">
           {" "}
@@ -52,7 +63,7 @@ const Product = () => {
         </p>
       </div>
       <div style={styles.rating} className="ml-3">
-        ⭐⭐⭐⭐⭐
+      {"⭐".repeat(rating)}
       </div>
       <div style={styles.buttons}>
         <button style={styles.buttonn} className="bg-[#FF9F1C]">Buy Now</button>

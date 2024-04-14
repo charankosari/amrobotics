@@ -75,7 +75,7 @@ const CartItem=(props)=>{
   const{name,images,quantity,price,id}=each
   return(
     <div className='flex flex-row bg-white rounded-md p-3 items-center justify-between text-black' >
-      <img className='w-28 rounded-md mr-6' src={images[0]?.url} />
+      <img className='w-28 rounded-md mr-6' src={images[0]} />
         <div className='w-[30%]'>
           <h1 className='text-base font-bold'>{name}</h1>
           <p className='text-base font-bold'>{price}</p>

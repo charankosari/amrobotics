@@ -4,6 +4,8 @@ import DiyProductContainer from './DiyProductContainer'
 function Popular(props) {
    const{products}=props;
    const home=products.filter((each)=>each.category==="Home")
+   const Diy=products.filter((each)=>each.category==="diy")
+
   return (
     <div>
     <div className='flex flex-col items-center justify-center'>
@@ -14,7 +16,7 @@ function Popular(props) {
     <br />
     <HomesAutoProductsContainer products={home}/>
     <br />
-    <DiyProductContainer/>
+    <DiyProductContainer products={Diy}/>
     </div>
   )
 }

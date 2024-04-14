@@ -32,7 +32,7 @@ function Home() {
       <VehicleCarousel />
       <br />
       <Content />
-      <PropductsContainer />
+      <PropductsContainer products={products} />
       <Card />
       <PopularProducts products={products} />
       <br />
@@ -40,7 +40,7 @@ function Home() {
       <br />
       <Footer/>
     </div>
-  );
+  );    
 }
 
 export default Home;

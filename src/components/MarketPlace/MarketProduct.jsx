@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
-import { IoIosHeart } from 'react-icons/io';
+import { IoIosHeart } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 const MarketProduct = (props) => {
-
-//  eslint-disable-next-line no-unused-vars
- const {_id,name,images,category,rating,price}=props.each
-    const navigate=useNavigate();
+  //  eslint-disable-next-line no-unused-vars
+  const { _id, name, images, category, rating, price } = props.each;
+  console.log(rating)
+  const navigate = useNavigate();
   const [isLoveClicked, setLoveClicked] = useState(false);
 
   const handleLoveClick = () => {
@@ -14,25 +14,25 @@ const MarketProduct = (props) => {
   };
 
   return (
-    <div onClick={
-      ()=>{
-          navigate(`/marketplace/${_id}`)
-      }
-  } className="w-[320px] ">
-       
-    <div style={styles.card}>
-    <button >
-      <div style={{ position: "relative" }}>
-        <img
-          src={images[0].url}
-          alt="Product"
-          style={{
-            width: "100%",
-            height: "auto",
-            objectFit: "cover",
-          }}
-        />
-        {/* <button
+    <div
+      onClick={() => {
+        navigate(`/marketplace/${_id}`);
+      }}
+      className="w-[320px] "
+    >
+      <div style={styles.card}>
+        <button>
+          <div style={{ position: "relative" }}>
+            <img
+              src={images[0]}
+              alt="Product"
+              style={{
+                width: "100%",
+                height: "auto",
+                objectFit: "cover",
+              }}
+            />
+            {/* <button
           onClick={handleLoveClick}
           style={{
             position: "absolute",
@@ -45,33 +45,35 @@ const MarketProduct = (props) => {
         >
           <IoIosHeart color={isLoveClicked ? "red" : "gray"}  size={24}  className="bg-white rounded-full p-[3px]"/> 
         </button> */}
-      </div>
+          </div>
 
-      <span className="mt-3 ml-3 bg-gray-500 rounded-lg text-xs p-[2px] text-white justify-center flex w-[30%]">
-        {category}
-      </span>
-      <h3 style={styles.heading} className="pl-3 text-black font-semibold text-left">
-        {name}
-      </h3>
-      </button>
-      <div className="flex flex-row gap-2">
-        <p style={styles.price} className="ml-3">
-         {price}
-        </p>{" "}
-        <p style={styles.pricee} className="text-red-500">
-          {" "}
-          <s> {price}</s>
-        </p>
+          <span className="mt-3 ml-3 bg-gray-500 rounded-lg text-xs p-[2px] text-white justify-center flex w-[30%]">
+            {category}
+          </span>
+          <h3
+            style={styles.heading}
+            className="pl-3 text-black font-semibold text-left"
+          >
+            {name}
+          </h3>
+        </button>
+        <div className="flex flex-row gap-2">
+          <p style={styles.price} className="ml-3">
+            {price}
+          </p>{" "}
+          <p style={styles.pricee} className="text-red-500">
+            {" "}
+            <s> {price}</s>
+          </p>
+        </div>
+        <div style={styles.rating} className="ml-3">
+          {"⭐".repeat(rating)}
+        </div>
+        <div style={styles.buttons}>
+          <button style={styles.buttonn}>Buy Now</button>
+          <button style={styles.button}>Add Cart</button>
+        </div>
       </div>
-      <div style={styles.rating} className="ml-3">
-      ⭐⭐⭐⭐⭐
-      </div>
-      <div style={styles.buttons}>
-        <button style={styles.buttonn}>Buy Now</button>
-        <button style={styles.button}>Add Cart</button>
-      </div>
-    </div>
-
     </div>
   );
 };
@@ -85,7 +87,6 @@ const styles = {
     border: "1px solid #ddd",
     borderRadius: "8px",
     overflow: "hidden",
- 
   },
 
   heading: {
@@ -107,7 +108,7 @@ const styles = {
     gap: "15px",
     padding: "10px",
   },
- 
+
   buttonss: {
     display: "flex",
     gap: "15px",

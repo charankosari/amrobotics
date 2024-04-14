@@ -15,7 +15,7 @@ function Products(props) {
         <div className="carousel rounded-box">
           {products.map((each) => (
             <div key={each.id} className="carousel-item">
-              <HomesAutoProducts />
+              <HomesAutoProducts product={each} />
             </div>
           ))}
         </div>

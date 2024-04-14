@@ -1,8 +1,8 @@
 import { React, useEffect, useState } from "react";
 import DiyProduct from "./DiyProduct";
 import "./ProductContainer.css";
-function DiyProductProductContainer() {
- 
+function DiyProductProductContainer(props) {
+  const { products } = props; 
   return (
     
     <div className="px-6 ">
@@ -14,7 +14,13 @@ function DiyProductProductContainer() {
       <div className="overflow-scroll" id="no-scrollbar">
         <div className="carousel rounded-box">
             <div className="carousel-item">
-              <DiyProduct  />
+
+            {products.map((each) => (
+            <div key={each.id} className="carousel-item">
+             <DiyProduct product={each}/>
+            </div>
+          ))}
+
             </div>
         </div>
       </div>

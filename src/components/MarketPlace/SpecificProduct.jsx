@@ -48,7 +48,7 @@ export default function MyComponent() {
    }, []);
 
   const handleImageClick = (image) => {
-    setMainImage(image.url);
+    setMainImage(image);
   };
   const [mainImage, setMainImage] = useState("");
   const [activeSection, setActiveSection] = useState("description");
@@ -58,9 +58,10 @@ export default function MyComponent() {
   const getDetails = async () => {
     console.log("hello")
     const response = await GetDetailProduct(id);
+
     if (response.status == 200) {
       setDetails(response.data.product);
-      setMainImage(response.data.product.images[0].url);
+      setMainImage(response.data.product.images[0]);
     }
     setLoading(false);
   };
@@ -163,7 +164,7 @@ export default function MyComponent() {
                           <img
                             key={index}
                             loading="lazy"
-                            srcSet={image.url}
+                            srcSet={image}
                             className="aspect-[1.14] object-contain object-center w-[128px] overflow-hidden shrink-0 max-w-full grow max-md:mt-3 cursor-pointer "
                             onClick={() => handleImageClick(image)}
                           />
