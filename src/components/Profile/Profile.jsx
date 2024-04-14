@@ -14,7 +14,7 @@ import Wishlist from "../profileTabsDetailview/wishlist.jsx"
 import ForgotPassword from "../profileTabsDetailview/ForgotPassword.jsx";
 import ContactUs from "../profileTabsDetailview/ContactUs.jsx";
 import Faq from '../profileTabsDetailview/FAQ.jsx'
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 
 const tabIds={
 account:"ACCOUNT",
@@ -29,14 +29,17 @@ faqs:"FAQS",
 }
 
 function Profile() {
+  const navigate=useNavigate();
+  const location=useLocation()
+  console.log(location.state.tabId)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => {
     setIsMenuOpen(prevState => !prevState);
   };
 
-  const navigate=useNavigate();
-
-  const[activeId,setActiveId]=useState(tabIds.account)
+  
+  
+  const[activeId,setActiveId]=useState(location.state.tabId?location.state.tabId:tabIds.account)
   console.log(activeId)
 
   const changeActiveId=(id)=>{

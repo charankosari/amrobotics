@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation,useNavigate } from "react-router-dom";
 import Logo from "../assets/imgg.png";
 import { CiSearch } from "react-icons/ci";
 import "./Navbar.css";
@@ -7,7 +7,7 @@ import "./Navbar.css";
 function Navbar() {
   const location = useLocation();
   const [activeLink, setActiveLink] = useState("Home");
-
+  const navigate=useNavigate()
   useEffect(() => {
     const pathname = location.pathname;
     const lastPart = pathname.substring(pathname.lastIndexOf("/") + 1);
@@ -88,7 +88,7 @@ function Navbar() {
             role="button"
             className="btn h-20 w-12 btn-ghost btn-circle " id="tab"
           >
-            <div className="indicator">
+            <div className="indicator" onClick={()=>navigate("/profile",{state:{tabId:"CART"}})} >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-20 w-10"
