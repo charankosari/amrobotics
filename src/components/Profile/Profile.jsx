@@ -31,15 +31,16 @@ faqs:"FAQS",
 function Profile() {
   const navigate=useNavigate();
   const location=useLocation()
-  console.log(location.state.tabId)
+  // console.log(location.state.tabId)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => {
     setIsMenuOpen(prevState => !prevState);
   };
 
+  const idd= location.state?location.state.tabId:tabIds.account
   
   
-  const[activeId,setActiveId]=useState(location.state.tabId?location.state.tabId:tabIds.account)
+  const[activeId,setActiveId]=useState(idd)
   console.log(activeId)
 
   const changeActiveId=(id)=>{
