@@ -36,7 +36,6 @@ function Profile() {
   const toggleMenu = () => {
     setIsMenuOpen(prevState => !prevState);
   };
-
   const idd= location.state?location.state.tabId:tabIds.account
   
   
