@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { IoIosHeart } from 'react-icons/io';
+import { useNavigate } from "react-router-dom";
 
 const Product = (props) => {
+  const navigate=useNavigate()
   const {product}=props
-  console.log(product)
+  console.log(product,"this is home product")
   const {
     name,
     description,
@@ -12,16 +14,17 @@ const Product = (props) => {
     category,
     rating,
     stock,
+    _id
 } = product;
 
-  const [isLoveClicked, setLoveClicked] = useState(false);
 
-  const handleLoveClick = () => {
-    setLoveClicked(!isLoveClicked);
-  };
 
   return (
-    <div style={styles.card}>
+    <div 
+    onClick={() => {
+      navigate(`/marketplace/${_id}`);
+    }}
+    style={styles.card}>
       <button>
       <div style={{ position: "relative" }}>
         <img
@@ -34,7 +37,7 @@ const Product = (props) => {
           }}
         />
         <button
-          onClick={handleLoveClick}
+         
           style={{
             position: "absolute",
             top: "10px",
@@ -44,7 +47,6 @@ const Product = (props) => {
             backgroundColor: "transparent",
           }}
         >
-          <IoIosHeart color={isLoveClicked ? "red" : "gray"}  size={24}  className="bg-white rounded-full p-[3px]"/> 
         </button>
       </div>
 

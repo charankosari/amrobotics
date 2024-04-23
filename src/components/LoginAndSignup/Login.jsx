@@ -4,7 +4,7 @@ import Logo from "../assets/imgg.png";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import { ToastContainer, toast } from "react-toastify";
 import { ThreeDots } from "react-loader-spinner";
 import { forgotpass } from "../../helper";
 
@@ -23,12 +23,17 @@ function LoginPage() {
         email,
         password,
       });
+    console.log(response.data.error)
+
       const jwtToken = response.data.jwtToken;
       //  dispatch(storeUser(jwtToken))
       localStorage.setItem("jwtToken", jwtToken);
+      toast.success("login successful");
       navigate("/");
+
+
     } catch (e) {
-      console.log(e.response);
+      toast.error(e.response.data.error);
     }
   };
 
@@ -41,6 +46,7 @@ function LoginPage() {
     console.log(response);
 
     if (response.status == 201) {
+      console.log("navigate then---")
       setloading(false);
       navigate("/forgotpassword");
     }
@@ -64,6 +70,18 @@ function LoginPage() {
         </div>
       ) : (
         <div className="overflow-hidden overscroll-x-none">
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
           <div
             className="flex flex-row-reverse h-[100dvh] overflow-hidden "
             id="main"

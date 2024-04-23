@@ -1,9 +1,24 @@
-import { Link ,useLocation} from "react-router-dom";
+import { Link ,useLocation,useNavigate} from "react-router-dom";
 import forgotpassimg from "./assets/forgotPass.png";
+import { useEffect } from "react";
 
 const SuccessPage = () => {
   const location=useLocation()
   const paymentId = new URLSearchParams(location.search).get('message');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleBackNavigation = (event) => {
+      event.preventDefault();
+      navigate('/'); // Redirect to another route if the user tries to go back
+    };
+
+    window.addEventListener('popstate', handleBackNavigation);
+
+    return () => {
+      window.removeEventListener('popstate', handleBackNavigation);
+    };
+  }, [navigate]);
 
   return (
     <div className="flex flex-col justify-center items-center h-[100vh]">

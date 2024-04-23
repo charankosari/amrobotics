@@ -48,6 +48,13 @@ function Checkout() {
   const itemIds = CartDetails.map((each) => ({ id: each.id, quantity: each.quantity }));
 
   useEffect(() => {
+    function prevent() {
+      window.history.forward();
+    }
+  
+    setTimeout(prevent, 0);
+    window.onload = function() {
+    };
    if(!data){
     navigate('/profile')
    }
@@ -115,10 +122,11 @@ const payButton = async() => {
       order_id: paymentOrderId.data.paymentId.id, 
 
       handler:  (response)=>{
-              axios.post("http://localhost:5080/api/v1/order/new", { paymentResponse:response,selectAddress,paymode }).then(response => {
+              axios.post("http://localhost:5080/api/v1/order/new", { paymentResponse:response,selectAddress,paymode,itemIds }).then(response => {
           if (response.status==200) {
             deleteMycart()
-            const url = `http://127.0.0.1:5173/success?message=${encodeURIComponent(response.data.razorpay_payment_id)}`;
+            console.log(response)
+            const url = `http://127.0.0.1:5173/success?message=${encodeURIComponent(response.data.response.channel_order_id)}`;
               window.location.href = url;
           } else {
               // Handle error if needed

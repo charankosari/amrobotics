@@ -14,20 +14,10 @@ const DiyProduct = (props) => {
     stock,
 } = product;
 
-  const [isLoveClicked, setLoveClicked] = useState(false);
- 
-
-  const handleLoveClick = () => {
-    console.log("hello")
-    setLoveClicked(!isLoveClicked);
-  };
-
-  
-
   
 
   return (
-    <div style={styles.card} onClick={()=>console.log("hiii")}>
+    <div style={styles.card}>
      
       <div style={{ position: "relative" }}>
         <img
@@ -40,7 +30,6 @@ const DiyProduct = (props) => {
           }}
         />
         <div
-          onClick={handleLoveClick}
           style={{
             position: "absolute",
             top: "10px",
@@ -50,7 +39,6 @@ const DiyProduct = (props) => {
             backgroundColor: "transparent",
           }}
         >
-          <IoIosHeart color={isLoveClicked ? "red" : "gray"}  size={24}  className="bg-white rounded-full p-[3px]"/> 
         </div>
       </div>
      

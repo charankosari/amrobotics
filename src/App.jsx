@@ -43,12 +43,12 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
+          <Route path="/forgotpassword" element={<Checkmail />} />
+          <Route path="/gmailredirect" element={<GmailAccountPage />} />
+          <Route path="/resetpassword/:id" element={<ResetPasswordFunc />} />
           <Route element={<RequireLogin  />}>
             <Route path="/profile" element={<Profile />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/forgotpassword" element={<Checkmail />} />
-            <Route path="/gmailredirect" element={<GmailAccountPage />} />
-            <Route path="/resetpassword/:id" element={<ResetPasswordFunc />} />
             <Route path="/checkout" element={<Checkout/>} />
             <Route path="/success" element={<SuccessPage/>} />
 
