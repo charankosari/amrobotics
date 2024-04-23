@@ -25,6 +25,11 @@ import RequireLogin from './RequireLogin.jsx'
 import Checkout from "./components/profileTabsDetailview/checkout.jsx"
 // import AdminSidebar from "./ProtectedRoutes/AdminSidebar.jsx";
 import { Sidebar } from "./ProtectedRoutes/Sidebar.tsx";
+import TermsAndConditions from "./components/Footer/FooterComponents/TermsAndConditions.jsx";
+import ShippingAndRefund from "./components/Footer/FooterComponents/ShippingAndRefund.jsx";
+import PrivacyAndPolicy from "./components/Footer/FooterComponents/PrivacyAndPolicy.jsx";
+import Careers from "./components/Footer/FooterComponents/Careers.jsx";
+import TermsOfService from "./components/Footer/FooterComponents/TermsOfService.jsx";
 
 function App() {
 
@@ -40,8 +45,14 @@ function App() {
           <Route path="/blog" element={<Blogs />} />
           <Route path="/blog/:id" element={<IndividualBlog />} />
           <Route path="/signup" element={<SignupPage />} />
+          <Route path="/terms-conditions" element={<TermsAndConditions />} />
+          <Route path="/shipping-refund" element={<ShippingAndRefund />} />
+          <Route path="/privacy-policy" element={<PrivacyAndPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/careers" element={<Careers />} />
           <Route path="/login" element={<Login />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
+
           <Route element={<RequireLogin  />}>
             <Route path="/profile" element={<Profile />} />
             <Route path="/cart" element={<Cart />} />
@@ -54,7 +65,6 @@ function App() {
           <Route element={<RequireAuth allowedRoles={["admin"]} />}>
             <Route path="/admin" element={<Adminpage />} />
             <Route path="/adminpanel" element={<Sidebar />} />
-       
           </Route>
         </Routes>
       </BrowserRouter>
