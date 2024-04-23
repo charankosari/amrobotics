@@ -13,12 +13,8 @@ const Product = (props) => {
     rating,
     stock,
 } = product;
-  const [isLoveClicked, setLoveClicked] = useState(false);
-
-  const handleLoveClick = () => {
-    setLoveClicked(!isLoveClicked);
-  };
-
+  
+ 
   return (
     <div style={styles.card}>
       <button>
@@ -33,7 +29,7 @@ const Product = (props) => {
           }}
         />
         <button
-          onClick={handleLoveClick}
+         
           style={{
             position: "absolute",
             top: "10px",
@@ -43,7 +39,6 @@ const Product = (props) => {
             backgroundColor: "transparent",
           }}
         >
-          <IoIosHeart color={isLoveClicked ? "red" : "gray"}  size={24}  className="bg-white rounded-full p-[3px]"/> 
         </button>
       </div>
 

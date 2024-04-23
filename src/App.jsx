@@ -21,6 +21,7 @@ import Adminpage from "./ProtectedRoutes/Adminpage.jsx";
 // import Adminusers from "./ProtectedRoutes/Adminusers.jsx";
 // import AdminProducts from "./ProtectedRoutes/AdminProducts.jsx";
 // import Adminorders from "./ProtectedRoutes/Adminorders.jsx";
+import SuccessPage from './components/success.jsx'
 import RequireLogin from './RequireLogin.jsx'
 import Checkout from "./components/profileTabsDetailview/checkout.jsx"
 // import AdminSidebar from "./ProtectedRoutes/AdminSidebar.jsx";
@@ -52,14 +53,15 @@ function App() {
           <Route path="/careers" element={<Careers />} />
           <Route path="/login" element={<Login />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
-
+          <Route path="/forgotpassword" element={<Checkmail />} />
+          <Route path="/gmailredirect" element={<GmailAccountPage />} />
+          <Route path="/resetpassword/:id" element={<ResetPasswordFunc />} />
           <Route element={<RequireLogin  />}>
             <Route path="/profile" element={<Profile />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/forgotpassword" element={<Checkmail />} />
-            <Route path="/gmailredirect" element={<GmailAccountPage />} />
-            <Route path="/resetpassword/:id" element={<ResetPasswordFunc />} />
             <Route path="/checkout" element={<Checkout/>} />
+            <Route path="/success" element={<SuccessPage/>} />
+
           </Route>
 
           <Route element={<RequireAuth allowedRoles={["admin"]} />}>

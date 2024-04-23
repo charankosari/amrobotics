@@ -130,10 +130,10 @@ function Navbar() {
               </Link>
             </li>
             <li>
-              <Link to="/orders">My Orders</Link>
+              <p>My Orders</p>
             </li>
             <li>
-              <Link to="/wishlist">Wishlist</Link>
+              <p onClick={()=>navigate("/profile",{state:{tabId:"WISHLIST"}})}>Wishlist</p>
             </li>
             <li>
               <Link to="/" onClick={()=>{

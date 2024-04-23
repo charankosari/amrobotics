@@ -1,7 +1,7 @@
 import { useState, React, useEffect } from "react";
 import { GetUserDetails } from "../../helper.js";
 import { ThreeDots } from "react-loader-spinner";
-import { UpdateUserDetails } from "../../helper.js";
+import { UpdateUserDetails,deleteAllCart} from "../../helper.js";
 import { useLocation,useNavigate } from "react-router-dom";
 import axios from "axios"
 import "./checkout.css"
@@ -14,7 +14,7 @@ const CartItem=(props)=>{
   const{name,images,quantity,price,id}=each
   return(
     <div className='mb-2 border shadow-md flex flex-row bg-white rounded-md p-3 items-center justify-between text-black' >
-      <img className='w-28 rounded-md mr-6' src={images[0]?.url} />
+      <img className='w-28 rounded-md mr-6' src={images[0]} />
         
           <h1 className='text-base font-bold'>{name}</h1>
 
@@ -44,14 +44,35 @@ function Checkout() {
   const location=useLocation();
   const navigate=useNavigate();
   const data=location.state
+  const {cartAmount,CartDetails}=data
+  const itemIds = CartDetails.map((each) => ({ id: each.id, quantity: each.quantity }));
 
   useEffect(() => {
+    function prevent() {
+      window.history.forward();
+    }
+  
+    setTimeout(prevent, 0);
+    window.onload = function() {
+    };
    if(!data){
     navigate('/profile')
    }
     getDetails();
   }, []);
 
+
+//  delete all cart items_______________________________________
+const deleteMycart=async()=>{
+  const response = await deleteAllCart()
+  if(response.status==200)
+  setDetails([])
+
+}
+
+
+
+// get profile detail for address etc_________________________________________
   const getDetails = async () => {
     const response = await GetUserDetails();
     if (response.status == 200) {
@@ -60,11 +81,7 @@ function Checkout() {
     }
   };
 
-
-
-
-
-  // loading view_______________________________________________________________________
+// loading view_________________________________________________________________
 
   const loadingView = () => {
     return (
@@ -82,19 +99,22 @@ function Checkout() {
       </div>
     );
   };
-
-
-    // pay button_________________________________________________________________
   
-const payButton = async(cartAmount) => {
+
+// pay button_________________________________________________________________
+  
+const payButton = async() => {
+  if (!paymode || !selectAddress) {
+    alert("Please select a payment mode and address before proceeding.");
+    return;
+  }
+
     const getPaymentGatewayId= await axios.get("http://localhost:5080/payment/getkey")   //getting razorpay id
-    const paymentOrderId = await axios.post("http://localhost:5080/api/v1/initpayment",{  //creating order and get id
-      "totalPrice":120
-    })
+    const paymentOrderId = await axios.post("http://localhost:5080/api/v1/initpayment",{itemIds,cartAmount})
 
     const options = {
       key:getPaymentGatewayId.data.key, // Enter the Key ID generated from the Dashboard
-      // amount: 2000, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      amount:112, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
       currency: "INR",
       name: "Amrobotics", //your business name
       description: "Test Transaction",
@@ -102,11 +122,12 @@ const payButton = async(cartAmount) => {
       order_id: paymentOrderId.data.paymentId.id, 
 
       handler:  (response)=>{
-              let razorpayid=response.razorpay_payment_id;  
-              axios.post("http://localhost:5080/api/v1/order/new", { paymentResponse:response,selectAddress,paymode }).then(response => {
-                console.log(response)
+              axios.post("http://localhost:5080/api/v1/order/new", { paymentResponse:response,selectAddress,paymode,itemIds }).then(response => {
           if (response.status==200) {
-              window.location.href = "http://127.0.0.1:5173/success";
+            deleteMycart()
+            console.log(response)
+            const url = `http://127.0.0.1:5173/success?message=${encodeURIComponent(response.data.response.channel_order_id)}`;
+              window.location.href = url;
           } else {
               // Handle error if needed
           }
@@ -134,11 +155,6 @@ const payButton = async(cartAmount) => {
     const razor = new window.Razorpay(options);
     razor.open();
   };
-
-
-
-
-
 
 
   const addressHandleChange = (e) => {
@@ -361,7 +377,7 @@ const payButton = async(cartAmount) => {
 
         <div className="w-[50%] pl-10 pr-10 flex flex-col mt-12  ">
           <div className="overflow-y-auto h-[50vh]">
-         { data.map((each, index) =><CartItem each={each}/> )}
+         {CartDetails.map((each, index) =><CartItem each={each}/> )}
           </div>
          <div className="payment-part mt-5">
          <h1 className="mb-3">Select type of Payment</h1>
@@ -378,7 +394,7 @@ const payButton = async(cartAmount) => {
 
           <div className="flex flex-row gap-2 items-center justify-between">
             <h1>Amount :</h1>
-            <p>12,345/-</p>
+            <p>{cartAmount}</p>
           </div>
           <div className="flex flex-row gap-2 items-center justify-between">
             <h1>Added Tax :</h1>
@@ -391,7 +407,7 @@ const payButton = async(cartAmount) => {
           <hr className="text-red-200 bg-gray-500 mt-5 mb-5" />
           <div className="flex flex-row gap-2 items-center justify-between">
             <h1>Total Amount :</h1>
-            <p>12,345/-</p>
+            <p>{cartAmount}</p>
           </div>
           <div className="flex justify-end mt-5">
             <button onClick={payButton} className="p-1.5 rounded-sm bg-orange-500 font-semibold text-sm text-white">
