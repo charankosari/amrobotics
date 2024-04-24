@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import "./Specificproduct.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { GetDetailProduct, getWishlist, sendToWishlistApi } from "../../helper.js";
 import { ThreeDots } from "react-loader-spinner";
 import { sendToCartApi } from "../../helper.js/";
@@ -13,6 +13,7 @@ import { IoIosHeart } from "react-icons/io";
 import { createReview } from "../../helper.js";
 
 export default function MyComponent() {
+  const navigate=useNavigate();
  
   
   const renderStars = (rating) => {
@@ -92,6 +93,19 @@ export default function MyComponent() {
       toast.success("Product added to cart");
     }
   };
+  
+  const BuyNowButton = async () => {
+    const response = await sendToCartApi({ id, cartCount });
+    console.log(response);
+    if (response.status == 200) {
+      console.log("product added to cart ");
+      toast.success("Product added to cart");
+      setTimeout(() => {
+        navigate("/profile", { state: { tabId: "CART" } });
+      }, 2000); // 2000 milliseconds = 2 seconds
+    }
+  };
+  
 
   const wishListItem = async () => {
     const response = await sendToWishlistApi(id);
@@ -252,6 +266,7 @@ export default function MyComponent() {
 
                     <button
                       id="button-to-change"
+                      onClick={()=>{BuyNowButton()}}
                       className="text-white sm:text-4xl text-xl font-semibold bg-amber-500 self-stretch justify-center items-center mt-6 rounded-xl max-md:max-w-[400px] max-md:px-5"
                     >
                       Buy Now
