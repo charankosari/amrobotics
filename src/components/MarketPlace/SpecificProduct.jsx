@@ -27,7 +27,6 @@ export default function MyComponent() {
   const [details, setDetails] = useState("");
   const [loading, setLoading] = useState(true);
   const [cartCount, setCartCount] = useState(1);
-  const [isLoveClicked, setLoveClicked] = useState(false);
   const [colorr,setColor]=useState('grey')
   const [reviewDetails, setreviewDetails] = useState({
     rating: 0,
@@ -67,10 +66,13 @@ export default function MyComponent() {
         for (let i = 0; i < response2.data.data.length; i++) {
           dataSet.add(response2.data.data[i].name);
         }
+        console.log(dataSet);
+        console.log(response.data.product.name)
   
         // Check if details.name is present in dataSet
-        if (dataSet.has(details.name)) {
+        if (dataSet.has(response.data.product.name)) {
           setColor('red');
+          console.log('red');
         } else {
           setColor('grey');
         }
