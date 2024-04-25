@@ -3,24 +3,18 @@ import { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import "./Specificproduct.css";
-import { useParams } from "react-router-dom";
-import { GetDetailProduct, sendToWishlistApi } from "../../helper.js";
-import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
+import { GetDetailProduct, getWishlist, sendToWishlistApi } from "../../helper.js";
 import { ThreeDots } from "react-loader-spinner";
 import { sendToCartApi } from "../../helper.js/";
 import { ToastContainer, toast } from "react-toastify";
 import { IoCloseSharp } from "react-icons/io5";
-
 import { IoIosHeart } from "react-icons/io";
 import { createReview } from "../../helper.js";
 
 export default function MyComponent() {
-  const Review = {
-    revieverimg:
-      "https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg",
-    reviews:
-      "https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-  };
+  const navigate=useNavigate();
+ 
   
   const renderStars = (rating) => {
     let stars = "";
@@ -29,12 +23,12 @@ export default function MyComponent() {
     }
     return stars;
   };
-
+  let dataSet = [];
   const { id } = useParams();
   const [details, setDetails] = useState("");
   const [loading, setLoading] = useState(true);
   const [cartCount, setCartCount] = useState(1);
-  const [isLoveClicked, setLoveClicked] = useState(false);
+  const [colorr,setColor]=useState('grey')
   const [reviewDetails, setreviewDetails] = useState({
     rating: 0,
     comment: "",
@@ -56,15 +50,40 @@ export default function MyComponent() {
     setActiveSection(section);
   };
   const getDetails = async () => {
-    console.log("hello")
+    console.log("hello");
     const response = await GetDetailProduct(id);
-
-    if (response.status == 200) {
+    const response2 = await getWishlist();
+  
+    if (response.status === 200) {
       setDetails(response.data.product);
+      console.log(response.data.product);
       setMainImage(response.data.product.images[0]);
+  
+      if (response2.status === 200) {
+        // Initialize dataSet
+        let dataSet = new Set();
+  
+        // Populate dataSet with names from response2
+        for (let i = 0; i < response2.data.data.length; i++) {
+          dataSet.add(response2.data.data[i].name);
+        }
+        console.log(dataSet);
+        console.log(response.data.product.name)
+  
+        // Check if details.name is present in dataSet
+        if (dataSet.has(response.data.product.name)) {
+          setColor('red');
+          console.log('red');
+        } else {
+          setColor('grey');
+        }
+      }
     }
+  
     setLoading(false);
   };
+
+
 
   const sendToCart = async () => {
     const response = await sendToCartApi({ id, cartCount });
@@ -74,13 +93,28 @@ export default function MyComponent() {
       toast.success("Product added to cart");
     }
   };
+  
+  const BuyNowButton = async () => {
+    const response = await sendToCartApi({ id, cartCount });
+    console.log(response);
+    if (response.status == 200) {
+      console.log("product added to cart ");
+      toast.success("Product added to cart");
+      setTimeout(() => {
+        navigate("/profile", { state: { tabId: "CART" } });
+      }, 2000); // 2000 milliseconds = 2 seconds
+    }
+  };
+  
 
   const wishListItem = async () => {
     const response = await sendToWishlistApi(id);
     console.log(response);
     if (response.status == 200) {
-      setLoveClicked(!isLoveClicked);
+      // setLoveClicked(!isLoveClicked);
+      getDetails();
       toast.success("Item Wishlisted");
+
     }
   };
 
@@ -143,7 +177,7 @@ export default function MyComponent() {
                     }}
                   >
                     <IoIosHeart
-                      color={"red"}
+                      color={colorr}
                       size={24}
                       className="bg-white text-red-500 rounded-full p-[3px]"
                     />
@@ -180,7 +214,7 @@ export default function MyComponent() {
                     {details.name}
                   </div>
                   <div className="text-zinc-800   text-sm  mt-7 self-start ">
-                  ⭐⭐⭐⭐{`${details.noOfReviews} reviews`}
+                  {"⭐".repeat(details.rating)}{`${details.noOfReviews} reviews`}
                   </div>
                   <div className="flex items-stretch gap-4 mt-3 self-start">
                     <div className="text-neutral-700 text-sm whitespace-nowrap bg-zinc-300 bg-opacity-70 grow justify-center items-stretch px-3.5 py-1.5 rounded-xl">
@@ -193,7 +227,7 @@ export default function MyComponent() {
                         {details.price}
                       </div>
                       <div className="text-red-700 text-3xl font-semibold line-through">
-                        {details.price}
+                      {Math.floor(details.price + details.price * (15 + Math.random() * 5) / 100)}
                       </div>
                     </div>
                   
@@ -232,6 +266,7 @@ export default function MyComponent() {
 
                     <button
                       id="button-to-change"
+                      onClick={()=>{BuyNowButton()}}
                       className="text-white sm:text-4xl text-xl font-semibold bg-amber-500 self-stretch justify-center items-center mt-6 rounded-xl max-md:max-w-[400px] max-md:px-5"
                     >
                       Buy Now
@@ -325,7 +360,7 @@ export default function MyComponent() {
             </h1>
             <h3 className="text-xl mb-2 text-black font-semibold" id="glo">
               {" "}
-              72000 global ratings
+              {details.noOfReviews}  ratings
             </h3>
             {showreview ? (
               ""
@@ -387,12 +422,8 @@ export default function MyComponent() {
                   id="reviews"
                 >
                   <div className="flex flex-row items-center">
-                    <div className="w-[3rem] rounded-full mb-2" id="userimg">
-                      <img
-                        src={Review.revieverimg}
-                        className="rounded-full"
-                        alt=""
-                      />
+                    <div className="w-[3rem] rounded-full mb-2  bg-black flex justify-center items-center" id="userimg">
+                <p className="text-white"> {(each.name).slice(0,1)}</p>
                     </div>
                     <h1
                       className="text-2xl ml-2 mb-1 font-[500] text-black"
@@ -407,21 +438,13 @@ export default function MyComponent() {
                   <p className="text-xl text-black mb-2" id="comments">
                     {each.comment}
                   </p>
-                  <div className="flex flex-row overflow-x-auto gap-2">
-                    <img
-                      src={Review.reviews}
-                      className="w-[200px] h-[200px]"
-                      alt=""
-                      id="rev"
-                    />
-                  </div>
+                 
                 </div>
               ))}
             </div>
           </div>
         </div>
       )}
-
       <Footer />
     </div>
   );

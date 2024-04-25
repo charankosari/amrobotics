@@ -1,11 +1,34 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useRef } from "react";
 import { GetUserDetails } from "../../helper.js";
 import {ThreeDots} from 'react-loader-spinner'
 import {UpdateUserDetails} from "../../helper.js"
 
-
+import './wishlist.css'
 
 const UserProfile=()=>{
+//mouse dragging
+const containerRef = useRef(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+  
+  const handleMouseDown = (event) => {
+    setIsDragging(true);
+    setStartX(event.pageX - containerRef.current.offsetLeft);
+    setScrollLeft(containerRef.current.scrollLeft);
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseMove = (event) => {
+    if (!isDragging) return;
+    const x = event.pageX - containerRef.current.offsetLeft;
+    const walk = (x - startX) * 2; // Adjust the multiplier for smoother dragging
+    containerRef.current.scrollLeft = scrollLeft - walk;
+  };
+
     // const [details, setDetails] = useState("");
     const [loading, setLoading] = useState(true);
     const [editMode,setEditMode]=useState(false);
@@ -216,12 +239,12 @@ const UserProfile=()=>{
           <div className="text-6xl" id="prof">
             Previous Adresses
           </div>
-          <div className="p-2 flex flex-row gap-2 flex-wrap" >
+          {/* <div className="p-2 flex flex-row gap-2 flex-wrap overflow-x-auto " >
            {
             addresses.length==0?<div>no address</div>:
           
             addresses.map((address, index) =>(
-              <div key={index} className=" sm:w-min w-full bg-white rounded-sm flex  justify-center p-5">
+              <div key={index} className=" sm:w-min w-full bg-white rounded-sm flex flex-row   justify-center p-5 overflow-x-auto">
                 <p className="">{address.name} ,{address.mobile} ,{address.email} ,{address.address} ,{address.city} , {address.country} , {address.state} , {address.pin}</p>
                 </div>
             ))
@@ -231,7 +254,22 @@ const UserProfile=()=>{
 
             
            
+          </div> */}
+          <div className="flex flex-row overflow-x-auto" id='grabable' onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+      onMouseMove={handleMouseMove}
+      ref={containerRef}  >
+          {
+            addresses.length==0?<div>no address</div>:
+          
+            addresses.map((address, index) =>(
+              <div key={index}className="bg-white rounded-sm p-2 m-1 select-none"  >
+                <p> {address.name} ,{address.mobile} ,{address.email} ,{address.address} ,{address.city} , {address.country} , {address.state} , {address.pin}</p>
           </div>
+            ))
+          }
+          </div>
+
         </div>
         <button onClick={handleEdit} className="bg-[#FF9F1C] w-[2190px] h-[75px] rounded-md  text-white text-semibold mt-4 text-xl"id="or-b">
           Edit Profile

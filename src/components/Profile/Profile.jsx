@@ -67,14 +67,14 @@ function Profile() {
   }
 
     return (
-      <div className="bg-white h-auto pb-12">
+      <div className="bg-white h-[clamp(120vh,8vw,100vh)] pb-12" >
         <Navbar />
         <div className="flex flex-row  mt-12 h-[80dvh]  " id="some">
         <div id="navv">
         <button onClick={toggleMenu} style={{backgroundColor:'black',color:'white',padding:'10px',borderRadius:'5px',marginBottom:'5px'}}>menu</button>
       </div>
       
-  <div className={`flex flex-col gap-12 mx-12 w-[30%] `} id="gap" style={{ left: isMenuOpen ? '0' : '-100%',zIndex:2,backgroundColor:'#fff' }}>
+  <div className={`flex flex-col gap-12 mx-12 w-[30%] h-[clamp(100vh,8vw,90vh)] `} id="gap" style={{ left: isMenuOpen ? '0' : '-100%',zIndex:2,backgroundColor:'#fff' }}>
 
 
             
@@ -187,7 +187,7 @@ function Profile() {
               navigate('/');
             }}>
               {" "}
-              Sign Out <IoExitOutline className="ml-4" />{" "}
+              Sign Out <IoExitOutline className="ml-4" />{" "}  
             </button>
           </div>
 

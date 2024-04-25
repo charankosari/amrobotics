@@ -6,7 +6,13 @@ const SuccessPage = () => {
   const location=useLocation()
   const paymentId = new URLSearchParams(location.search).get('message');
   const navigate = useNavigate();
+  function prevent() {
+    window.history.forward();
+  }
 
+  setTimeout(prevent, 0);
+  window.onload = function() {
+  };
   useEffect(() => {
     const handleBackNavigation = (event) => {
       event.preventDefault();

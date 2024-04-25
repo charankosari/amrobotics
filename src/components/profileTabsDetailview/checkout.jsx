@@ -48,13 +48,6 @@ function Checkout() {
   const itemIds = CartDetails.map((each) => ({ id: each.id, quantity: each.quantity }));
 
   useEffect(() => {
-    function prevent() {
-      window.history.forward();
-    }
-  
-    setTimeout(prevent, 0);
-    window.onload = function() {
-    };
    if(!data){
     navigate('/profile')
    }

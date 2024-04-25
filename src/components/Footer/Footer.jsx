@@ -3,6 +3,7 @@ import { FaInstagram  } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 // import { FaTwitter } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { Link } from 'react-router-dom';
 
 function Footer() {
   return (
@@ -34,18 +35,19 @@ function Footer() {
         </aside>
         <nav>
           <header className="footer-title">About Us</header>
-          <a className="link link-hover">Contact Us</a>
-          <a className="link link-hover">Terms & Conditions</a>
-          <a className="link link-hover">Refund Policy</a>
-          <a className="link link-hover">Privacy policy</a>
-          <a className="link link-hover">Terms of service</a>
+          <Link className="link link-hover">Contact Us</Link>
+          <Link className="link link-hover" to='/terms-conditions'>Terms & Conditions</Link>
+          <Link className="link link-hover" to='/shipping-refund'>Shipping and Refund policy</Link>
+          <Link className="link link-hover" to='/privacy-policy'>Privacy policy</Link>
+          <Link className="link link-hover" to='/careers'>Careers</Link>
+          <Link className="link link-hover" to='/terms-of-service'>Terms of service</Link>
         </nav>
         <nav>
           <header className="footer-title">Authorized Distributor</header>
-          <a className="link link-hover">Agarwal Electronics</a>
-          <a className="link link-hover">Gujarathi School Lane,</a>
-          <a className="link link-hover">Sultan Bazar,Koti,</a>
-          <a className="link link-hover">Hyderabad,Telangana 500095</a>
+          <p >Agarwal Electronics</p>
+          <p >Gujarathi School Lane,</p>
+          <p >Sultan Bazar,Koti,</p>
+          <p >Hyderabad,Telangana 500095</p>
         Get in touch
        <div>
        <ul className="wrapper">
