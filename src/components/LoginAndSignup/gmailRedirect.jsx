@@ -10,7 +10,7 @@ function GmailAccountPage() {
   return (
     <div className='flex flex-col justify-center items-center h-screen'>
       <h1>Redirecting to Gmail...</h1>
-      <p>If you are not redirected, click <a href="https://mail.google.com/">here</a>.</p>
+      <p>If you are not redirected, click <a className='text-blue-500' href="https://mail.google.com/">here</a>.</p>
     </div>
   );
 }

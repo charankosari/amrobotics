@@ -40,6 +40,7 @@ function LoginPage() {
   const forgotPass = async () => {
     if (email == "") {
       alert("enter email to reset your password");
+      return;
     }
     setloading(true);
     const response = await forgotpass(email);

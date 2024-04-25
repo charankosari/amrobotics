@@ -378,3 +378,28 @@ export  async function sendToWishlistApi(id) {
           }
         }
         
+
+          //  // create order__________________________________________
+
+          //  export  async function CreateNewOrder() {
+          // const jwtToken=localStorage.getItem("jwtToken")
+
+          //   try {
+          //     const config={
+          //       method:"post",
+          //       url:"http://localhost:5080/api/v1/order/new",
+          //       headers:{
+          //         "Authorization":`Bearer ${jwtToken}`,
+          //         "Content-Type":"application/json"
+          //           },
+          //       data: JSON.stringify(data)}
+          //     const response = await axios(config)
+          //     return response
+          //    } 
+          //   catch (error) {
+          //     return error
+          //   }
+          // }
+          
+  
+          

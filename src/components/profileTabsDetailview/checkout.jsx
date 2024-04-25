@@ -102,13 +102,43 @@ const deleteMycart=async()=>{
   
 
 // pay button_________________________________________________________________
-  
+ 
+const checkoutBtn= async() => {
+
+
+}
+
+
 const payButton = async() => {
   if (!paymode || !selectAddress) {
     alert("Please select a payment mode and address before proceeding.");
     return;
   }
 
+  if(paymode=="cod"){
+    const jwtToken=localStorage.getItem("jwtToken")
+    const data= {selectAddress,paymode,itemIds}
+    const config={
+      method:"post",
+      url:"http://localhost:5080/api/v1/order/cod/new",
+      headers:{
+        "Authorization":`Bearer ${jwtToken}`,
+        "Content-Type":"application/json"
+          },
+      data: JSON.stringify(data)}
+         
+      axios(config).then(response => {
+      if (response.status==200) {
+        deleteMycart()
+        const url = `http://127.0.0.1:5173/success?message=${encodeURIComponent(response.data.OrderData.channel_order_id)}`;
+          window.location.href = url;
+      } else {
+          // Handle error if needed
+      }
+  })
+  }
+
+  else{
     const getPaymentGatewayId= await axios.get("http://localhost:5080/payment/getkey")   //getting razorpay id
     const paymentOrderId = await axios.post("http://localhost:5080/api/v1/initpayment",{itemIds,cartAmount})
 
@@ -122,11 +152,21 @@ const payButton = async() => {
       order_id: paymentOrderId.data.paymentId.id, 
 
       handler:  (response)=>{
-              axios.post("http://localhost:5080/api/v1/order/new", { paymentResponse:response,selectAddress,paymode,itemIds }).then(response => {
+        const jwtToken=localStorage.getItem("jwtToken")
+        const data= {paymentResponse:response,selectAddress,paymode,itemIds }
+        const config={
+          method:"post",
+          url:"http://localhost:5080/api/v1/order/new",
+          headers:{
+            "Authorization":`Bearer ${jwtToken}`,
+            "Content-Type":"application/json"
+              },
+          data: JSON.stringify(data)}
+             
+              axios(config).then(response => {
           if (response.status==200) {
             deleteMycart()
-            console.log(response)
-            const url = `http://127.0.0.1:5173/success?message=${encodeURIComponent(response.data.response.channel_order_id)}`;
+            const url = `http://127.0.0.1:5173/success?message=${encodeURIComponent(response.data.OrderData.channel_order_id)}`;
               window.location.href = url;
           } else {
               // Handle error if needed
@@ -154,6 +194,11 @@ const payButton = async() => {
 
     const razor = new window.Razorpay(options);
     razor.open();
+
+
+  }
+  
+
   };
 
 

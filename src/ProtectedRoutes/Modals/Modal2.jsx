@@ -9,6 +9,7 @@ function Modal2({ onClose }) {
   const [stock, setStock] = useState();
   const [productCategory, setProductCategory] = useState("");
   const [productDescription, setProductDescription] = useState("");
+  const [sku, setProductSku] = useState("");
   const [insideBox, setInsideBox] = useState("");
   const [imageFiles, setImageFiles] = useState([]);
   // const [imageUrls, setImageUrls] = useState([]);
@@ -62,6 +63,7 @@ function Modal2({ onClose }) {
       category: productCategory,
       description: productDescription,
       insideBox,
+      sku,
       images: imageUrls,
       stock,
     };
@@ -123,6 +125,14 @@ function Modal2({ onClose }) {
             value={productCategory}
             onChange={(e) => setProductCategory(e.target.value)}
             placeholder="Enter product category"
+            className="p-2 bg-white text-black border"
+          />
+          <input
+            type="text"
+            id="productSku"
+            value={sku}
+            onChange={(e) => setProductSku(e.target.value)}
+            placeholder="Enter product SKU"
             className="p-2 bg-white text-black border"
           />
           <input

@@ -1,9 +1,11 @@
 import React, { useState,useEffect } from "react";
 import { IoIosHeart } from 'react-icons/io';
+import { useNavigate } from "react-router-dom";
+
 
 const DiyProduct = (props) => {
+  const navigate=useNavigate()
   const {product}=props
-  console.log(product)
   const {
     name,
     description,
@@ -12,12 +14,17 @@ const DiyProduct = (props) => {
     category,
     rating,
     stock,
+    _id
 } = product;
 
   
 
   return (
-    <div style={styles.card}>
+    <div 
+    onClick={() => {
+      navigate(`/marketplace/${_id}`);
+    }}
+    style={styles.card}>
      
       <div style={{ position: "relative" }}>
         <img

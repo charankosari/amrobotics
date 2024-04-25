@@ -2,6 +2,8 @@ import { useParams ,useNavigate} from "react-router-dom"
 import {ResetPass} from "../../helper"
 import { useState } from "react"
 import tickimage from "../assets/forgotpass.png"
+import { ToastContainer, toast } from "react-toastify";
+
 
 
 function ResetPasswordFunc(props){
@@ -10,15 +12,15 @@ function ResetPasswordFunc(props){
     const [resetSuccess,setresetSuccess]=useState(false)
 
     const resetPassword=async(event)=>{
-      console.log("h")
       event.preventDefault();
       const pass=document.getElementById("pass").value 
       const conPass=document.getElementById("conPass").value
       const response=await ResetPass(pass,conPass,id)
-      console.log(response)
-
       if(response.status==201){
        setresetSuccess(true)
+      }
+      else{
+        toast.error(response.response.data.error)
       }
       
     }
@@ -38,6 +40,18 @@ function ResetPasswordFunc(props){
 
         
       <div className="flex flex-row justify-center  h-dvh items-center bg-[#e3e3e3] ">
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
       <div className="flex flex-col justify-center p-9  shadow-xl w-min bg-white">
      <h1 className="text-xl text-center font-bold ">Reset Account Password</h1>
      <p className="text-sm text-center">Enter new password to reset your account password</p>
