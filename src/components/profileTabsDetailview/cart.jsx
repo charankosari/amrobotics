@@ -101,7 +101,6 @@ const updateCartQuantity = async(a) => {
         />
         </div>
       )
-
   }
 
   const emptyCartView=()=>{

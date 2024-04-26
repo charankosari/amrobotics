@@ -12,6 +12,7 @@ import UserProfile from "../../components/profileTabsDetailview/profileView.jsx"
 import Cart from "../profileTabsDetailview/cart.jsx";
 import Wishlist from "../profileTabsDetailview/wishlist.jsx"
 import ForgotPassword from "../profileTabsDetailview/ForgotPassword.jsx";
+import Orders from "../../components/profileTabsDetailview/Orders.jsx"
 import ContactUs from "../profileTabsDetailview/ContactUs.jsx";
 import Faq from '../profileTabsDetailview/FAQ.jsx'
 import { useNavigate,useLocation } from "react-router-dom";
@@ -55,6 +56,8 @@ function Profile() {
       return <Cart/>
     case tabIds.wishlist:
       return <Wishlist/>
+    case tabIds.order:
+      return <Orders/>
     case tabIds.changepass:
       return <ForgotPassword/>
     case tabIds.contact:
@@ -93,7 +96,9 @@ function Profile() {
                 </div>
              
             </div> 
-            <div className="flex flex-row gap-2 mx-4 border-b-2 border-b-zinc-400 pb-2">
+
+
+            <div className="flex cursor-pointer flex-row gap-2 mx-4 border-b-2  border-b-zinc-400 pb-2" onClick={()=>{changeActiveId(tabIds.order)}} >
               <CiViewList
                 className="w-[90px] h-[90px] mr-3 text-[#FF9F1C]"
                 id="icon"

@@ -379,6 +379,43 @@ export  async function sendToWishlistApi(id) {
         }
         
 
+      // get user orders________________________________
+      
+      export  async function getMyOrders(){
+        const jwtToken=localStorage.getItem("jwtToken")
+          
+          const config={
+            method:"get",
+            url:`/orders/me`,
+            headers:{
+              "Authorization":`Bearer ${jwtToken}`,
+              "Content-Type":"application/json"
+                }  
+          }
+          try {
+            const response =await axios(config)
+            return response
+           } 
+          catch (error) {
+            return error
+          }
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           //  // create order__________________________________________
 
           //  export  async function CreateNewOrder() {
@@ -402,4 +439,4 @@ export  async function sendToWishlistApi(id) {
           // }
           
   
-          
+          // 
