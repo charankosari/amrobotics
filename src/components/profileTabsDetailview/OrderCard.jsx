@@ -46,6 +46,9 @@ const OrderCard = (props) => {
           <p className="text-[13px]">Delivery Date</p>
           <p className="text-[13px]">30/04/2024</p>
         </div>
+      
+      </div>
+      <div className="flex flex-row  justify-between mb-2">
         <div className="">
           <p className="text-[13px]">Amount</p>
           <p className="text-[13px]">{totalPrice}/-</p>
@@ -54,7 +57,7 @@ const OrderCard = (props) => {
           <p className="text-[13px]">OrderId</p>
           <p className="text-[13px]">{channel_order_id}</p>
         </div>
-      </div>
+        </div>
       <hr />
       <div>
         <p className="text-[15px] font-semi-bold  text-green-700 font-semibold ">
