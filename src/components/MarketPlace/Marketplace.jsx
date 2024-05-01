@@ -35,7 +35,7 @@ function Marketplace() {
   const clearAllFilters = () => {
     document.getElementById("input").value = ""
     document.getElementById("categoryselect").value="category"
-    setFilter({})
+    setFilter({page: 1 })
   }
 
   const incPagination = () => {
@@ -84,9 +84,8 @@ function Marketplace() {
         >
           <button
             className="text-black sm:block hidden text-3xl font-bold"
-            id="font"
-          >
-            Whats new
+            id="font" >
+            Filter : 
           </button>
           <select
             name="category"
@@ -127,12 +126,35 @@ function Marketplace() {
           className="flex gap-0  sm:gap-12  w-auto right-12 absolute"
           id="lol"
         >
-          <button
-            className=" text-black rounded-md sm:block hidden text-3xl font-bold "
-            id="font"
+        <div className="flex flex-row items-center">
+          <label>Sort By : </label>
+          <select
+            name="sort"
+            onChange={filterChanges}
+            className="p-2 mr-2 text-black bg-white text-3xl font-bold   rounded-md"
+            id="categoryselect"
           >
-            Filter
-          </button>
+            <option value="atoz" className="text-xl">
+              A-Z
+            </option>
+            <option value="ztoa" className="text-xl">
+              Z-A
+            </option>
+            <option value="hightolow" className="text-xl">
+              Hig-Low
+            </option>
+            <option value="lowtohigh" className="text-xl">
+              Low-Hig
+            </option>
+            <option value="datedesc" className="text-xl">
+              Old to New
+            </option>
+            <option value="dateasc" className="text-xl">
+              New to Old
+            </option>
+          </select>
+        </div>
+
           <button
             className="  text-black rounded-md sm:block hidden text-3xl font-bold"
             id="font"
