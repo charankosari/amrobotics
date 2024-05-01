@@ -59,7 +59,7 @@ const emptyOrdersView=()=>{
 
 const successView=()=>{
   return (
-    <div className='p-3'>
+    <div className='p-3 w-auto'>
       
       <h1 className='text-xl font-bold mb-4'>MyOrders</h1>
 

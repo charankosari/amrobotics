@@ -70,14 +70,14 @@ function Profile() {
   }
 
     return (
-      <div className="bg-white h-[clamp(120vh,8vw,100vh)] pb-12" >
+      <div className="bg-white pb-6 overflow-hidden" >
         <Navbar />
-        <div className="flex flex-row  mt-12 h-[80dvh]  " id="some">
+        <div className="flex flex-row  mt-6   " id="some">
         <div id="navv">
         <button onClick={toggleMenu} style={{backgroundColor:'black',color:'white',padding:'10px',borderRadius:'5px',marginBottom:'5px'}}>menu</button>
       </div>
       
-  <div className={`flex flex-col gap-12 mx-12 w-[30%] h-[clamp(100vh,8vw,90vh)] `} id="gap" style={{ left: isMenuOpen ? '0' : '-100%',zIndex:2,backgroundColor:'#fff' }}>
+  <div className={`flex flex-col gap-12 mx-12 w-[30%] h-[100%] `} id="gap" style={{ left: isMenuOpen ? '0' : '-100%',zIndex:2,backgroundColor:'#fff' }}>
 
 
             
@@ -87,7 +87,7 @@ function Profile() {
                 id="icon"
               />
                 <div className="flex flex-col">
-                  <h1 className="text-5xl" id="head">
+                  <h1 className="text-4xl   " id="head">
                     Account Details
                   </h1>
                   <p className="text-2xl w-[70%]" id="head-text">
@@ -105,7 +105,7 @@ function Profile() {
               />
               
                 <div className="flex flex-col">
-                  <h1 className="text-5xl" id="head">
+                  <h1 className="text-4xl " id="head">
                     Your Orders
                   </h1>
                   <p className="text-2xl w-[70%]" id="head-text">
@@ -121,7 +121,7 @@ function Profile() {
                 id="icon"
               />
               <div className="flex flex-col">
-                <h1 className="text-5xl" id="head">
+                <h1 className="text-4xl " id="head">
                   Whishlist
                 </h1>
                 <p className="text-2xl w-[70%]" id="head-text">
@@ -135,7 +135,7 @@ function Profile() {
                 id="icon"
               />
               <div className="flex flex-col">
-                <h1 className="text-5xl" id="head">
+                <h1 className="text-4xl " id="head">
                   Your Cart
                 </h1>
                 <p className="text-2xl w-[70%] " id="head-text">
@@ -149,7 +149,7 @@ function Profile() {
                 id="icon"
               />
               <div className="flex flex-col">
-                <h1 className="text-5xl" id="head">
+                <h1 className="text-4xl " id="head">
                   Change password
                 </h1>
                 <p className="text-2xl w-[70%]" id="head-text">
@@ -164,7 +164,7 @@ function Profile() {
                 id="icon"
               />
               <div className="flex flex-col " >
-                <h1 className="text-5xl" id="head">
+                <h1 className="text-4xl " id="head">
                   Contact support
                 </h1>
                 <p className="text-2xl w-[70%]" id="head-text">
@@ -179,7 +179,7 @@ function Profile() {
                 id="icon"
               />
               <div className="flex flex-col">
-                <h1 className="text-5xl" id="head">
+                <h1 className="text-4xl" id="head">
                   FAQ's(Frequently Asked Questions)
                 </h1>
                 <p className="text-2xl w-[70%]" id="head-text">
