@@ -28,7 +28,7 @@ const OrderCard = (props) => {
     createdAt,
   } = each;
   const { name, units, images, selling_price, id, sku } = orderItems[0];
-  const { address, country, state, city, pin, mobile, email } = shippingInfo;
+  const { address, country, state, city, pin, mobile, email} = shippingInfo;
   const username = shippingInfo.name;
   const dateObject = new Date(createdAt);
   const orderDate = `${dateObject.getDate()} ${
@@ -71,17 +71,15 @@ const OrderCard = (props) => {
             </div>
           </div>
           <div className="flex flex-col">
-            <button className="border border-gray-100 rounded-md bg-orange-500 p-1 text-white text-sm">
-              Track Order
+            <button className="border border-gray-100 rounded-md bg-orange-500 p-1 text-white text-sm">        
+            <a href="https://amrobotics.shiprocket.co/tracking">track</a>
             </button>
-
-            <Button
-              className="border border-gray-100 rounded-md bg-orange-500 p-1 text-white text-sm"
-              variant="contained"
+            <button
+              className="border border-gray-100 rounded-md bg-gray-500 p-1 text-white text-sm"
               onClick={() => setModalShow(true)}
             >
               OrderDetails
-            </Button>
+            </button>
 
             <Dialog
               open={modalShow}
