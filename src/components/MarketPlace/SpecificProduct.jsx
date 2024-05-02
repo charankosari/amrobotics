@@ -313,7 +313,16 @@ export default function MyComponent() {
               } text-[12px] sm:text-xl font-semibold `}
               onClick={() => handleSectionClick("features")}
             >
-              features
+              {details.features ? "features" : null}
+            </div>
+
+            <div
+              className={` bg-[#c6cbc6] p-2 rounded-md hover:bg-[#a9aca9] cursor-pointer  ${
+                activeSection === "features" ? "text-black " : "text-[#6e7271]"
+              } text-[12px] sm:text-xl font-semibold `}
+              onClick={() => handleSectionClick("specifications")}
+            >
+              {details.specifications ? "specifications" : null}
             </div>
           </div>
 
@@ -353,6 +362,21 @@ export default function MyComponent() {
                 <ul className="list-disc pl-4">
                   {details.features.map((feature, index) => (
                     <li key={index}>{feature}</li>
+                  ))}
+                </ul>
+              ) : null}
+            </div>
+          )}
+          {activeSection === "specifications" && (
+            <div
+              className="text-black sm:text-xl text-sm mt-4 mx-2 ml-[22px] sm:ml-[44px]"
+              id="text-to-be-expanded"
+              style={{ fontSize: "0.875rem" }}
+            >
+              {details.specifications && details.specifications.length > 0 ? (
+                <ul className="list-disc pl-4">
+                  {details.specifications.map((specification, index) => (
+                    <li key={index}>{specification}</li>
                   ))}
                 </ul>
               ) : null}
