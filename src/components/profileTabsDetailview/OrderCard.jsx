@@ -28,7 +28,7 @@ const OrderCard = (props) => {
     createdAt,
   } = each;
   const { name, units, images, selling_price, id, sku } = orderItems[0];
-  const { address, country, state, city, pin, mobile, email} = shippingInfo;
+  const { address, country, state, city, pin, mobile, email } = shippingInfo;
   const username = shippingInfo.name;
   const dateObject = new Date(createdAt);
   const orderDate = `${dateObject.getDate()} ${
@@ -37,27 +37,32 @@ const OrderCard = (props) => {
 
   return (
     <div className="border mb-2 bg-white w-[80%] p-3  border-gray-300 rounded-md">
-      <div className="flex flex-row justify-between mb-2">
-        <div className="">
-          <p className="text-[13px]">OrderPlaced</p>
-          <p className="text-[13px]">{orderDate}</p>
+      <div className="flex sm:flex-col flex-row justify-between mb-2">
+        <div className=" flex flex-row">
+
+          <div className="">
+            <p className="text-[13px] font-semibold">OrderPlaced</p>
+            <p className="text-[13px]">{orderDate}</p>
+          </div>
+
+          <div className="">
+            <p className="text-[13px] font-semibold">Delivery Date</p>
+            <p className="text-[13px]">30/04/2024</p>
+          </div>
+
         </div>
-        <div className="">
-          <p className="text-[13px]">Delivery Date</p>
-          <p className="text-[13px]">30/04/2024</p>
+        <div  className=" flex flex-row">
+          <div className="">
+            <p className="text-[13px] font-semibold">Amount</p>
+            <p className="text-[13px]">{totalPrice}/-</p>
+          </div>
+          <div className="">
+            <p className="text-[13px] font-semibold">OrderId</p>
+            <p className="text-[13px]">{channel_order_id}</p>
+          </div>
         </div>
-      
       </div>
-      <div className="flex flex-row  justify-between mb-2">
-        <div className="">
-          <p className="text-[13px]">Amount</p>
-          <p className="text-[13px]">{totalPrice}/-</p>
-        </div>
-        <div className="">
-          <p className="text-[13px]">OrderId</p>
-          <p className="text-[13px]">{channel_order_id}</p>
-        </div>
-        </div>
+
       <hr />
       <div>
         <p className="text-[15px] font-semi-bold  text-green-700 font-semibold ">
@@ -74,8 +79,13 @@ const OrderCard = (props) => {
             </div>
           </div>
           <div className="flex flex-col">
-            <button className="border border-gray-100 rounded-md bg-orange-500 p-1 text-white text-sm">        
-            <a href="https://amrobotics.shiprocket.co/tracking">track</a>
+            <button className="border border-gray-100 rounded-md bg-orange-500 p-1 text-white text-sm">
+              <a
+                href={`https://amrobotics.shiprocket.co/tracking/order/${channel_order_id}`}
+                target="_blank"
+              >
+                track
+              </a>
             </button>
             <button
               className="border border-gray-100 rounded-md bg-gray-500 p-1 text-white text-sm"
@@ -95,7 +105,8 @@ const OrderCard = (props) => {
                   Order Details
                 </DialogTitle>
                 <p className="text-[13px] pr-3">
-                  <span className=" font-semibold text-[15px]">OrderId</span> : {channel_order_id}
+                  <span className=" font-semibold text-[15px]">OrderId</span> :{" "}
+                  {channel_order_id}
                 </p>
               </div>
               <hr />
@@ -133,7 +144,6 @@ const OrderCard = (props) => {
                         {address}
                       </p>
                     </div>
-
                   </div>
 
                   <hr />
@@ -141,15 +151,17 @@ const OrderCard = (props) => {
                   <div className="border mb-2 mt-3   bg-white w-[80%] p-3  border-gray-300 rounded-md">
                     <div className="flex flex-row justify-between mb-2">
                       <div className="">
-                        <p className="text-[13px]">OrderPlaced</p>
+                        <p className="text-[13px] font-semibold">OrderPlaced</p>
                         <p className="text-[13px]">{orderDate}</p>
                       </div>
                       <div className="">
-                        <p className="text-[13px]">Delivery Date</p>
+                        <p className="text-[13px] font-semibold">
+                          Delivery Date
+                        </p>
                         <p className="text-[13px]">30/04/2024</p>
                       </div>
                       <div className="">
-                        <p className="text-[13px]">Amount</p>
+                        <p className="text-[13px] font-semibold">Amount</p>
                         <p className="text-[13px]">{totalPrice}/-</p>
                       </div>
                     </div>
