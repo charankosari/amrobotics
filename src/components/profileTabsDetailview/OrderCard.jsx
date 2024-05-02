@@ -37,6 +37,33 @@ const OrderCard = (props) => {
 
   return (
     <div className="border mb-2 bg-white w-[80%] p-3  border-gray-300 rounded-md">
+<<<<<<< HEAD
+      <div className="flex sm:flex-col flex-row justify-between mb-2">
+        <div className=" flex flex-row">
+
+          <div className="">
+            <p className="text-[13px] font-semibold">OrderPlaced</p>
+            <p className="text-[13px]">{orderDate}</p>
+          </div>
+
+          <div className="">
+            <p className="text-[13px] font-semibold">Delivery Date</p>
+            <p className="text-[13px]">30/04/2024</p>
+          </div>
+
+        </div>
+        <div  className=" flex flex-row">
+          <div className="">
+            <p className="text-[13px] font-semibold">Amount</p>
+            <p className="text-[13px]">{totalPrice}/-</p>
+          </div>
+          <div className="">
+            <p className="text-[13px] font-semibold">OrderId</p>
+            <p className="text-[13px]">{channel_order_id}</p>
+          </div>
+        </div>
+      </div>
+=======
     
      <div className="flex flex-wrap justify-between">
       <div className="w-[48%] lg:w-[23%] mb-4">
@@ -56,6 +83,7 @@ const OrderCard = (props) => {
         <p className="text-[13px]">{channel_order_id}</p>
       </div>
     </div>
+>>>>>>> d8db097c907ca77bf90124769fb377e135e733a0
 
       <hr />
       <div>
@@ -74,7 +102,16 @@ const OrderCard = (props) => {
           </div>
           <div className="flex flex-col">
             <button className="border border-gray-100 rounded-md bg-orange-500 p-1 text-white text-sm">
+<<<<<<< HEAD
+              <a
+                href={`https://amrobotics.shiprocket.co/tracking/order/${channel_order_id}`}
+                target="_blank"
+              >
+                track
+              </a>
+=======
               <a href="https://amrobotics.shiprocket.co/tracking">track</a>
+>>>>>>> d8db097c907ca77bf90124769fb377e135e733a0
             </button>
             <button
               className="border border-gray-100 rounded-md bg-gray-500 p-1 text-white text-sm"
@@ -140,15 +177,17 @@ const OrderCard = (props) => {
                   <div className="border mb-2 mt-3   bg-white w-[80%] p-3  border-gray-300 rounded-md">
                     <div className="flex flex-row justify-between mb-2">
                       <div className="">
-                        <p className="text-[13px]">OrderPlaced</p>
+                        <p className="text-[13px] font-semibold">OrderPlaced</p>
                         <p className="text-[13px]">{orderDate}</p>
                       </div>
                       <div className="">
-                        <p className="text-[13px]">Delivery Date</p>
+                        <p className="text-[13px] font-semibold">
+                          Delivery Date
+                        </p>
                         <p className="text-[13px]">30/04/2024</p>
                       </div>
                       <div className="">
-                        <p className="text-[13px]">Amount</p>
+                        <p className="text-[13px] font-semibold">Amount</p>
                         <p className="text-[13px]">{totalPrice}/-</p>
                       </div>
                     </div>
