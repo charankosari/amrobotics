@@ -4,7 +4,7 @@ import axios from "axios";
 import "./Modals.css";
 
 function Modal2({ onClose, fetchProducts }) {
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
   const [productImages, setProductImages] = useState([]);
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState("");
