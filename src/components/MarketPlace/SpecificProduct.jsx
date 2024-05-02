@@ -110,11 +110,15 @@ export default function MyComponent() {
     console.log(response);
     if (response.status == 200) {
       getDetails();
+<<<<<<< HEAD
       if (response.data.message === "Product wishlisted successfully") {
         toast.success("Item Wishlisted");
       } else {
         toast.warning("Item removed from Wishlisted");
       }
+=======
+      toast.success("Item Wishlisted");
+>>>>>>> bd5da99b2411e037feb315ab2e6a2bd73b963c75
     }
   };
 
@@ -167,14 +171,8 @@ export default function MyComponent() {
                 >
                   <button
                     onClick={wishListItem}
-                    style={{
-                      position: "absolute",
-                      top: "0px",
-                      right: "10px",
-                      cursor: "pointer",
-                      border: "none",
-                      backgroundColor: "transparent",
-                    }}
+                    id="whishbutton"
+                    className="absolute top-[clamp(-100px,0vw,10px)] right-[25%] cursor-pointer bg-transparent"
                   >
                     <IoIosHeart
                       color={colorr}
@@ -186,12 +184,15 @@ export default function MyComponent() {
                   <img
                     loading="lazy"
                     srcSet={mainImage}
-                    className="aspect-[1.4] object-contain object-center w-full overflow-hidden max-md:max-w-full"
+                    className="aspect-[1.4] object-contain object-center w-[100%] sm:w-[80%] overflow-hidden max-md:max-w-full rounded-md p-0  sm:p-4 mb-2"
                   />
                   <div className=" max-md:max-w-full">
-                    <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0 overflow-scroll ">
+                    <div
+                      className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0 overflow-scroll mr-[9.5rem] "
+                      id="todecrease"
+                    >
                       <div
-                        className="flex flex-row gap-2  items-stretch w-[26%] max-md:w-full max-md:ml-25 no-scrollbar  ml-5 "
+                        className="flex flex-row gap-2  items-stretch w-[26%] max-md:w-full max-md:ml-25 no-scrollbar    "
                         id="mleft"
                       >
                         {details.images.map((image, index) => (
@@ -199,7 +200,11 @@ export default function MyComponent() {
                             key={index}
                             loading="lazy"
                             srcSet={image}
+<<<<<<< HEAD
                             className={`aspect-[1.14] object-contain object-center w-[128px] overflow-hidden shrink-0 max-w-full grow max-md:mt-3 cursor-pointer`}
+=======
+                            className="aspect-[1.14] object-contain rounded object-center border-2 border-[#F59E0B] p-2 w-[80px] overflow-hidden shrink-0 max-w-full grow max-md:mt-3 cursor-pointer "
+>>>>>>> bd5da99b2411e037feb315ab2e6a2bd73b963c75
                             onClick={() => handleImageClick(image)}
                           />
                         ))}
@@ -312,13 +317,17 @@ export default function MyComponent() {
 
             <div
               className={` bg-[#c6cbc6] p-2 rounded-md hover:bg-[#a9aca9] cursor-pointer  ${
+<<<<<<< HEAD
                 activeSection === "productDetails"
                   ? "text-black "
                   : "text-[#6e7271]"
+=======
+                activeSection === "features" ? "text-black " : "text-[#6e7271]"
+>>>>>>> bd5da99b2411e037feb315ab2e6a2bd73b963c75
               } text-[12px] sm:text-xl font-semibold `}
-              onClick={() => handleSectionClick("productDetails")}
+              onClick={() => handleSectionClick("features")}
             >
-              Product Details
+              features
             </div>
           </div>
 
@@ -334,24 +343,50 @@ export default function MyComponent() {
 
           {activeSection === "insideBox" && (
             <div
+<<<<<<< HEAD
               className="text-black sm:text:xl text-sm  mt-4 mx-2 ml-[22px] sm:ml-[44px] "
               id="text-to-be-expanded "
               style={{ fontSize: "0.875rem " }}
             >
               consectetur adipisicing elit. Voluptates obcaecati nesciunt
               repudiandae ut, id qsxsx
+=======
+              className="text-black sm:text-xl text-sm mt-4 mx-2 ml-[22px] sm:ml-[44px]"
+              id="text-to-be-expanded"
+              style={{ fontSize: "0.875rem" }}
+            >
+              <ul className="list-disc pl-4">
+                {details.insideBox.map((item, index) => (
+                  <li key={index} className="mb-2">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+>>>>>>> bd5da99b2411e037feb315ab2e6a2bd73b963c75
             </div>
           )}
 
-          {activeSection === "productDetails" && (
+          {activeSection === "features" && (
             <div
-              className="text-black sm:text:xl text-sm  mt-4 mx-2 ml-[22px] sm:ml-[44px]"
+              className="text-black sm:text-xl text-sm mt-4 mx-2 ml-[22px] sm:ml-[44px]"
               id="text-to-be-expanded"
+<<<<<<< HEAD
               style={{ fontSize: "0.875rem " }}
             >
               elit. Voluptates obcaecati nesciunt repudiandae ut, id quis ex
               sunt vel earum dolores quisquam, eligendi impedit laboriosam
               blanditiis dolorum nesciunt?
+=======
+              style={{ fontSize: "0.875rem" }}
+            >
+              {details.features && details.features.length > 0 ? (
+                <ul className="list-disc pl-4">
+                  {details.features.map((feature, index) => (
+                    <li key={index}>{feature}</li>
+                  ))}
+                </ul>
+              ) : null}
+>>>>>>> bd5da99b2411e037feb315ab2e6a2bd73b963c75
             </div>
           )}
 
