@@ -110,15 +110,11 @@ export default function MyComponent() {
     console.log(response);
     if (response.status == 200) {
       getDetails();
-<<<<<<< HEAD
       if (response.data.message === "Product wishlisted successfully") {
         toast.success("Item Wishlisted");
       } else {
         toast.warning("Item removed from Wishlisted");
       }
-=======
-      toast.success("Item Wishlisted");
->>>>>>> bd5da99b2411e037feb315ab2e6a2bd73b963c75
     }
   };
 
@@ -200,11 +196,7 @@ export default function MyComponent() {
                             key={index}
                             loading="lazy"
                             srcSet={image}
-<<<<<<< HEAD
-                            className={`aspect-[1.14] object-contain object-center w-[128px] overflow-hidden shrink-0 max-w-full grow max-md:mt-3 cursor-pointer`}
-=======
                             className="aspect-[1.14] object-contain rounded object-center border-2 border-[#F59E0B] p-2 w-[80px] overflow-hidden shrink-0 max-w-full grow max-md:mt-3 cursor-pointer "
->>>>>>> bd5da99b2411e037feb315ab2e6a2bd73b963c75
                             onClick={() => handleImageClick(image)}
                           />
                         ))}
@@ -317,13 +309,7 @@ export default function MyComponent() {
 
             <div
               className={` bg-[#c6cbc6] p-2 rounded-md hover:bg-[#a9aca9] cursor-pointer  ${
-<<<<<<< HEAD
-                activeSection === "productDetails"
-                  ? "text-black "
-                  : "text-[#6e7271]"
-=======
                 activeSection === "features" ? "text-black " : "text-[#6e7271]"
->>>>>>> bd5da99b2411e037feb315ab2e6a2bd73b963c75
               } text-[12px] sm:text-xl font-semibold `}
               onClick={() => handleSectionClick("features")}
             >
@@ -343,14 +329,6 @@ export default function MyComponent() {
 
           {activeSection === "insideBox" && (
             <div
-<<<<<<< HEAD
-              className="text-black sm:text:xl text-sm  mt-4 mx-2 ml-[22px] sm:ml-[44px] "
-              id="text-to-be-expanded "
-              style={{ fontSize: "0.875rem " }}
-            >
-              consectetur adipisicing elit. Voluptates obcaecati nesciunt
-              repudiandae ut, id qsxsx
-=======
               className="text-black sm:text-xl text-sm mt-4 mx-2 ml-[22px] sm:ml-[44px]"
               id="text-to-be-expanded"
               style={{ fontSize: "0.875rem" }}
@@ -362,7 +340,6 @@ export default function MyComponent() {
                   </li>
                 ))}
               </ul>
->>>>>>> bd5da99b2411e037feb315ab2e6a2bd73b963c75
             </div>
           )}
 
@@ -370,13 +347,6 @@ export default function MyComponent() {
             <div
               className="text-black sm:text-xl text-sm mt-4 mx-2 ml-[22px] sm:ml-[44px]"
               id="text-to-be-expanded"
-<<<<<<< HEAD
-              style={{ fontSize: "0.875rem " }}
-            >
-              elit. Voluptates obcaecati nesciunt repudiandae ut, id quis ex
-              sunt vel earum dolores quisquam, eligendi impedit laboriosam
-              blanditiis dolorum nesciunt?
-=======
               style={{ fontSize: "0.875rem" }}
             >
               {details.features && details.features.length > 0 ? (
@@ -386,7 +356,6 @@ export default function MyComponent() {
                   ))}
                 </ul>
               ) : null}
->>>>>>> bd5da99b2411e037feb315ab2e6a2bd73b963c75
             </div>
           )}
 
