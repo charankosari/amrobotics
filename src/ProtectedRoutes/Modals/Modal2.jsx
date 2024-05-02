@@ -1,11 +1,10 @@
-
 import React, { useState } from "react";
 import { X } from "react-feather";
 import axios from "axios";
 import "./Modals.css";
 
-function Modal2({ onClose,fetchProducts }) {
-  const [step, setStep] = useState(1);
+function Modal2({ onClose, fetchProducts }) {
+  const [step, setStep] = useState(2);
   const [productImages, setProductImages] = useState([]);
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState("");
@@ -20,10 +19,27 @@ function Modal2({ onClose,fetchProducts }) {
   const [stock, setStock] = useState("");
   const [loading, setLoading] = useState(false);
   const [imageFiles, setImageFiles] = useState([]);
+  const [hasFeatures, setHasFeatures] = useState(false);
+  const [featureCount, setFeatureCount] = useState(0);
+  const [features, setFeatures] = useState([]);
+
+  const handleAddFeature = () => {
+    const newFeatures = Array.from({ length: featureCount }, (_, index) => ({
+      id: features.length + index + 1,
+      value: "",
+    }));
+    setFeatures([...features, ...newFeatures]);
+  };
+
+  const handleFeatureChange = (index, value) => {
+    const updatedFeatures = features.map((feature) =>
+      feature.id === index ? { ...feature, value } : feature
+    );
+    setFeatures(updatedFeatures);
+  };
 
   const handleNextStep = () => {
     uploadButton();
-    
   };
 
   const handlePreviousStep = () => {
@@ -33,11 +49,10 @@ function Modal2({ onClose,fetchProducts }) {
   const handleAddInsideBoxItem = () => {
     const newItems = Array.from({ length: insideBoxCount }, (_, index) => ({
       id: insideBoxItems.length + index + 1,
-      value: ""
+      value: "",
     }));
     setInsideBoxItems([...insideBoxItems, ...newItems]);
   };
-  
 
   const handleInsideBoxItemChange = (index, value) => {
     const updatedItems = insideBoxItems.map((item) =>
@@ -47,13 +62,15 @@ function Modal2({ onClose,fetchProducts }) {
   };
 
   const handleAddSpecification = () => {
-    const newSpecifications = Array.from({ length: specificationCount }, (_, index) => ({
-      id: specifications.length + index + 1,
-      value: ""
-    }));
+    const newSpecifications = Array.from(
+      { length: specificationCount },
+      (_, index) => ({
+        id: specifications.length + index + 1,
+        value: "",
+      })
+    );
     setSpecifications([...specifications, ...newSpecifications]);
   };
-  
 
   const handleSpecificationChange = (index, value) => {
     const updatedSpecifications = specifications.map((spec) =>
@@ -85,7 +102,7 @@ function Modal2({ onClose,fetchProducts }) {
           return null;
         }
       });
-  
+
       try {
         const uploadedUrls = await Promise.all(uploadPromises);
         const successfulUrls = uploadedUrls.filter((url) => url !== null);
@@ -100,7 +117,7 @@ function Modal2({ onClose,fetchProducts }) {
       alert("Please select at least one image before uploading.");
     }
   };
-  
+
   const handleFormSubmit = async () => {
     // Form data to be sent to the server
     const formData = {
@@ -108,8 +125,9 @@ function Modal2({ onClose,fetchProducts }) {
       price: productPrice,
       category: productCategory,
       sku: productSku,
-      images:productImages,
+      images: productImages,
       description,
+      features: features.map((feature) => feature.value),
       insideBox: insideBoxItems.map((item) => item.value),
       specifications: hasSpecifications
         ? specifications.map((spec) => spec.value)
@@ -126,11 +144,15 @@ function Modal2({ onClose,fetchProducts }) {
     try {
       setLoading(true);
       const authToken = localStorage.getItem("jwtToken");
-          const response=  await axios.post("http://localhost:5080/api/v1/product/new", formData, {
-              headers: {
-                Authorization: `Bearer ${authToken}`,
-              },
-            });
+      const response = await axios.post(
+        "http://localhost:5080/api/v1/product/new",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        }
+      );
       console.log("Response:", response.data);
       setLoading(false);
       onClose(); // Close the modal after successful submission
@@ -181,14 +203,14 @@ function Modal2({ onClose,fetchProducts }) {
               placeholder="Enter product SKU"
               className="p-2 bg-white text-black border"
             />
-             <input
+            <input
               type="number"
               value={stock}
               onChange={(e) => setStock(e.target.value)}
               placeholder="Enter the stock"
               className="p-2 bg-white text-black border"
             />
-             <input
+            <input
               type="text"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
@@ -215,7 +237,7 @@ function Modal2({ onClose,fetchProducts }) {
         )}
         {step === 2 && (
           <form className="flex flex-col gap-2">
-           
+             <label htmlFor="hasFeatures">Inside Box</label>
             <div className="flex items-center gap-2">
               <input
                 type="number"
@@ -237,7 +259,9 @@ function Modal2({ onClose,fetchProducts }) {
                 key={item.id}
                 type="text"
                 value={item.value}
-                onChange={(e) => handleInsideBoxItemChange(item.id, e.target.value)}
+                onChange={(e) =>
+                  handleInsideBoxItemChange(item.id, e.target.value)
+                }
                 placeholder={`Item ${item.id}`}
                 className="p-2 bg-white text-black border"
               />
@@ -252,35 +276,77 @@ function Modal2({ onClose,fetchProducts }) {
             </div>
             {hasSpecifications && (
               <>
-               <div className="flex items-center gap-2">
-                <input
-                  type="number"
-                  value={specificationCount}
-                  onChange={(e) => setSpecificationCount(e.target.value)}
-                  placeholder="Number of specifications"
-                  className="p-2 bg-white text-black border"
-                />
-                <button
-                  type="button"
-                  onClick={handleAddSpecification}
-                  className="bg-blue-500 text-white px-3 py-1 rounded"
-                >
-                  Add Specifications
-                </button>
+                <div className="flex items-center gap-2">
+                  <input
+                    type="number"
+                    value={specificationCount}
+                    onChange={(e) => setSpecificationCount(e.target.value)}
+                    placeholder="Number of specifications"
+                    className="p-2 bg-white text-black border"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleAddSpecification}
+                    className="bg-blue-500 text-white px-3 py-1 rounded"
+                  >
+                    Add Specifications
+                  </button>
                 </div>
                 {specifications.map((spec) => (
                   <input
                     key={spec.id}
                     type="text"
                     value={spec.value}
-                    onChange={(e) => handleSpecificationChange(spec.id, e.target.value)}
+                    onChange={(e) =>
+                      handleSpecificationChange(spec.id, e.target.value)
+                    }
                     placeholder={`Specification ${spec.id}`}
                     className="p-2 bg-white text-black border"
                   />
                 ))}
               </>
             )}
-           
+            <div className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={hasFeatures}
+                onChange={(e) => setHasFeatures(e.target.checked)}
+              />
+              <label htmlFor="hasFeatures">Add Features</label>
+            </div>
+            {hasFeatures && (
+              <>
+                <div className="flex items-center gap-2">
+                  <input
+                    type="number"
+                    value={featureCount}
+                    onChange={(e) => setFeatureCount(e.target.value)}
+                    placeholder="Number of features"
+                    className="p-2 bg-white text-black border"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleAddFeature}
+                    className="bg-blue-500 text-white px-3 py-1 rounded"
+                  >
+                    Add Features
+                  </button>
+                </div>
+                {features.map((feature) => (
+                  <input
+                    key={feature.id}
+                    type="text"
+                    value={feature.value}
+                    onChange={(e) =>
+                      handleFeatureChange(feature.id, e.target.value)
+                    }
+                    placeholder={`Feature ${feature.id}`}
+                    className="p-2 bg-white text-black border"
+                  />
+                ))}
+              </>
+            )}
+
             <div className="flex gap-4 mt-4">
               <button
                 type="button"
