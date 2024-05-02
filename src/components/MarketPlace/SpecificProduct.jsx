@@ -189,7 +189,7 @@ export default function MyComponent() {
                     className="aspect-[1.4] object-contain object-center w-full overflow-hidden max-md:max-w-full"
                   />
                   <div className=" max-md:max-w-full">
-                    <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
+                    <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0 overflow-scroll ">
                       <div
                         className="flex flex-row gap-2  items-stretch w-[26%] max-md:w-full max-md:ml-25 no-scrollbar  ml-5 "
                         id="mleft"
@@ -210,7 +210,7 @@ export default function MyComponent() {
               </div>
               <div className="flex flex-col items-stretch w-[44%] ml-5 max-md:w-full max-md:ml-0">
                 <div className="flex flex-col my-auto max-md:max-w-full max-md:mt-10">
-                  <div className="text-black text-4xl font-semibold self-stretch max-md:max-w-full">
+                  <div className="text-black text-[clamp(1.5rem,2vw,2.25rem)] font-semibold self-stretch max-md:max-w-full">
                     {details.name}
                   </div>
                   <div className="text-zinc-800   text-sm  mt-7 self-start ">
