@@ -297,18 +297,28 @@ export default function MyComponent() {
               Description
             </div>
             <div
-              className={` bg-[#c6cbc6] p-2 rounded-md hover:bg-[#a9aca9] cursor-pointer  ${
-                activeSection === "insideBox" ? "text-black " : "text-[#6e7271]"
-              } text-[12px] sm:text-xl font-semibold   `}
+              className={`bg-[#c6cbc6] p-2 rounded-md hover:bg-[#a9aca9] cursor-pointer ${
+                activeSection === "insideBox" ? "text-black" : "text-[#6e7271]"
+              } text-[12px] sm:text-xl font-semibold`}
+              style={{
+                width: details.insideBox && details.insideBox.length > 0 ? "auto" : "none",
+                display: details.insideBox && details.insideBox.length > 0 ? "block" : "none"
+              }}
               onClick={() => handleSectionClick("insideBox")}
             >
-              Inside Box
+              {details.insideBox && details.insideBox.length > 0
+                ? "Inside Box"
+                : null}
             </div>
 
             <div
               className={` bg-[#c6cbc6] p-2 rounded-md hover:bg-[#a9aca9] cursor-pointer  ${
                 activeSection === "features" ? "text-black " : "text-[#6e7271]"
               } text-[12px] sm:text-xl font-semibold `}
+              style={{
+                width: details.features && details.features.length > 0 ? "auto" : "none",
+                display: details.features && details.features.length > 0 ? "block" : "none"
+              }}
               onClick={() => handleSectionClick("features")}
             >
               {details.features ? "features" : null}
@@ -318,6 +328,10 @@ export default function MyComponent() {
               className={` bg-[#c6cbc6] p-2 rounded-md hover:bg-[#a9aca9] cursor-pointer  ${
                 activeSection === "features" ? "text-black " : "text-[#6e7271]"
               } text-[12px] sm:text-xl font-semibold `}
+              style={{
+                width: details.specifications && details.specifications.length > 0 ? "auto" : "none",
+                display: details.specifications && details.specifications.length > 0 ? "block" : "none"
+              }}
               onClick={() => handleSectionClick("specifications")}
             >
               {details.specifications ? "specifications" : null}
