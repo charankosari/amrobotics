@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import "./Specificproduct.css";
@@ -15,39 +15,8 @@ import { ToastContainer, toast } from "react-toastify";
 import { IoCloseSharp } from "react-icons/io5";
 import { IoIosHeart } from "react-icons/io";
 import { createReview } from "../../helper.js";
-import "../profileTabsDetailview/wishlist.css";
 
 export default function MyComponent() {
-  const containerRef = useRef(null);
-  const scrollLeft = () => {
-    if (containerRef.current) {
-      containerRef.current.scrollLeft -= 300; // Adjust the scroll amount as needed
-    }
-  };
-
-  const scrollRight = () => {
-    if (containerRef.current) {
-      containerRef.current.scrollLeft += 300; // Adjust the scroll amount as needed
-    }
-  };
-
-  const handleMouseDown = (event) => {
-    setIsDragging(true);
-    setStartX(event.pageX - containerRef.current.offsetLeft);
-    setScrollLeft(containerRef.current.scrollLeft);
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  const handleMouseMove = (event) => {
-    if (!isDragging) return;
-    const x = event.pageX - containerRef.current.offsetLeft;
-    const walk = (x - startX) * 2; // Adjust the multiplier for smoother dragging
-    containerRef.current.scrollLeft = scrollLeft - walk;
-  };
-
   const navigate = useNavigate();
 
   const renderStars = (rating) => {
@@ -217,37 +186,18 @@ export default function MyComponent() {
                       id="todecrease"
                     >
                       <div
-                        className="flex flex-row gap-2 items-stretch w-[26%] max-md:w-full max-md:ml-25 no-scrollbar"
+                        className="flex flex-row gap-2  items-stretch w-[26%] max-md:w-full max-md:ml-25 no-scrollbar    "
                         id="mleft"
-                        ref={containerRef}
-                        style={{
-                          overflowX: "hidden",
-                          overflowY: "hidden",
-                          whiteSpace: "nowrap",
-                          position: "relative",
-                        }}
                       >
-                        {/* <button
-                          onClick={scrollLeft}
-                          className=" z-10 bg-blue-500 text-black"
-                        >
-                          Left
-                        </button> */}
                         {details.images.map((image, index) => (
                           <img
                             key={index}
                             loading="lazy"
                             srcSet={image}
-                            className="aspect-[1.14] object-contain rounded object-center border-2 border-[#F59E0B] p-2 w-[80px] overflow-hidden shrink-0 max-w-full grow max-md:mt-3 cursor-pointer"
+                            className="aspect-[1.14] object-contain rounded object-center border-2 border-[#F59E0B] p-2 w-[80px] overflow-hidden shrink-0 max-w-full grow max-md:mt-3 cursor-pointer "
                             onClick={() => handleImageClick(image)}
                           />
                         ))}
-                        {/* <button
-                          onClick={scrollRight}
-                          className="z-10 bg-blue-500 text-black"
-                        >
-                          Right
-                        </button> */}
                       </div>
                     </div>
                   </div>
@@ -351,14 +301,8 @@ export default function MyComponent() {
                 activeSection === "insideBox" ? "text-black" : "text-[#6e7271]"
               } text-[12px] sm:text-xl font-semibold`}
               style={{
-                width:
-                  details.insideBox && details.insideBox.length > 0
-                    ? "auto"
-                    : "none",
-                display:
-                  details.insideBox && details.insideBox.length > 0
-                    ? "block"
-                    : "none",
+                width: details.insideBox && details.insideBox.length > 0 ? "auto" : "none",
+                display: details.insideBox && details.insideBox.length > 0 ? "block" : "none"
               }}
               onClick={() => handleSectionClick("insideBox")}
             >
@@ -372,14 +316,8 @@ export default function MyComponent() {
                 activeSection === "features" ? "text-black " : "text-[#6e7271]"
               } text-[12px] sm:text-xl font-semibold `}
               style={{
-                width:
-                  details.features && details.features.length > 0
-                    ? "auto"
-                    : "none",
-                display:
-                  details.features && details.features.length > 0
-                    ? "block"
-                    : "none",
+                width: details.features && details.features.length > 0 ? "auto" : "none",
+                display: details.features && details.features.length > 0 ? "block" : "none"
               }}
               onClick={() => handleSectionClick("features")}
             >
@@ -391,14 +329,8 @@ export default function MyComponent() {
                 activeSection === "features" ? "text-black " : "text-[#6e7271]"
               } text-[12px] sm:text-xl font-semibold `}
               style={{
-                width:
-                  details.specifications && details.specifications.length > 0
-                    ? "auto"
-                    : "none",
-                display:
-                  details.specifications && details.specifications.length > 0
-                    ? "block"
-                    : "none",
+                width: details.specifications && details.specifications.length > 0 ? "auto" : "none",
+                display: details.specifications && details.specifications.length > 0 ? "block" : "none"
               }}
               onClick={() => handleSectionClick("specifications")}
             >
