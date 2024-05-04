@@ -239,22 +239,7 @@ const containerRef = useRef(null);
           <div className="text-6xl" id="prof">
             Previous Adresses
           </div>
-          {/* <div className="p-2 flex flex-row gap-2 flex-wrap overflow-x-auto " >
-           {
-            addresses.length==0?<div>no address</div>:
-          
-            addresses.map((address, index) =>(
-              <div key={index} className=" sm:w-min w-full bg-white rounded-sm flex flex-row   justify-center p-5 overflow-x-auto">
-                <p className="">{address.name} ,{address.mobile} ,{address.email} ,{address.address} ,{address.city} , {address.country} , {address.state} , {address.pin}</p>
-                </div>
-            ))
-            
-            }
-
-
-            
-           
-          </div> */}
+        
           <div className="flex flex-row overflow-x-auto" id='grabable' onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
       onMouseMove={handleMouseMove}
