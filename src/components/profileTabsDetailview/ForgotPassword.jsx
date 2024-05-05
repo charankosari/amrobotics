@@ -43,47 +43,40 @@ const Forgotpassword = () => {
     }
 
   return (
-    <div className="px-10 py-5 flex flex-col h-full">
-      <div className="flex flex-row justify-between ">
-        <h1 className="text-black font-black text-2xl">Forgot Password</h1>
-      </div>
-
-      <div className="coolinput">
-        <label htmlFor=" inputt" className="text">
-          Old Password
-        </label>
-        <input type="password" name="input" className="input bg-white " id="oldpassword" />
-      </div>
-      <div className="coolinput">
-        <label htmlFor=" input" className="text" >
-          New Password
-        </label>
-        <input type="password" name="input" className="input bg-white" id="password"/>
-      </div>
-      <div className="coolinput">
-        <label htmlFor=" input" className="text">
-          Confirm Password
-        </label>
-        <input type="password" name="input" className="input bg-white" id="confirmpassword"/>
-      </div>
-      <button className="w-[15%] bg-blue-700 text-white rounded-md  mt-4"  onClick={() => {
-          const oldpassword = document.getElementById("oldpassword").value;
-          const password = document.getElementById("password").value;
-          const confirmpassword = document.getElementById("confirmpassword").value;
-          Forgot(oldpassword, password, confirmpassword);
-        }} disabled={loading}
-        >
-        Update
-      </button>
-      {loading && loadingView()}
+    <div className="p-4">
+    <div className="fewf3">
+    <h1 className="text-black font-black text-2xl mb-6">Forgot Password</h1> {/* Added heading */}
+    <div className="sfdfef">
+      <label htmlFor="oldpassword" className="text">Old Password</label>
+      <input type="password" name="oldpassword" className="ere3s" id="oldpassword" placeholder="Enter your old password"/>
     </div>
+    
+    <div className="sfdfef">
+      <label htmlFor="password" className="text">New Password</label>
+      <input type="password" name="password" className="ere3s" id="password" placeholder="Enter your new password"/>
+    </div>
+    
+    <div className="sfdfef">
+      <label htmlFor="confirmpassword" className="text">Confirm Password</label>
+      <input type="password" name="confirmpassword" className="ere3s" id="confirmpassword"placeholder="Confirm your password" />
+    </div>
+    
+    <button className="as32df" onClick={() => {
+        const oldpassword = document.getElementById("oldpassword").value;
+        const password = document.getElementById("password").value;
+        const confirmpassword = document.getElementById("confirmpassword").value;
+        Forgot(oldpassword, password, confirmpassword);
+      }} disabled={loading}
+    >
+      Update
+    </button>
+    
+    {loading && loadingView()}
+  </div>
+  </div>
+  
   );
 };
 
-//   if (loading) {
-//     return loadingView();
-//   } else {
-//     return successView();
-//   }
 
 export default Forgotpassword;

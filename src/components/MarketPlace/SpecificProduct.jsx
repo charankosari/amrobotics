@@ -189,9 +189,10 @@ export default function MyComponent() {
                         {details.images.map((image, index) => (
                           <img
                             key={index}
+                            // style={{boxShadow:" 10px 5px 5px  white"}}
                             loading="lazy"
                             srcSet={image}
-                            className="aspect-[1.14] object-contain rounded object-center border-2 border-[#F59E0B] p-2 w-[80px] overflow-hidden shrink-0 max-w-full grow max-md:mt-3 cursor-pointer "
+                            className="aspect-[1.14] object-contain rounded shadow-lg object-center border-2 border-[#F59E0B] shadow-lg   p-2 w-[80px] overflow-hidden shrink-0 max-w-full grow max-md:mt-3 cursor-pointer "
                             onClick={() => handleImageClick(image)}
                           />
                         ))}
@@ -222,7 +223,7 @@ export default function MyComponent() {
                       <div className="text-red-700 text-3xl font-semibold line-through">
                         {Math.floor(
                           details.price +
-                            (details.price * (15 + Math.random() * 5)) / 100
+                            (details.price * (15)) / 100
                         )}
                       </div>
                     </div>
@@ -294,12 +295,18 @@ export default function MyComponent() {
               Description
             </div>
             <div
-              className={` bg-[#c6cbc6] p-2 rounded-md hover:bg-[#a9aca9] cursor-pointer  ${
-                activeSection === "insideBox" ? "text-black " : "text-[#6e7271]"
-              } text-[12px] sm:text-xl font-semibold   `}
+              className={`bg-[#c6cbc6] p-2 rounded-md hover:bg-[#a9aca9] cursor-pointer ${
+                activeSection === "insideBox" ? "text-black" : "text-[#6e7271]"
+              } text-[12px] sm:text-xl font-semibold`}
+              style={{
+                width: details.insideBox && details.insideBox.length > 0 ? "auto" : "none",
+                display: details.insideBox && details.insideBox.length > 0 ? "block" : "none"
+              }}
               onClick={() => handleSectionClick("insideBox")}
             >
-              Inside Box
+              {details.insideBox && details.insideBox.length > 0
+                ? "Inside Box"
+                : null}
             </div>
 
            
@@ -310,6 +317,10 @@ export default function MyComponent() {
               className={` bg-[#c6cbc6] p-2 rounded-md hover:bg-[#a9aca9] cursor-pointer  ${
                 activeSection === "features" ? "text-black " : "text-[#6e7271]"
               } text-[12px] sm:text-xl font-semibold `}
+              style={{
+                width: details.features && details.features.length > 0 ? "auto" : "none",
+                display: details.features && details.features.length > 0 ? "block" : "none"
+              }}
               onClick={() => handleSectionClick("features")}
             >
              Features
@@ -324,6 +335,10 @@ export default function MyComponent() {
               className={` bg-[#c6cbc6] p-2 rounded-md hover:bg-[#a9aca9] cursor-pointer  ${
                 activeSection === "features" ? "text-black " : "text-[#6e7271]"
               } text-[12px] sm:text-xl font-semibold `}
+              style={{
+                width: details.specifications && details.specifications.length > 0 ? "auto" : "none",
+                display: details.specifications && details.specifications.length > 0 ? "block" : "none"
+              }}
               onClick={() => handleSectionClick("specifications")}
             >
              specifications

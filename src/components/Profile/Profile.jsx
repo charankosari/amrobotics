@@ -77,7 +77,7 @@ function Profile() {
         <button onClick={toggleMenu} style={{backgroundColor:'black',color:'white',padding:'10px',borderRadius:'5px',marginBottom:'5px'}}>menu</button>
       </div>
       
-  <div className={`flex flex-col gap-12 mx-12 w-[30%] h-[100%] `} id="gap" style={{ left: isMenuOpen ? '0' : '-100%',zIndex:2,backgroundColor:'#fff' }}>
+  <div className={`flex flex-col gap-12 mx-12 w-[30%] h-[full] `} id="gap" style={{ left: isMenuOpen ? '0' : '-100%',zIndex:2,backgroundColor:'#fff' }}>
 
 
             

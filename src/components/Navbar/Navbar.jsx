@@ -72,7 +72,7 @@ function Navbar() {
       </div>
       <div className="flex gap-3" id="one">
       
-          <div id="searchbar" className="flex items-center mr-24">
+          {/* <div id="searchbar" className="flex items-center mr-24">
             <input
               id="searchInput"
               type="text"
@@ -81,7 +81,7 @@ function Navbar() {
             <button id="searchButton">
               <CiSearch id="searchIcon" />
             </button>
-          </div>
+          </div> */}
 
           <div
             tabIndex={0}

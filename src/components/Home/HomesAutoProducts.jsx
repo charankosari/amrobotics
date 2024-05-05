@@ -31,7 +31,7 @@ const Product = (props) => {
           src={images[0]}
           alt="Product"
           style={{
-            width: "100%",
+            width: "300px",
             height: "auto",
             objectFit: "cover",
           }}
@@ -53,21 +53,29 @@ const Product = (props) => {
       <span className="mt-3 ml-3 bg-gray-500 rounded-lg text-xs p-[2px] text-white justify-center flex w-[60px]">
         {category}
       </span>
-      <h3 style={styles.heading} className="pl-3 text-black font-semibold text-left">
-        {name}
-      </h3>
+      <h3
+  style={{
+    ...styles.heading,
+    whiteSpace: 'nowrap', // Prevent line breaks
+    overflow: 'hidden',   // Hide overflow text
+    textOverflow: 'ellipsis' // Add ellipsis for overflow
+  }}
+  className="pl-3 text-black font-semibold text-left "
+>
+  {name} 
+</h3>
       <div className="flex flex-row gap-2">
         <p style={styles.price} className="ml-3">
           Rs {price}
         </p>{" "}
         <p style={styles.pricee} className="text-red-500">
-          {" "}
-          <s> Rs 10,999/-</s>
-        </p>
+            {" "}
+            <s> {(parseInt((price) * 0.15))+price}</s>
+          </p>
       </div>
       <div style={styles.rating} className="ml-3">
-      {"⭐".repeat(rating)}
-      </div>
+  {rating > 0 ? "⭐".repeat(rating) : "No reviews yet"}
+</div>
       <div style={styles.buttons}>
         <button style={styles.buttonn} className="bg-[#FF9F1C]">Buy Now</button>
         <button style={styles.button}>Add cart</button>
@@ -102,7 +110,7 @@ const styles = {
   },
   rating: {
     fontSize: "20px",
-
+    color:'black',
     textAlign:'left'
   },
   buttons: {
