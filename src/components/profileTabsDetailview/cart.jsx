@@ -63,9 +63,10 @@ const Cart = () => {
 // delete cart item______________________________________________
   const handleDelete = async(id) => {
     const response = await deleteCart(id)
-    const newDetails=CartDetails.filter((each)=>each.id!=id)
-    // const newDetails=id.map((item)=>details.filter((each)=>each.id!=item))
-    setDetails(newDetails)
+    // const newDetails=CartDetails.filter((each)=>each.id!=id)
+    // // const newDetails=id.map((item)=>details.filter((each)=>each.id!=item))
+    // setDetails(newDetails)
+    await getDetails()  
  };
 
 

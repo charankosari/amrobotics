@@ -129,16 +129,17 @@ export default function MyComponent() {
       <Navbar />
 
       {loading ? (
-        <ThreeDots
-          visible={true}
-          height="80"
-          width="80"
-          color="#ff8c00"
-          radius="9"
-          ariaLabel="three-dots-loading"
-          wrapperStyle={{}}
-          wrapperClass=""
-        />
+       <div className="flex flex-row justify-center">  <ThreeDots
+       visible={true}
+       height="80"
+       width="80"
+       color="#ff8c00"
+       radius="9"
+       ariaLabel="three-dots-loading"
+       wrapperStyle={{}}
+       wrapperClass=""
+     />
+     </div>
       ) : (
         <div className="bg-white flex flex-col px-9 py-12 max-md:px-5">
           <ToastContainer
