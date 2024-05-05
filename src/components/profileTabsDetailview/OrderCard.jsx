@@ -37,43 +37,44 @@ const OrderCard = (props) => {
 
   return (
     <div className="border mb-2 bg-white w-[80%] p-3  border-gray-300 rounded-md">
-    
-     <div className="flex flex-wrap justify-between">
-      <div className="w-[48%] lg:w-[23%] mb-4">
-        <p className="text-[13px] font-semibold">OrderPlaced</p>
-        <p className="text-[13px]">{orderDate}</p>
+      <div className="flex flex-wrap justify-between">
+        <div className="w-[48%] lg:w-[23%] mb-4">
+          <p className="text-[13px] font-semibold">OrderPlaced</p>
+          <p className="text-[13px]">{orderDate.split(" ").join("/")}</p>
+        </div>
+        <div className="w-[48%] lg:w-[23%] mb-4">
+          <p className="text-[13px] font-semibold">Delivery Date</p>
+          <p className="text-[13px]">30/04/2024</p>
+        </div>
+        <div className="w-[48%] lg:w-[23%] mb-4">
+          <p className="text-[13px] font-semibold">Amount</p>
+          <p className="text-[13px]">{totalPrice}</p>
+        </div>
+        <div className="w-[48%] lg:w-[23%] mb-4">
+          <p className="text-[13px] font-semibold">OrderId</p>
+          <p className="text-[13px]">{channel_order_id}</p>
+        </div>
       </div>
-      <div className="w-[48%] lg:w-[23%] mb-4">
-        <p className="text-[13px] font-semibold">Delivery Date</p>
-        <p className="text-[13px]">30/04/2024</p>
-      </div>
-      <div className="w-[48%] lg:w-[23%] mb-4">
-        <p className="text-[13px] font-semibold">Amount</p>
-        <p className="text-[13px]">{totalPrice}</p>
-      </div>
-      <div className="w-[48%] lg:w-[23%] mb-4">
-        <p className="text-[13px] font-semibold">OrderId</p>
-        <p className="text-[13px]">{channel_order_id}</p>
-      </div>
-    </div>
 
       <hr />
       <div>
         <p className="text-[15px] font-semi-bold  text-green-700 font-semibold ">
           Arriving on 22/3/2024
         </p>
-        <div className="flex flex-row justify-between">
-          <div className="flex flex-row items-center gap-2">
-            <img className="w-16" src={images} />
-            <div>
-              <p className="text-[14px] mb-0">{name}</p>
-              <p className="text-[14px] mb-0">
-                units <span>{units}</span>
-              </p>
-            </div>
+        <div className="flex flex-row">
+          <div className="w-[40%] flex items-center">
+            <img className="w-[8rem]" src={images} />
           </div>
-          <div className="flex flex-col">
-            <button className="border border-gray-100 rounded-md bg-orange-500 p-1 text-white text-sm">
+          <div className="w-[100%]">
+            <div >
+              <div className="flex flex-col">
+              <p className="text-[clamp(10px,2vw,14px)] mb-0">{name}</p>
+              <p className="text-[clamp(10px,2vw,14px)] mb-0">
+                units <span className="text-[clamp(10px,2vw,14px)]" >{units}</span>
+              </p>
+              </div>
+              <div className="flex flex-row gap-[10px]">
+              <button className="border border-gray-100 rounded-md bg-orange-500 p-1 text-white text-sm p-[0.4rem]">
               <a
                 href={`https://amrobotics.shiprocket.co/tracking/order/${channel_order_id}`}
                 target="_blank"
@@ -82,11 +83,14 @@ const OrderCard = (props) => {
               </a>
             </button>
             <button
-              className="border border-gray-100 rounded-md bg-gray-500 p-1 text-white text-sm"
+              className="border border-gray-100 rounded-md bg-gray-500 p-1 text-white text-sm p-[0.4rem]"
               onClick={() => setModalShow(true)}
             >
               OrderDetails
             </button>
+            </div>
+            </div>
+       
 
             <Dialog
               open={modalShow}

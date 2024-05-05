@@ -87,6 +87,9 @@ export default function MyComponent() {
     const response = await sendToCartApi({ id, cartCount });
     if (response.status == 200) {
       toast.success("Product added to cart");
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     }
   };
 
@@ -126,7 +129,7 @@ export default function MyComponent() {
 
   return (
     <div className="overflow-hidden">
-      <Navbar />
+      <Navbar  />
 
       {loading ? (
        <div className="flex flex-row justify-center">  <ThreeDots

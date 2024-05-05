@@ -177,7 +177,7 @@
   }
   #some {
     flex-direction: column;
-    height: clamp(80vh,auto,180vh);
+    height: clamp(90vh,2vw,180vh);
   }
   #gap {
     width: 100%;
