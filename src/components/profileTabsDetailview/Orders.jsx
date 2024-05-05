@@ -26,6 +26,19 @@ const Orders = () => {
     }
   };
 
+  const emptyOrderView=()=>{
+    return(
+      <div className='flex flex-col items-center'>
+        <img  src={emptycart}/>
+        <div className='flex flex-col items-center'>
+          <h1 className='text-xl font-bold'>No Orders Found!</h1>
+          <p className='text-md w-50'>Looks like you have not ordered any anything  Go ahead & Explore top Categories</p>
+        </div>
+      </div>
+    )
+  }
+
+
 
 const loadingView = () => {
   
@@ -48,7 +61,7 @@ const loadingView = () => {
 const emptyOrdersView=()=>{
   return(
     <div className='flex flex-col items-center'>
-      <img  src={emptyorder}/>
+      <img className='w-[60%]' src={emptyorder}/>
       <div className='flex flex-col items-center'>
         <h1 className='text-xl font-bold'>No orders place yet....</h1>
         <p className='text-md w-50'>Looks like you have not placed any orders yet Go ahead & Explore top Categories</p>
@@ -66,8 +79,9 @@ const successView=()=>{
       <div className='flex flex-col items-center h-[60vh] overflow-scroll'>
 
       {
+        OrderDetails.length==0?emptyOrdersView():    
 
-    OrderDetails.map((each)=><OrderCard key={each._id} each={each}/>)
+        OrderDetails.map((each)=><OrderCard key={each._id} each={each}/>)
         
       }
         </div>

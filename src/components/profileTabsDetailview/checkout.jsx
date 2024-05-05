@@ -68,6 +68,7 @@ const deleteMycart=async()=>{
 // get profile detail for address etc_________________________________________
   const getDetails = async () => {
     const response = await GetUserDetails();
+    console.log(details)
     if (response.status == 200) {
       setDetails(response.data.user);
       setLoading(false);
@@ -132,7 +133,9 @@ const payButton = async() => {
   }
 
   else{
-    const getPaymentGatewayId= await axios.get("http://localhost:5080/payment/getkey")   //getting razorpay id
+    
+    const getPaymentGatewayId= await axios.get("http://localhost:5080/payment/getkey")   //getting razorpay idy
+
     const paymentOrderId = await axios.post("http://localhost:5080/api/v1/initpayment",{itemIds,cartAmount})
 
     const options = {
@@ -158,9 +161,13 @@ const payButton = async() => {
              
               axios(config).then(response => {
           if (response.status==200) {
-            deleteMycart()
             const url = `http://127.0.0.1:5173/success?message=${encodeURIComponent(response.data.OrderData.channel_order_id)}`;
+            deleteMycart()
+
               window.location.href = url;
+            console.log(response.data)
+
+
           } else {
               // Handle error if needed
           }
@@ -217,6 +224,7 @@ const payButton = async() => {
   };
 
   const successView = () => {
+    console.log(details.addresses.length)
     return (
       <div className="pt-5 pl-10 pr-10 flex flex-row  ">
         <div className="w-[50%] ">
@@ -382,34 +390,7 @@ const payButton = async() => {
             </div>
              </div>
             }
-            {/* <div className="flex flex-row items-center mb-2">
-              <p>Email : </p>
-              <p> iamsrinath@gmail.com</p>
-            </div>
-            <div className="flex flex-row items-center mb-2">
-              <p>Number : </p>
-              <p> 98977898</p>
-            </div>
-            <div className="flex flex-row items-center mb-2">
-              <p>Country : </p>
-              <p> India</p>
-            </div>
-            <div className="flex flex-row items-center mb-2">
-              <p>State :</p>
-              <p> Telangana</p>
-            </div>
-            <div className="flex flex-row items-center mb-2">
-              <p>City :</p>
-              <p> Kompally</p>
-            </div>
-            <div className="flex flex-row items-center mb-2">
-              <p>Pin :</p>
-              <p> 50001</p>
-            </div>
-            <div className="flex flex-row items-center mb-2">
-              <p>address : </p>
-              <p>kompally, near vivekananda statue,</p>
-            </div> */}
+        
           </div>
         </div>
 

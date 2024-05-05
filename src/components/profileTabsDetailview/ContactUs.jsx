@@ -2,10 +2,55 @@ import React from "react";
 import "./ContactUs.css";
 import { IoLocationSharp } from "react-icons/io5";
 import { FaPhoneAlt } from "react-icons/fa";
+import emailjs from 'emailjs-com';
+import { ToastContainer, toast } from "react-toastify";
+
+
+
 
 function ContactUs() {
+
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    if(e.target.email.value==="" || e.target.name.value==="" || e.target.message.value==="" ){
+           toast.warn("fill the details")
+       }
+
+    else{
+
+    emailjs.sendForm('service_imbi7xj', 'template_htm6m6l', e.target, '7gxkDN9Fcn9vEnxaG')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+      
+    e.target.name.value=""
+    e.target.email.value=""
+    e.target.message.value=""
+    toast.success("mail sent successfully")
+    }
+  };
+
+
+
+
   return (
     <div className="px-10 py-5 flex flex-col h-full gap-3">
+        <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
       <h1 className="text-black font-black text-2xl mb-4">Contact Us</h1>
       <div>
       
@@ -27,8 +72,7 @@ function ContactUs() {
                   <div className="flex flex-col">
                     <h1 className="font-[400] mb-1">Our Office locaion</h1>
                     <p>
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Aspernatur sed magnam aut error atque.
+                    #101, Ace Ventures, Laxminagar Colony Road No 1, Kothapet,
                     </p>
                   </div>
                 </div>
@@ -38,7 +82,7 @@ function ContactUs() {
                   </div>
                   <div className="flex flex-col">
                     <h1 className="font-[400] mb-1">Phone (Landline)</h1>
-                    <p>91 799932646643</p>
+                    <p>+91-8074702016</p>
                   </div>
                 </div>
               </div>
@@ -47,21 +91,23 @@ function ContactUs() {
 
           <div className="w-[45%]" id="expand">
             <div>
-              <form id="form">
+              <form id="form" onSubmit={sendEmail}>
                 <div id="title">Contact us</div>
                 <input
                   type="text"
                   placeholder="Your name"
+                  name="name"
                   id="input"
                   className="bg-white"
                 />
                 <input
                   type="text"
+                  name="email"
                   placeholder="Your email"
                   id="input"
                   className="bg-white"
                 />
-                <textarea placeholder="Your message" className="bg-white" />
+                <textarea name="message" placeholder="Your message" className="bg-white" />
                 <button type="submit">Submit</button>
               </form>
             </div>

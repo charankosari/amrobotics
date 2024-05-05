@@ -42,7 +42,7 @@ function App() {
           <Route path="/about" element={<Aboutus />} />
           <Route path="/services" element={<Service />} />
           <Route path="/marketplace" element={<Marketplace />} />
-          <Route path="/marketplace/:id" element={<SpecificProduct />} />
+          <Route path="/marketplace/:id" element={<SpecificProduct />}/>
           <Route path="/blog" element={<Blogs />} />
           <Route path="/blog/:id" element={<IndividualBlog />} />
           <Route path="/signup" element={<SignupPage />} />

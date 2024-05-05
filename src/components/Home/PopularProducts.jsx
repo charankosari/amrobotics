@@ -3,8 +3,8 @@ import DiyProductContainer from './DiyProductContainer'
 
 function Popular(props) {
    const{products}=props;
-   const home=products.filter((each)=>each.category==="Home")
-   const Diy=products.filter((each)=>each.category==="diy")
+   const home=products.filter((each)=>each.category.toLowerCase()==="home")
+   const Diy=products.filter((each)=>each.category.toLowerCase()==="diy")
 
   return (
     <div>
