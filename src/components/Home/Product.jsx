@@ -75,7 +75,7 @@ const Product = (props) => {
           </p>
         </div>
         <div>
-        <div style={styles.rating} className="ml-3 text-left">
+        <div style={styles.rating} className=" text-left">
   {rating > 0 ? "⭐".repeat(rating) : "No reviews yet"}
 </div>
       </div>
