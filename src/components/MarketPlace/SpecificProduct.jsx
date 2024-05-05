@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import "./Specificproduct.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   GetDetailProduct,
   getWishlist,
@@ -15,6 +15,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { IoCloseSharp } from "react-icons/io5";
 import { IoIosHeart } from "react-icons/io";
 import { createReview } from "../../helper.js";
+import MarketProduct from "./MarketProduct.jsx"
 
 export default function MyComponent() {
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ export default function MyComponent() {
   let dataSet = [];
   const { id } = useParams();
   const [details, setDetails] = useState("");
+  const [similarproducts, setsimilarproducts] = useState("");
   const [loading, setLoading] = useState(true);
   const [cartCount, setCartCount] = useState(1);
   const [colorr, setColor] = useState("grey");
@@ -52,13 +54,12 @@ export default function MyComponent() {
     setActiveSection(section);
   };
   const getDetails = async () => {
-    console.log("hello");
     const response = await GetDetailProduct(id);
     const response2 = await getWishlist();
 
     if (response.status === 200) {
       setDetails(response.data.product);
-      console.log(response.data.product);
+      setsimilarproducts(response.data.similarproducts)
       setMainImage(response.data.product.images[0]);
 
       if (response2.status === 200) {
@@ -69,13 +70,10 @@ export default function MyComponent() {
         for (let i = 0; i < response2.data.data.length; i++) {
           dataSet.add(response2.data.data[i].name);
         }
-        console.log(dataSet);
-        console.log(response.data.product.name);
 
         // Check if details.name is present in dataSet
         if (dataSet.has(response.data.product.name)) {
           setColor("red");
-          console.log("red");
         } else {
           setColor("grey");
         }
@@ -87,9 +85,7 @@ export default function MyComponent() {
 
   const sendToCart = async () => {
     const response = await sendToCartApi({ id, cartCount });
-    console.log(response);
     if (response.status == 200) {
-      console.log("product added to cart ");
       toast.success("Product added to cart");
       setTimeout(() => {
         window.location.reload();
@@ -99,23 +95,24 @@ export default function MyComponent() {
 
   const BuyNowButton = async () => {
     const response = await sendToCartApi({ id, cartCount });
-    console.log(response);
     if (response.status == 200) {
-      console.log("product added to cart ");
       toast.success("Product added to cart");
       setTimeout(() => {
         navigate("/profile", { state: { tabId: "CART" } });
-      }, 2000); // 2000 milliseconds = 2 seconds
+      }, 2000); 
     }
   };
 
   const wishListItem = async () => {
     const response = await sendToWishlistApi(id);
-    console.log(response);
+    console.log(response.data.message);
     if (response.status == 200) {
-      // setLoveClicked(!isLoveClicked);
       getDetails();
-      toast.success("Item Wishlisted");
+      if (response.data.message === "Product added to Wishlist") {
+        toast.success("Item Wishlisted");
+      } else {
+        toast.warning("Item removed from Wishlisted");
+      }
     }
   };
 
@@ -206,7 +203,7 @@ export default function MyComponent() {
                     </div>
                   </div>
                 </div>
-              </div>
+                </div>
               <div className="flex flex-col items-stretch w-[44%] ml-5 max-md:w-full max-md:ml-0">
                 <div className="flex flex-col my-auto max-md:max-w-full max-md:mt-10">
                   <div className="text-black text-[clamp(1.5rem,2vw,2.25rem)] font-semibold self-stretch max-md:max-w-full">
@@ -315,7 +312,11 @@ export default function MyComponent() {
                 : null}
             </div>
 
-            <div
+           
+           
+            {
+              details.features.length!=0?
+              <div
               className={` bg-[#c6cbc6] p-2 rounded-md hover:bg-[#a9aca9] cursor-pointer  ${
                 activeSection === "features" ? "text-black " : "text-[#6e7271]"
               } text-[12px] sm:text-xl font-semibold `}
@@ -325,10 +326,15 @@ export default function MyComponent() {
               }}
               onClick={() => handleSectionClick("features")}
             >
-              {details.features ? "features" : null}
+             Features
             </div>
+            :
+            ""
+            }
 
-            <div
+            {
+              details.specifications.length!=0 ?
+              <div
               className={` bg-[#c6cbc6] p-2 rounded-md hover:bg-[#a9aca9] cursor-pointer  ${
                 activeSection === "features" ? "text-black " : "text-[#6e7271]"
               } text-[12px] sm:text-xl font-semibold `}
@@ -338,8 +344,11 @@ export default function MyComponent() {
               }}
               onClick={() => handleSectionClick("specifications")}
             >
-              {details.specifications ? "specifications" : null}
+             specifications
             </div>
+            :
+            ""
+            }
           </div>
 
           {activeSection === "description" && (
@@ -398,6 +407,19 @@ export default function MyComponent() {
               ) : null}
             </div>
           )}
+
+   <h1 className="mb-3 mt-3 font-semibold text-2xl">Similar products</h1>
+
+           <div className="flex flex-row justify-between">
+           {
+              similarproducts.map((item) => (
+
+                <MarketProduct key={item._id} each={item}/>
+
+              ))
+            }        
+    
+          </div>
 
           <div className="sm:w-[60%] W-[100%] h-auto p-4 sm:ml-[20px] ml-0 ">
             <h1 className="text-3xl mb-3 font-bold text-black" id="cus">

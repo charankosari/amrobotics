@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const MarketProduct = (props) => {
   //  eslint-disable-next-line no-unused-vars
   const { _id, name, images, category, rating, price } = props.each;
-  console.log(rating)
+  console.log(props.each._id);
   const navigate = useNavigate();
   const [isLoveClicked, setLoveClicked] = useState(false);
 
@@ -17,6 +17,7 @@ const MarketProduct = (props) => {
     <div
       onClick={() => {
         navigate(`/marketplace/${_id}`);
+        window.location.reload();
       }}
       className="w-[320px] "
     >
@@ -32,24 +33,19 @@ const MarketProduct = (props) => {
                 objectFit: "cover",
               }}
             />
-            {/* <button
-          onClick={handleLoveClick}
-          style={{
-            position: "absolute",
-            top: "10px",
-            right: "10px",
-            cursor: "pointer",
-            border: "none",
-            backgroundColor: "transparent",
-          }}
-        >
-          <IoIosHeart color={isLoveClicked ? "red" : "gray"}  size={24}  className="bg-white rounded-full p-[3px]"/> 
-        </button> */}
           </div>
 
           <span className="mt-3 ml-3 bg-gray-500 rounded-lg text-xs p-[2px] text-white justify-center flex w-[30%]">
             {category}
           </span>
+{/* <<<<<<< HEAD
+          <h
+            style={styles.heading}
+            className="pl-3 text-black font-semibold text-left text-ellipsis" 
+          >
+            {name}
+          </h>
+======= */}
           <h3
   style={{
     ...styles.heading,
@@ -63,6 +59,7 @@ const MarketProduct = (props) => {
 </h3>
 
 
+{/* >>>>>>> 6bb31d255f59b1e4f51b9c1ff0d1ac9b1d8ee895 */}
         </button>
         <div className="flex flex-row gap-2">
           <p style={styles.price} className="ml-3">
@@ -100,6 +97,7 @@ const styles = {
   heading: {
     fontSize: "18px",
     margin: "10px 0",
+   
   },
   price: {
     fontSize: "16px",
