@@ -53,15 +53,15 @@ function Footer() {
         Get in touch
        <div>
        <ul className="wrapper">
-    <li className="icon facebook" id='some'>
+    <li className="icon facebook" id='somee'>
         <span className="tooltip">Facebook</span>
         <span> <FaFacebookF size={24}   /></span>
     </li>
-    <li className="icon twitter" id='some'>
+    <li className="icon twitter" id='somee'>
         <span className="tooltip">Twitter</span>
         <span><FaXTwitter size={24} /></span>
     </li>
-    <li className="icon instagram" id='some'>
+    <li className="icon instagram" id='somee'>
         <span className="tooltip">Instagram</span>
         <span><FaInstagram size={24} /></span>
     </li>
