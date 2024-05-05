@@ -192,9 +192,10 @@ export default function MyComponent() {
                         {details.images.map((image, index) => (
                           <img
                             key={index}
+                            // style={{boxShadow:" 10px 5px 5px  white"}}
                             loading="lazy"
                             srcSet={image}
-                            className="aspect-[1.14] object-contain rounded object-center border-2 border-[#F59E0B] p-2 w-[80px] overflow-hidden shrink-0 max-w-full grow max-md:mt-3 cursor-pointer "
+                            className="aspect-[1.14] object-contain rounded shadow-lg object-center border-2 border-[#F59E0B] shadow-lg   p-2 w-[80px] overflow-hidden shrink-0 max-w-full grow max-md:mt-3 cursor-pointer "
                             onClick={() => handleImageClick(image)}
                           />
                         ))}

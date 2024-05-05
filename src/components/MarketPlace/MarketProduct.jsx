@@ -27,7 +27,7 @@ const MarketProduct = (props) => {
               src={images[0]}
               alt="Product"
               style={{
-                width: "100%",
+                width: "300px",
                 height: "auto",
                 objectFit: "cover",
               }}
@@ -51,11 +51,18 @@ const MarketProduct = (props) => {
             {category}
           </span>
           <h3
-            style={styles.heading}
-            className="pl-3 text-black font-semibold text-left"
-          >
-            {name}
-          </h3>
+  style={{
+    ...styles.heading,
+    whiteSpace: 'nowrap', // Prevent line breaks
+    overflow: 'hidden',   // Hide overflow text
+    textOverflow: 'ellipsis' // Add ellipsis for overflow
+  }}
+  className="pl-3 text-black font-semibold text-left "
+>
+  {name} 
+</h3>
+
+
         </button>
         <div className="flex flex-row gap-2">
           <p style={styles.price} className="ml-3">
@@ -63,12 +70,13 @@ const MarketProduct = (props) => {
           </p>{" "}
           <p style={styles.pricee} className="text-red-500">
             {" "}
-            <s> {price}</s>
+            <s> {(parseInt((price) * 0.15))+price}</s>
           </p>
         </div>
         <div style={styles.rating} className="ml-3">
-          {"⭐".repeat(rating)}
-        </div>
+  {rating > 0 ? "⭐".repeat(rating) : "No reviews yet"}
+</div>
+
         <div style={styles.buttons}>
           <button style={styles.buttonn}>Buy Now</button>
           <button style={styles.button}>Add Cart</button>
@@ -102,6 +110,7 @@ const styles = {
   },
   rating: {
     fontSize: "20px",
+    color:'black'
   },
   buttons: {
     display: "flex",

@@ -31,16 +31,18 @@ function Footer() {
            Telangana,India
           </p>
           <p> +91 xxxxx xxxxxx</p>
-          <p>support@amrrobotics.com</p>
+          <p>support@amrobotics.in</p>
         </aside>
         <nav>
           <header className="footer-title">About Us</header>
-          <Link className="link link-hover">Contact Us</Link>
+          <Link className="link link-hover" to='/profile' state={{state:{tabId:"CONTACT"}}}>Contact Us</Link>
+
           <Link className="link link-hover" to='/terms-conditions'>Terms & Conditions</Link>
           <Link className="link link-hover" to='/shipping-refund'>Shipping and Refund policy</Link>
           <Link className="link link-hover" to='/privacy-policy'>Privacy policy</Link>
           <Link className="link link-hover" to='/careers'>Careers</Link>
           <Link className="link link-hover" to='/terms-of-service'>Terms of service</Link>
+       <p> Working Hours : Mon to Sat 9.30am to 8.00pm</p>  
         </nav>
         <nav>
           <header className="footer-title">Authorized Distributor</header>
