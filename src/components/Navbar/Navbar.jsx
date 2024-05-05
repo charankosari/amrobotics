@@ -1,10 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation,useNavigate } from "react-router-dom";
 import Logo from "../assets/imgg.png";
-import { CiSearch } from "react-icons/ci";
+import Hamburger from 'hamburger-react'
 import "./Navbar.css";
+import { useMediaQuery } from '@mui/material';
+import {getCartDetails} from '../../helper'
 
 function Navbar() {
+  const [cartLength, setCartLength] = useState(0);
+  useEffect(() => {
+    const fetchCartDetails = async () => {
+      try {
+        const response = await getCartDetails();
+        const cartData = response.data.data;
+        const lengthOfCart = cartData.length;
+        setCartLength(lengthOfCart);
+        console.log(lengthOfCart);
+      } catch (error) {
+        console.error('Error fetching cart details:', error);
+      }
+    };
+
+    fetchCartDetails();
+  }, []); 
   const location = useLocation();
   const [activeLink, setActiveLink] = useState("Home");
   const navigate=useNavigate()
@@ -13,10 +31,22 @@ function Navbar() {
     const lastPart = pathname.substring(pathname.lastIndexOf("/") + 1);
     setActiveLink(lastPart || "Home");
   }, [location]);
-
+  const isMobile = useMediaQuery('(max-width:768px)');
+ 
+  const [isOpen, setOpen] = useState(false)
   return (
     <div className="navbar bg-white " id="nav">
       <div className="flex-[0.97] " id="ele">
+      {isMobile && <Hamburger toggled={isOpen} toggle={setOpen} className='z-22' />}
+      <div className={`custom-menu ${isOpen ? 'open' : ''}`}>
+            <Link className="custom-link" to="/" onClick={()=>{setOpen(false)}}>Home</Link>
+            <Link className="custom-link" to="/about"  onClick={()=>{setOpen(false)}}>About</Link>
+            <Link className="custom-link" to="/marketplace"  onClick={()=>{setOpen(false)}}>Marketplace</Link>
+            <Link className="custom-link" to="/services"  onClick={()=>{setOpen(false)}}>Services</Link>
+            <Link className="custom-link" to="/about"  onClick={()=>{setOpen(false)}}>About</Link>
+            <Link className="custom-link" to="/blog"  onClick={()=>{setOpen(false)}}>Blog</Link>
+          </div>
+
         <Link to="/" className="btn btn-ghost text-xl sm:pl-1 pl-0 h-20 ml-4" id="ghost">
           <img src={Logo} alt="" className="h-20" />
         </Link>
@@ -103,7 +133,7 @@ function Navbar() {
                   d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                 />
               </svg>
-              <span className="badge badge-xl mt-4 indicator-item">8</span>
+              <span className="badge badge-xl mt-4 indicator-item">{cartLength}</span>
             </div>
           </div>
          

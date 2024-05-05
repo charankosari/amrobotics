@@ -91,6 +91,9 @@ export default function MyComponent() {
     if (response.status == 200) {
       console.log("product added to cart ");
       toast.success("Product added to cart");
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     }
   };
 
@@ -129,7 +132,7 @@ export default function MyComponent() {
 
   return (
     <div className="overflow-hidden">
-      <Navbar />
+      <Navbar  />
 
       {loading ? (
         <ThreeDots
