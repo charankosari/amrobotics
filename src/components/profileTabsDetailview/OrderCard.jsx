@@ -66,31 +66,31 @@ const OrderCard = (props) => {
             <img className="w-[8rem]" src={images} />
           </div>
           <div className="w-[100%]">
-            <div >
+            <div>
               <div className="flex flex-col">
-              <p className="text-[clamp(10px,2vw,14px)] mb-0">{name}</p>
-              <p className="text-[clamp(10px,2vw,14px)] mb-0">
-                units <span className="text-[clamp(10px,2vw,14px)]" >{units}</span>
-              </p>
+                <p className="text-[clamp(10px,2vw,14px)] mb-0">{name}</p>
+                <p className="text-[clamp(10px,2vw,14px)] mb-0">
+                  units{" "}
+                  <span className="text-[clamp(10px,2vw,14px)]">{units}</span>
+                </p>
               </div>
               <div className="flex flex-row gap-[10px]">
-              <button className="border border-gray-100 rounded-md bg-orange-500 p-1 text-white text-sm p-[0.4rem]">
-              <a
-                href={`https://amrobotics.shiprocket.co/tracking/order/${channel_order_id}`}
-                target="_blank"
-              >
-                track
-              </a>
-            </button>
-            <button
-              className="border border-gray-100 rounded-md bg-gray-500 p-1 text-white text-sm p-[0.4rem]"
-              onClick={() => setModalShow(true)}
-            >
-              OrderDetails
-            </button>
+                <button className="border border-gray-100 rounded-md bg-orange-500 p-1 text-white text-sm p-[0.4rem]">
+                  <a
+                    href={`https://amrobotics.shiprocket.co/tracking/order/${channel_order_id}`}
+                    target="_blank"
+                  >
+                    track
+                  </a>
+                </button>
+                <button
+                  className="border border-gray-100 rounded-md bg-gray-500 p-1 text-white text-sm p-[0.4rem]"
+                  onClick={() => setModalShow(true)}
+                >
+                  OrderDetails
+                </button>
+              </div>
             </div>
-            </div>
-       
 
             <Dialog
               open={modalShow}
@@ -110,43 +110,46 @@ const OrderCard = (props) => {
               <hr />
               <DialogContent>
                 <div className="mt-3">
-                  <div className="flex mb-3 flex-row justify-between">
-                    <div className="w-[33%]">
-                      <h1 className="text-sm font-semibold">Order Status</h1>
-                      <p className="text-sm">{orderStatus}</p>
+                  <div className="flex mb-3 flex-col justify-between">
+                    <div className=" flex flex-row">
+                      <h1 className="text-sm font-semibold w-[20%]">Order Status:</h1>
+                      <p className="text-sm ml-2">{orderStatus}</p> 
                     </div>
+                    <br />
 
-                    <div className="w-[33%]">
-                      <h1 className="text-sm font-semibold">Order Summary</h1>
-                      <p className="text-sm">Mode of Payment : {paymode}</p>
+                    <div className=" flex flex-row">
+                      <h1 className="text-sm font-semibold w-[20%]">Order Summary:</h1>
+                     <div className="ml-2"> <p className="text-sm">Mode of Payment : {paymode}</p>
                       <p className="text-sm">ItemsPrice : {itemsPrice}</p>
                       <p className="text-sm">Tax Added : {taxPrice}</p>
                       <p className="text-sm">shippingPrice : {shippingPrice}</p>
                       <p className="text-sm font-semibold">
                         Total Price : {totalPrice}
                       </p>
+                      </div>
                     </div>
+                    <br />
 
-                    <div className="w-[33%]">
-                      <h1 className="text-sm font-semibold">
+                    <div className="flex flex-row">
+                      <h1 className="text-sm font-semibold w-[20%]  ">
                         Shipping Address
                       </h1>
+                      <div className="ml-2">
                       <p className="text-sm ">
                         {username},<br />
-                        {country},<br />
-                        {state},<br />
-                        {city},<br />
-                        {pin},<br />
+                        {city}, {state} , {country},<br />{pin},
+                       ,<br />
                         {mobile},<br />
                         {email},<br />
                         {address}
                       </p>
+                      </div>
                     </div>
                   </div>
 
                   <hr />
 
-                  <div className="border mb-2 mt-3   bg-white w-[80%] p-3  border-gray-300 rounded-md">
+                  <div className="border mb-2 mt-3   bg-white  p-3  border-gray-300 rounded-md">
                     <div className="flex flex-row justify-between mb-2">
                       <div className="">
                         <p className="text-[13px] font-semibold">OrderPlaced</p>
@@ -168,28 +171,42 @@ const OrderCard = (props) => {
                       <p className="text-[15px] font-semi-bold  text-green-700 font-semibold ">
                         Arriving on 22/3/2024
                       </p>
-                      <div className="flex flex-row justify-between">
-                        <div className="flex flex-row items-center gap-2">
-                          <img className="w-16" src={images} />
-                          <div>
-                            <p className="text-[14px] mb-0">{name}</p>
-                            <p className="text-[14px] mb-0">
-                              units <span>{units}</span>
-                            </p>
-                          </div>
+                      <div className="flex flex-row">
+                        <div className="w-[40%] flex items-center">
+                          <img className="w-[8rem]" src={images} />
                         </div>
-                        <div className="flex flex-col">
-                          <button className="border border-gray-100 rounded-md bg-orange-500 p-1 text-white text-sm">
-                            Track Order
-                          </button>
-                          <button
-                            onClick={() => {
-                              navigate(`/marketplace/${id}`);
-                            }}
-                            className="border border-gray-100 rounded-md bg-orange-500 p-1 text-white text-sm"
-                          >
-                            View Product
-                          </button>
+                        <div className="w-[100%]">
+                          <div>
+                            <div className="flex flex-col">
+                              <p className="text-[clamp(10px,2vw,14px)] mb-0">
+                                {name}
+                              </p>
+                              <p className="text-[clamp(10px,2vw,14px)] mb-0">
+                                units{" "}
+                                <span className="text-[clamp(10px,2vw,14px)]">
+                                  {units}
+                                </span>
+                              </p>
+                            </div>
+                            <div className="flex flex-row gap-[10px]">
+                              <button className="border border-gray-100 rounded-md bg-orange-500 p-1 text-white text-sm p-[0.4rem]">
+                                <a
+                                  href={`https://amrobotics.shiprocket.co/tracking/order/${channel_order_id}`}
+                                  target="_blank"
+                                >
+                                  track
+                                </a>
+                              </button>
+                              <button
+                                className="border border-gray-100 rounded-md bg-gray-500 p-1 text-white text-sm p-[0.4rem]"
+                                onClick={() => {
+                                  navigate(`/marketplace/${id}`);
+                                }}
+                              >
+                                View Product
+                              </button>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
