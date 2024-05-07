@@ -48,7 +48,7 @@ const OrderCard = (props) => {
         </div>
         <div className="w-[48%] lg:w-[23%] mb-4">
           <p className="text-[13px] font-semibold">Amount</p>
-          <p className="text-[13px]">{totalPrice}</p>
+          <p className="text-[13px]">₹ {totalPrice}</p> 
         </div>
         <div className="w-[48%] lg:w-[23%] mb-4">
           <p className="text-[13px] font-semibold">OrderId</p>
@@ -124,7 +124,7 @@ const OrderCard = (props) => {
                       <p className="text-sm">Tax Added : {taxPrice}</p>
                       <p className="text-sm">shippingPrice : {shippingPrice}</p>
                       <p className="text-sm font-semibold">
-                        Total Price : {totalPrice}
+                        Total Price : ₹{totalPrice}
                       </p>
                       </div>
                     </div>
@@ -163,7 +163,7 @@ const OrderCard = (props) => {
                       </div>
                       <div className="">
                         <p className="text-[13px] font-semibold">Amount</p>
-                        <p className="text-[13px]">{totalPrice}/-</p>
+                        <p className="text-[13px]"> ₹{totalPrice}/-</p>
                       </div>
                     </div>
                     <hr />
