@@ -16,24 +16,32 @@ const CartItem=(props)=>{
   const {handleDelete,each,updateCartQuantity}=props
   const{name,images,quantity,price,id}=each
   return(
-    <div className='flex flex-row bg-white rounded-md p-3 items-center justify-between text-black' >
-      <img className='w-28 rounded-md mr-6' src={images[0]} />
-        <div className='w-[30%]'>
-          <h1 className='text-base font-bold'>{name}</h1>
-          <p className='text-base font-bold'>{price}</p>
-        </div>
-    <div className='flex gap-5 items-center w-[30%] justify-center'>
-      <button className='w-[10%]' onClick={()=>{updateCartQuantity({id,operation:"inc"})}}>
-      <FiPlusCircle className="text-2xl"/>
-      </button>
-      <p className='text-2xl w-[10%]'>{quantity}</p>
-      <button  className='w-[10%]'  onClick={()=>{updateCartQuantity({id,operation:"dec"})}}>
-        <LuMinusCircle className="text-2xl"/>
-      </button>
-    </div>
-    <MdDeleteOutline onClick={()=>handleDelete(id)} className=' deleteall-icon text-2xl' />
 
-   </div>
+      <div className='bg-white rounded-md p-3 flex flex-row' >
+    <div className='flex flex-row '  >
+      <div className='w-[20%] mr-2 flex  items-center'><img className='w-full rounded-md mr-6' src={images[0]} />
+</div>
+<div className='flex flex-col justify-center w-[75%]'>
+<h1 className='text-[clamp(0.8rem,2vw,1rem)] font-bold'>{name}</h1>
+<p className='text-[clamp(0.8rem,2vw,1rem)] font-bold'>₹ {price}</p>
+   <div className='flex gap-5 items-center w-[30%] justify-center'>
+       <button className='w-[10%]' onClick={()=>{updateCartQuantity({id,operation:"inc"})}}>
+       <FiPlusCircle className="text-2xl"/>
+       </button>
+       <p className='text-xl w-[10%] ml-3'>{quantity}</p>
+       <button  className='w-[10%]'  onClick={()=>{updateCartQuantity({id,operation:"dec"})}}>
+         <LuMinusCircle className="text-2xl"/>
+       </button>
+     </div>
+
+
+</div>
+    </div>
+    <div className='w-[10%] justify-center flex items-center  cursor-pointer'>
+    <MdDeleteOutline  onClick={()=>handleDelete(id)} className=' deleteall-icon text-2xl ' id='redd' />
+    </div>
+
+  </div>
   )
 }
 
@@ -120,9 +128,9 @@ const updateCartQuantity = async(a) => {
    return(
       <div className='px-10 py-5 flex flex-col h-[80vh]'>
        <div className='flex flex-row justify-between '>
-       <h1 className='text-black font-black text-2xl'>Cart Details</h1>
+       <h1 className='text-black font-black text-xl'>Cart Details</h1>
       {
-           CartDetails.length<=0?<></>: <button onClick={deleteMycart}  className='flex flex-row items-center gap-1 bg-[#434142] px-2 py-1.5 rounded-md'> <MdDeleteOutline className=' deleteall-icon text-2xl' /><span className='text-lg text-white'>Delete All</span> </button>
+           CartDetails.length<=0?<></>: <button onClick={deleteMycart}  className='flex flex-row items-center gap-1 bg-[#434142] px-2 py-1.5 rounded-md'> <MdDeleteOutline className=' deleteall-icon text-2xl' /><span className=' text-white text-[clamp(0.7rem,2vh,1rem)]'>Delete All</span> </button>
       }
       
       

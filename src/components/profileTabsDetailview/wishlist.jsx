@@ -28,24 +28,26 @@ const WishlistItem=(props)=>{
   const navigate=useNavigate()
 
   return(
-    <div onClick={
+    <div className='bg-white rounded-md p-3 flex flex-row' >
+      <div className='flex flex-row cursor-pointer'  onClick={
       ()=>{
           navigate(`/marketplace/${id}`)
-      }
-  } className='flex flex-row bg-white rounded-md p-3 items-center justify-between' >
-    <img className='w-28 rounded-md mr-6' src={images[0]} />
-    <div>
-       <h1 className='text-base font-bold'>{name}</h1>
-       <p className='text-base font-bold'>{price}</p>
-    </div>
-    <div className='flex gap-5 items-center'>
-    
-      <p className='text-2xl'>stock <span className='text-xl font-bold'>({stock})</span></p>
- 
-    </div>
-    <MdDeleteOutline onClick={()=>handleDelete(id)} className=' deleteall-icon text-2xl' />
+      }}>
+        <div className='w-[20%] mr-2 flex  items-center'><img className='w-full rounded-md mr-6' src={images[0]} />
+</div>
+<div className='flex flex-col justify-center w-[75%]'>
+<h1 className='text-[clamp(0.8rem,2vw,1rem)] font-bold'>{name}</h1>
+<p className='text-[clamp(0.8rem,2vw,1rem)] font-bold'>₹ {price}</p>
+<p className='text-[clamp(0.8rem,2vw,1rem)] font-bold'>stock ({stock})</p>
 
-   </div>
+
+</div>
+      </div>
+      <div className='w-[10%] justify-center flex items-center  cursor-pointer'>
+      <MdDeleteOutline  onClick={()=>handleDelete(id)} className=' deleteall-icon text-2xl ' id='redd' />
+      </div>
+
+    </div>
   )
 }
 
@@ -122,7 +124,7 @@ const Wishlist = () => {
        <div className='flex flex-row justify-between '>
        <h1 className='text-black font-black text-2xl'>Wishlist Details</h1>
       {
-           wishDetails.length<=0?<></>: <button onClick={deleteWishlist} className='flex flex-row items-center gap-1 bg-[#434142] px-2 py-1.5 rounded-md'> <MdDeleteOutline className=' deleteall-icon text-2xl' /><span className='text-lg text-white'>Delete All</span> </button>
+           wishDetails.length<=0?<></>: <button onClick={deleteWishlist} className='flex flex-row items-center gap-1 bg-[#434142] px-2 py-1.5 rounded-md'> <MdDeleteOutline className=' deleteall-icon text-2xl' /><span className='text-[clamp(0.8rem,2vw,1rem)]  text-white'>Delete All</span> </button>
       }
       
       
