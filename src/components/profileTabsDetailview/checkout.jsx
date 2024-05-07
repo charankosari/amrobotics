@@ -4,6 +4,7 @@ import { ThreeDots } from "react-loader-spinner";
 import { UpdateUserDetails, deleteAllCart } from "../../helper.js";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Logo from "../assets/imgg.png";
 import { ToastContainer, toast } from "react-toastify";
 import "./checkout.css";
 
@@ -133,11 +134,11 @@ function Checkout() {
       
       const options = {
         key: getPaymentGatewayId.data.key, // Enter the Key ID generated from the Dashboard
-        amount: 112, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        amount: 1, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
         currency: "INR",
         name: "Amrobotics", //your business name
         description: "Test Transaction",
-        image: "https://example.com/your_logo",
+        image: {Logo},
         order_id: paymentOrderId.data.paymentId.id,
 
         handler: (response) => {

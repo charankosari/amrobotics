@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 
 function Footer() {
   return (
-    <div>
-      <footer className="footer p-10 bg-base-200 text-base-content text-xl">
+    <div className=" bg-base-200  p-10">
+      <footer className="footer  text-base-content text-xl">
         <aside>
           <svg
             width="50"
@@ -69,6 +69,9 @@ function Footer() {
        </div>
         </nav>
       </footer>
+      <hr className='bg-red-700'/>
+      <p className='text-center mt-3 text-xs'>© 2024, Am Robotics Designed and Developed By Brutanix
+      </p>
     </div>
   );
 }
